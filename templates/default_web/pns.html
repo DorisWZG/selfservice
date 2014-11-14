@@ -1,0 +1,274 @@
+{% extends "default_web/base.html" %}    
+
+    {% block title %}Glogou Product and Service{% endblock %}
+    {% block description %}{% endblock %}
+    {% block keyword %}{% endblock %}
+
+
+    {% block content %}
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Product and Service
+                    <small>We provide all products and services needs for you!</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a>
+                    </li>
+                    <li class="active">Product and Service</li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Image Header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- <img class="img-responsive" src="http://placehold.it/1200x300" alt=""> -->
+                <a><img class="img-responsive" src="/static/images/mms1.jpg"></img></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Service Panels -->
+        <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">What we provide</h2>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-tree fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h4>Education Sector</h4>
+                        <p>blah blah blah...</p>
+                        <a href="#learn1" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-car fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h4>Destination Marketing Sector</h4>
+                        <p>blah blah blah...</p>
+                        <a href="#learn2" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-bank fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h4>Real Estate Sector</h4>
+                        <p>blah blah blah...</p>
+                        <a href="#learn3" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-database fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h4>High Tech Industry Sector</h4>
+                        <p>blah blah blah...</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Tabs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Product and Service Detail</h2>
+            </div>
+            <div class="col-lg-12">
+
+                <ul id="myTab" class="nav nav-tabs nav-justified">
+                    <li class="active"><a href="#education_service" data-toggle="tab"><i class="fa fa-tree"></i> Education Sector</a>
+                    </li>
+                    <li class=""><a href="#destination_mkt_service" data-toggle="tab"><i class="fa fa-car"></i> Destination Marketing Sector</a>
+                    </li>
+                    <li class=""><a href="#realestate_service" data-toggle="tab"><i class="fa fa-bank"></i> Real Estate Sector</a>
+                    </li>
+                    <li class=""><a href="#hightech_service" data-toggle="tab"><i class="fa fa-database"></i> High Tech Industry Sector</a>
+                    </li>
+                </ul>
+
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active in" id="education_service">
+                        <h4>Education Sector</h4>
+                        <p>education paragraph 1: blah blah blah...</p>
+                        <p>education paragraph 2: blah blah blah...</p>
+                    </div>
+                    <div class="tab-pane fade" id="destination_mkt_service">
+                        <h4>Destination Marketing Sector</h4>
+                        <p>destination marketing paragraph 1: blah blah blah...</p>
+                        <p>destination marketing paragraph 2: blah blah blah...</p>
+                    </div>
+                    <div class="tab-pane fade" id="realestate_service">
+                        <h4>Real Estate Sector</h4>
+                        <p>real estate paragraph 1: blah blah blah...</p>
+                        <p>real estate 2: blah blah blah...</p>
+                    </div>
+                    <div class="tab-pane fade" id="hightech_service">
+                        <h4>High Tech Industry Sector</h4>
+                        <p>high tech paragraph 1: blah blah blah...</p>
+                        <p>high tech paragraph 2: blah blah blah...</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Service List -->
+        <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Product and Service List</h2>
+            </div>
+            <div class="col-md-4">
+                <div class="media">
+                    <div class="pull-left">
+                        <span class="fa-stack fa-2x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-tree fa-stack-1x fa-inverse"></i>
+                        </span> 
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Baidu SEO</h4>
+                        <p>blah blah blah...</p>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="pull-left">
+                        <span class="fa-stack fa-2x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-car fa-stack-1x fa-inverse"></i>
+                        </span> 
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">YouKu Video</h4>
+                        <p>blah blah blah...</p>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="pull-left">
+                        <span class="fa-stack fa-2x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-support fa-stack-1x fa-inverse"></i>
+                        </span> 
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Website Translation</h4>
+                        <p>blah blah blah...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="media">
+                    <div class="pull-left">
+                        <span class="fa-stack fa-2x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-database fa-stack-1x fa-inverse"></i>
+                        </span> 
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Service Four</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="pull-left">
+                        <span class="fa-stack fa-2x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-bomb fa-stack-1x fa-inverse"></i>
+                        </span> 
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Service Five</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="pull-left">
+                        <span class="fa-stack fa-2x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-bank fa-stack-1x fa-inverse"></i>
+                        </span> 
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Service Six</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="media">
+                    <div class="pull-left">
+                        <span class="fa-stack fa-2x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-paper-plane fa-stack-1x fa-inverse"></i>
+                        </span> 
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Service Seven</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="pull-left">
+                        <span class="fa-stack fa-2x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-space-shuttle fa-stack-1x fa-inverse"></i>
+                        </span> 
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Service Eight</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="pull-left">
+                        <span class="fa-stack fa-2x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-recycle fa-stack-1x fa-inverse"></i>
+                        </span> 
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Service Nine</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+    {% endblock %}

@@ -1,0 +1,160 @@
+{% extends "default_web/base.html" %}    
+
+    {% block title %}Glogou Self Service Platform{% endblock %}
+    {% block description %}{% endblock %}
+    {% block keyword %}{% endblock %}
+
+
+    {% block content %}
+    <!-- Header Carousel -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel2" data-slide-to="1"></li>
+            <li data-target="#myCarousel3" data-slide-to="2"></li>
+            <li data-target="#myCarousel4" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active" >
+                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide One');">
+                    <a><img class="banner" id="myCarousel1" src="/static/images/cash.jpg"></img></a>
+                </div>
+
+                <div class="carousel-caption">
+                    <h2>The most powerful market analysis tool</h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');">
+                    <a><img class="banner" id="myCarousel2" src="/static/images/chain.jpg"></img></a>
+                </div>
+                <div class="carousel-caption">
+                    <h2>The one-stop service product</h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');">
+                    <a><img class="banner" id="myCarousel3" src="/static/images/client.jpg"></img></a>
+                </div>
+                <div class="carousel-caption">
+                    <h2>The greatest customer service</h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');">
+                    <a><img class="banner" id="myCarousel4" src="/static/images/idea.jpg"></img></a>
+                </div>
+                <div class="carousel-caption">
+                    <h2>The up-to-date news coverage</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Marketing Icons Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Welcome to Glogou Self-Service Platform
+                </h1>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <!-- <h4><i class="fa fa-fw fa-check"></i> Sales Signal Processing</h4> -->
+                        <h4><i class="fa fa-fw fa-compass"></i>Sales Signal Processing</h4>
+                    </div>
+                    <div class="panel-body">
+                        <!-- <p>blah blah blah...</p> -->
+                        <img class="banner img-responsive img-portfolio img-hover" id="myCarousel1" src="/static/images/marketing_indicator.png"></img>
+                        <a href="/default_web/stage1_test/" class="btn btn-default">Start Test</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <!-- <h4><i class="fa fa-fw fa-gift"></i> Free Self Evaluation</h4> -->
+                        <h4><i class="fa fa-fw fa-compass"></i> Budget Allocation</h4>
+                    </div>
+                    <div class="panel-body">
+                        <!-- <p>blah blah blah...</p> -->
+                        <img class="banner img-responsive img-portfolio img-hover" id="myCarousel1" src="/static/images/puzzle-csd.jpg"></img>
+                        <a href="/default_web/stage2_test/" class="btn btn-default">Start Test</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-compass"></i>WAVE</h4>
+                    </div>
+                    <div class="panel-body">
+                        <!-- <p>blah blah blah...</p> -->
+                        <img class="banner img-responsive img-portfolio img-hover" id="myCarousel4" src="/static/images/media_pic_2.png"></img>
+                        <a href="/default_web/stage3_test/" class="btn btn-default">Start Test</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /.row -->
+
+        <!-- Case Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Featured Clients</h2>
+            </div>
+            <div class="col-md-3 col-sm-5">
+                <a href="/default_web/education_case/">
+                    <img class="img-responsive img-portfolio img-hover" src="/static/images/education_case.png" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-5">
+                <a href="/default_web/destination_mkt_case/">
+                    <img class="img-responsive img-portfolio img-hover" src="/static/images/destination_mkt_case.png" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-5">
+                <a href="/default_web/real_estate_case/">
+                    <img class="img-responsive img-portfolio img-hover" src="/static/images/real_estate_case.png" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-5">
+                <a href="/default_web/real_estate_case/">
+                    <img class="img-responsive img-portfolio img-hover" src="/static/images/phoseon.png" alt="">
+                </a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+       <!--  <hr>  -->
+
+        <!-- Call to Action Section -->
+        <div class="well">
+            <div class="row">
+                <div class="col-md-8">
+                    <p><h4>Want to Use Glogou Products and Service?</h4></p>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-lg btn-info btn-block" href="/contact/">Contact Now!</a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+    {% endblock %}
