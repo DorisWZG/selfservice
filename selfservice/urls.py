@@ -19,6 +19,14 @@ urlpatterns = patterns('',
     url(r'^member/$', views.member_service),
     url(r'^default_web/', include('default_web.urls')),
 
+    url(r'^accounts/login/$', 'selfservice.views.login'),
+    url(r'^accounts/auth/$', 'selfservice.views.auth_view'),
+    url(r'^accounts/logout/$', 'selfservice.views.logout'),
+    url(r'^accounts/loggedin/$', 'selfservice.views.loggedin'),
+    url(r'^accounts/invalid/$', 'selfservice.views.invalid_login'),
+    url(r'^accounts/register/$', 'selfservice.views.register_user'),
+    url(r'^accounts/register_success/$', 'selfservice.views.register_success'),
+
 )+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 
 #urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT ) 
