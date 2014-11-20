@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     url(r'^about/$', views.about, name='about'),
     url(r'^member/$', views.member_service),
     url(r'^default_web/', include('default_web.urls')),
-    url(r'^member_service/', include('member_service.urls')),
+    url(r'^member_service/$', include('member_service')),
 
 )+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 

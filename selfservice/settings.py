@@ -26,7 +26,6 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = [
-    'www.ads-in-china.com',
     'ads-in-china.com',
     '127.0.0.1',
 ]
@@ -43,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # add new apps below, the order is important
     'default_web',
+    'member_service',
 )
 
 MIDDLEWARE_CLASSES = (
