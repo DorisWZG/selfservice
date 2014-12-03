@@ -19,6 +19,9 @@ urlpatterns = patterns('',
     url(r'^member/$', views.member_service),
     url(r'^default_web/', include('default_web.urls')),
     url(r'^member_service/', include('member_service.urls')),
+    #url(r'^budget_allocation/$',budget_allocation.views.budget_allocation_test()),
+    #url(r'^budget_allocation/$', views.stage2_result()),
+    url(r'^budget_allocation/',include('budget_allocation.urls')),
 
     url(r'^accounts/login/$', 'selfservice.views.login'),
     url(r'^accounts/auth/$', 'selfservice.views.auth_view'),
@@ -30,6 +33,6 @@ urlpatterns = patterns('',
 
 )+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 
-#urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT ) 
+#urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT )
 
 
