@@ -1,0 +1,39 @@
+{% extends "email.html" %}    
+
+    {% block title %}Newsletter from Glogou, Inc{% endblock %}
+    {% block description %}{% endblock %}
+    {% block keyword %}{% endblock %}
+
+
+    {% block content %}
+
+    <!-- Page Content -->
+	
+	{% if SSP_newsletter %}
+		<div style="padding:20px; color:#003366;">
+			{% block content%} put the customized SSP contents here {% endblock %}
+		</div>
+		
+	{% if Endu_newsletter %}
+		<div style="padding:20px; color:#003366;">
+			{% block content%} put the customized Endu contents here {% endblock %}
+		</div>
+		
+	{% if WAVE_newsletter %}
+		<div style="padding:20px; color:#003366;">
+			{% block content%} put the customized WAVE contents here {% endblock %}
+		</div>
+	
+	{% if Media_Monitoring_newsletter %}
+		<div style="padding:20px; color:#003366;">
+			{% block content%} put the customized Media Monitoring contents here {% endblock %}
+		</div>
+	
+	{% if TWINS_newsletter %}
+		<div style="padding:20px; color:#003366;">
+			{% block content%} put the customized TWINS contents here {% endblock %}
+		</div>
+	{% endif %}
+	
+    {% endblock %}
+	
