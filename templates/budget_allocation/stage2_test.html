@@ -31,9 +31,10 @@
                 </a>
             </div>
             <div class="col-md-5">
-                <h3>Service We provide:</h3>
-                <h4>Subheading</h4>
-                <p>bla bla bla...</p>
+{#               <h3>Service We provide:</h3>#}
+                 <h3 class="#{$fa-css-prefix}-align-left">Service We provide:</h3>
+{#                <label class="col-sm-3 control-label">Service We provide:</label>#}
+
                 <!--
                 <form action="">
                     category
@@ -46,16 +47,18 @@
                 </form>
                 -->
 
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="GET" action="/restapi/industry_list/">
                     <div class="form-group">
                         <label class="col-sm-3 control-label" for="selectCategory">Category</label>
                         <div class="col-sm-9">
+
                             <select id="selectCategory" class="form-control">
                                 <option value=""> Please select your busniess sector... </option>
                                 <option value="education"> Education Market </option>
                                 <option value="dest_mkt"> Destination Marketing </option>
                                 <option value="real_estate"> Real Estate </option>
                                 <option value="high_tech"> High Tech industry </option>
+
                             </select>
                         </div>
                     </div>
@@ -73,20 +76,6 @@
                                 <option value="C++">20,000-50,000</option>
                                 <option value="Clojure">50,000-100,000</option>
                                 <option value="COBOL">100,000+</option>
-                                <!-- <option value="ColdFusion">ColdFusion</option>
-                                <option value="Erlang">Erlang</option>
-                                <option value="Fortran">Fortran</option>
-                                <option value="Groovy">Groovy</option>
-                                <option value="Haskell">Haskell</option>
-                                <option value="Java">Java</option>
-                                <option value="JavaScript">JavaScript</option>
-                                <option value="Lisp">Lisp</option>
-                                <option value="Perl">Perl</option>
-                                <option value="PHP">PHP</option>
-                                <option value="Python">Python</option>
-                                <option value="Ruby">Ruby</option>
-                                <option value="Scala">Scala</option>
-                                <option value="Scheme">Scheme</option> -->
                             </select>
                         </div>
                     </div>

@@ -11,3 +11,14 @@ function showResult() {
     $("<td></td>").html("$2.2").appendTo(row1);
     table.append(row1).removeClass("hidden");
 }
+$.ajax({
+        url: siteUrl + "/restapi/industry_list",
+        method: "GET",
+        headers: { "Accept": "application/json; odata=verbose" },
+        success: function (data) {
+           console.log(JSON.stringify(data.d.results));
+        },
+        error: function (data) {
+           console.log(JSON.stringify(data));
+        }
+});
