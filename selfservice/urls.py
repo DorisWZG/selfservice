@@ -3,25 +3,26 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.conf import settings
 from default_web import views
+from django.contrib.auth.models import User
+from rest_framework import serializers
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = [
     # Examples:
     # url(r'^$', 'selfservice.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^restapi/', include('restapi.urls') ),
-    # url(r'^$', include('default_web.urls')),
+    #url(r'^restapi/', include('restapi.urls') ),
+    url(r'^', include('budget_allocation.urls')),
+    url(r'^restapi/', include('restapi.urls')),
     url(r'^$', views.index, name='home'),
     url(r'^contact/$', views.contact, name = 'contact'),
     url(r'^about/$', views.about, name='about'),
     url(r'^member/$', views.member_service),
     url(r'^default_web/', include('default_web.urls')),
     url(r'^member_service/', include('member_service.urls')),
-    #url(r'^budget_allocation/$',budget_allocation.views.budget_allocation_test()),
-    #url(r'^budget_allocation/$', views.stage2_result()),
     url(r'^budget_allocation/',include('budget_allocation.urls')),
 
     url(r'^accounts/login/$', 'selfservice.views.login'),
@@ -32,7 +33,7 @@ urlpatterns = patterns('',
     url(r'^accounts/register/$', 'selfservice.views.register_user'),
     url(r'^accounts/register_success/$', 'selfservice.views.register_success'),
 
-)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+]+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 
 #urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT )
 
