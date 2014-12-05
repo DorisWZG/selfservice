@@ -201,7 +201,9 @@ DROP TABLE IF EXISTS `channel`;
 CREATE TABLE `channel` (
   `channelid` int(11) NOT NULL AUTO_INCREMENT,
   `channelname` varchar(50) NOT NULL,
-  `Min_Media_Buy` int(11) DEFAULT NULL,
+  `min_media_buy` int(11) DEFAULT NULL,
+  `localname` varchar(50) DEFAULT NULL COMMENT 'chinese name, korean name etc',
+  `category` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`channelid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='channel information';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -213,6 +215,37 @@ CREATE TABLE `channel` (
 LOCK TABLES `channel` WRITE;
 /*!40000 ALTER TABLE `channel` DISABLE KEYS */;
 /*!40000 ALTER TABLE `channel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `channel_industry_price`
+--
+
+DROP TABLE IF EXISTS `channel_industry_price`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `channel_industry_price` (
+  `channel_industry_price_id` int(11) NOT NULL AUTO_INCREMENT,
+  `channelid` int(11) NOT NULL,
+  `industryid` int(11) NOT NULL,
+  `price_per_click` decimal(10,0) DEFAULT NULL,
+  `price_impression` decimal(10,0) DEFAULT NULL,
+  PRIMARY KEY (`channel_industry_price_id`),
+  UNIQUE KEY `index_channel_industry` (`channelid`,`industryid`),
+  KEY `channelid_idx` (`channelid`),
+  KEY `industryid_idx` (`industryid`),
+  CONSTRAINT `channelid` FOREIGN KEY (`channelid`) REFERENCES `channel` (`channelid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `industryid` FOREIGN KEY (`industryid`) REFERENCES `industry` (`industryid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `channel_industry_price`
+--
+
+LOCK TABLES `channel_industry_price` WRITE;
+/*!40000 ALTER TABLE `channel_industry_price` DISABLE KEYS */;
+/*!40000 ALTER TABLE `channel_industry_price` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -331,12 +364,14 @@ DROP TABLE IF EXISTS `market_trend`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `market_trend` (
+  `market_trend_id` int(11) NOT NULL AUTO_INCREMENT,
   `index_date` date NOT NULL,
   `product_id` int(11) NOT NULL,
   `purchase_index1688` decimal(10,0) NOT NULL,
   `purchase_indexTb` decimal(10,0) NOT NULL,
   `supply_index` decimal(10,0) NOT NULL,
-  PRIMARY KEY (`index_date`,`product_id`),
+  PRIMARY KEY (`market_trend_id`),
+  UNIQUE KEY `index_by_date_product` (`index_date`,`product_id`),
   KEY `fk_market_trend_product_dictionary1_idx` (`product_id`),
   CONSTRAINT `fk_market_trend_product_dictionary1` FOREIGN KEY (`product_id`) REFERENCES `product_dictionary` (`product_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -352,34 +387,6 @@ LOCK TABLES `market_trend` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `pricematrix`
---
-
-DROP TABLE IF EXISTS `pricematrix`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pricematrix` (
-  `channelid` int(11) NOT NULL,
-  `industryid` int(11) NOT NULL,
-  `price_per_click` decimal(10,0) DEFAULT NULL,
-  `price_impression` decimal(10,0) DEFAULT NULL,
-  PRIMARY KEY (`channelid`,`industryid`),
-  KEY `fk_pricematrix_industry1_idx` (`industryid`),
-  CONSTRAINT `fk_pricematrix_channel1` FOREIGN KEY (`channelid`) REFERENCES `channel` (`channelid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_pricematrix_industry1` FOREIGN KEY (`industryid`) REFERENCES `industry` (`industryid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='price information based on channel and industry';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pricematrix`
---
-
-LOCK TABLES `pricematrix` WRITE;
-/*!40000 ALTER TABLE `pricematrix` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pricematrix` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `product_dictionary`
 --
 
@@ -390,7 +397,8 @@ CREATE TABLE `product_dictionary` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `eng_kw` varchar(50) NOT NULL,
   `chn_kw` varchar(50) NOT NULL,
-  PRIMARY KEY (`product_id`)
+  PRIMARY KEY (`product_id`),
+  UNIQUE KEY `eng_kw_UNIQUE` (`eng_kw`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -414,7 +422,7 @@ CREATE TABLE `userlog` (
   `usersessionid` int(11) NOT NULL AUTO_INCREMENT,
   `industryid` int(11) NOT NULL,
   `sessiondate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `campaign_goal` tinyint(4) NOT NULL,
+  `campaign_goal` int(10) unsigned zerofill NOT NULL,
   `initial_budget` decimal(10,0) NOT NULL,
   `comanyname` varchar(50) DEFAULT NULL,
   `companyurl` varchar(150) DEFAULT NULL,
@@ -445,4 +453,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-20 15:24:03
+-- Dump completed on 2014-12-05 12:10:35
