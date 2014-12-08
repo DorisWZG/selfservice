@@ -42,7 +42,7 @@ def industry_list(request):
                 serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
-def matrix_list(request):
+def matrix_list(request, industry, budget):
     if request.method == 'GET':
         matrix = PriceMatrix.objects.all()
         serializer = PriceMatrixSerializer(matrix, many=True)

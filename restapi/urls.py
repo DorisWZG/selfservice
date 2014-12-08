@@ -9,5 +9,5 @@ urlpatterns = patterns('',
     url(r'industry_list/$', 'restapi.views.industry_list', name='industry_list'),
     url(r'industry_detail/(?P<pk>[0-9])$', 'restapi.views.industry_detail', name='industry_detail'),
     # url(r'budget_list/$', 'restapi.views.budget_list', name='budget_list'),
-    url(r'matrix_list/$', 'restapi.views.matrix_list', name='matrix_list'),
+    url(r'matrix_list/industry/(?P<industry>.+)/budget/(?P<budget>.+)/?$', 'restapi.views.matrix_list', name='matrix_list'),
 )
