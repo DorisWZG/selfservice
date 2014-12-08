@@ -43,6 +43,9 @@ INSTALLED_APPS = (
     # add new apps below, the order is important
     'default_web',
     'member_service',
+    'budget_allocation',
+    'rest_framework',
+    'restapi',
 )
 
 MIDDLEWARE_CLASSES = (

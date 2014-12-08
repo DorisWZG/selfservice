@@ -1,5 +1,9 @@
 *.pyc
 *.log
-*.txt
 *.out
+<<<<<<< HEAD
+*.sql
+=======
+.idea*
+>>>>>>> ac590dd7c8d8b6a3d17a83cf8951c5b7bb655918
 
