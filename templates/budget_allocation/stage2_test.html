@@ -54,10 +54,10 @@
 
                             <select id="selectCategory" class="form-control">
                                 <option value=""> Please select your busniess sector... </option>
-                                <option value="education"> Education Market </option>
-                                <option value="dest_mkt"> Destination Marketing </option>
-                                <option value="real_estate"> Real Estate </option>
-                                <option value="high_tech"> High Tech industry </option>
+                                <option value="1"> Education Market </option>
+                                <option value="2"> Destination Marketing </option>
+                                <option value="3"> Real Estate </option>
+                                <option value="4"> High Tech industry </option>
 
                             </select>
                         </div>
@@ -82,7 +82,7 @@
 
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <a class="btn btn-primary" onclick="showResult();">See Result <span class="glyphicon glyphicon-chevron-right"></span></a>
+                            <a class="btn btn-primary" onclick="showResult();" onchange="check_submit();"  >See Result <span class="glyphicon glyphicon-chevron-right"></span></a>
                         </div>
                     </div>
                 </form>
