@@ -67,7 +67,7 @@ WSGI_APPLICATION = 'selfservice.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+    'ENGINE': 'django.db.backends.mysql',
 	'NAME': 'self_service',
 	'USER': 'self_service',
 	'PASSWORD': 'cmbjxccwtn',

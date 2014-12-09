@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     url(r'metrics_list/$', 'budget_allocation.views.metrics_list', name='metrics_list'),
     url(r'industry_detail/(?P<pk>[0-9])$', 'budget_allocation.views.industry_detail', name='industry_detail'),
     url(r'metrics_list/industry/(?P<industry>.+)/budget/(?P<budget>.+)/?$', 'budget_allocation.views.metrics_list', name='metrics_list'),
+    url(r'metrics_result/industry/(?P<industry>.+)/budget/(?P<budget>.+)/?$', 'budget_allocation.views.metrics_result', name='metrics_result'),
 )

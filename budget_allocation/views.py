@@ -90,3 +90,34 @@ def industry_detail(request, pk):
     elif request.method == 'DELETE':
         industry.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET'])
+def industry_object(pk):
+    industry = Industry.objects.get(pk=pk)
+    return industry
+
+def budget(self):
+    budget = PriceMetrics.objects.get(budget = self.budget)
+    return budget
+
+@api_view(['GET'])
+def metrics_result(request,industry,budget):
+
+    industryId = Industry.objects.get(pk=industry)
+    metrics_result = industryId.pricemetrics_set.filter(budget=budget)
+
+    Result = []
+
+    for items in metrics_result:
+        items_detail = {}
+        items_detail['channelName'] = items.channelId.channelName
+        items_detail['allocation'] = items.allocation
+        items_detail['expectedClicks'] = items.expectedClicks
+        items_detail['costPerClick'] = items.costPerClick
+        items_detail['expectedImpressions'] = items.expectedImpressions
+        items_detail['costPerImpression'] = items.costPerImpression
+        Result.append(items_detail)
+
+    # serializer = MetricsResultSerializer(Result,many=True)
+    return Response(data=Result)

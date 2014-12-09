@@ -24,3 +24,8 @@ class PriceMetricsSerializer(serializers.ModelSerializer):
         model = PriceMetrics
         fields = ('priceMatrixId', 'allocation', 'budget', 'expectedClicks','costPerClick','expectedImpressions','costPerImpression','industryId','channelId')
 
+class MetricsResultSerializer(serializers.ModelSerializer):
+    # channelName = serializers.StringRelatedField(many=True)
+    class Meta:
+        model = PriceMetrics
+        fields = ('channelId', 'allocation', 'expectedClicks', 'costPerClick','expectedImpressions','costPerImpression')
