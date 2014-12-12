@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `self_service` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `self_service`;
--- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.17, for osx10.6 (i386)
 --
 -- Host: localhost    Database: self_service
 -- ------------------------------------------------------
--- Server version	5.6.12-log
+-- Server version	5.6.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -86,7 +86,7 @@ CREATE TABLE `auth_permission` (
   UNIQUE KEY `content_type_id` (`content_type_id`,`codename`),
   KEY `auth_permission_37ef4eb4` (`content_type_id`),
   CONSTRAINT `content_type_id_refs_id_d043b34a` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `auth_permission` (
 
 LOCK TABLES `auth_permission` WRITE;
 /*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
-INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can add permission',2,'add_permission'),(5,'Can change permission',2,'change_permission'),(6,'Can delete permission',2,'delete_permission'),(7,'Can add group',3,'add_group'),(8,'Can change group',3,'change_group'),(9,'Can delete group',3,'delete_group'),(10,'Can add user',4,'add_user'),(11,'Can change user',4,'change_user'),(12,'Can delete user',4,'delete_user'),(13,'Can add content type',5,'add_contenttype'),(14,'Can change content type',5,'change_contenttype'),(15,'Can delete content type',5,'delete_contenttype'),(16,'Can add session',6,'add_session'),(17,'Can change session',6,'change_session'),(18,'Can delete session',6,'delete_session');
+INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can add permission',2,'add_permission'),(5,'Can change permission',2,'change_permission'),(6,'Can delete permission',2,'delete_permission'),(7,'Can add group',3,'add_group'),(8,'Can change group',3,'change_group'),(9,'Can delete group',3,'delete_group'),(10,'Can add user',4,'add_user'),(11,'Can change user',4,'change_user'),(12,'Can delete user',4,'delete_user'),(13,'Can add content type',5,'add_contenttype'),(14,'Can change content type',5,'change_contenttype'),(15,'Can delete content type',5,'delete_contenttype'),(16,'Can add session',6,'add_session'),(17,'Can change session',6,'change_session'),(18,'Can delete session',6,'delete_session'),(19,'Can add industry',7,'add_industry'),(20,'Can change industry',7,'change_industry'),(21,'Can delete industry',7,'delete_industry'),(22,'Can add channel',8,'add_channel'),(23,'Can change channel',8,'change_channel'),(24,'Can delete channel',8,'delete_channel'),(25,'Can add price metrics',9,'add_pricemetrics'),(26,'Can change price metrics',9,'change_pricemetrics'),(27,'Can delete price metrics',9,'delete_pricemetrics'),(28,'Can add industry',10,'add_industry'),(29,'Can change industry',10,'change_industry'),(30,'Can delete industry',10,'delete_industry'),(31,'Can add channel',11,'add_channel'),(32,'Can change channel',11,'change_channel'),(33,'Can delete channel',11,'delete_channel'),(34,'Can add price matrix',12,'add_pricematrix'),(35,'Can change price matrix',12,'change_pricematrix'),(36,'Can delete price matrix',12,'delete_pricematrix');
 /*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,6 +192,90 @@ LOCK TABLES `auth_user_user_permissions` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `budget_allocation_channel`
+--
+
+DROP TABLE IF EXISTS `budget_allocation_channel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `budget_allocation_channel` (
+  `channelId` int(11) NOT NULL AUTO_INCREMENT,
+  `channelName` varchar(100) NOT NULL,
+  `minMediaBuy` int(11) DEFAULT NULL,
+  PRIMARY KEY (`channelId`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `budget_allocation_channel`
+--
+
+LOCK TABLES `budget_allocation_channel` WRITE;
+/*!40000 ALTER TABLE `budget_allocation_channel` DISABLE KEYS */;
+INSERT INTO `budget_allocation_channel` VALUES (1,'Baidu PPC',NULL),(2,'SouFun',NULL),(3,'Baidu RRC',NULL),(4,'CTrip',NULL);
+/*!40000 ALTER TABLE `budget_allocation_channel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `budget_allocation_industry`
+--
+
+DROP TABLE IF EXISTS `budget_allocation_industry`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `budget_allocation_industry` (
+  `industryId` int(11) NOT NULL AUTO_INCREMENT,
+  `industryName` varchar(100) NOT NULL,
+  PRIMARY KEY (`industryId`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `budget_allocation_industry`
+--
+
+LOCK TABLES `budget_allocation_industry` WRITE;
+/*!40000 ALTER TABLE `budget_allocation_industry` DISABLE KEYS */;
+INSERT INTO `budget_allocation_industry` VALUES (1,'Education Market'),(2,'Destination Marketing'),(3,'Real Estate'),(4,'High Tech Industry');
+/*!40000 ALTER TABLE `budget_allocation_industry` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `budget_allocation_pricemetrics`
+--
+
+DROP TABLE IF EXISTS `budget_allocation_pricemetrics`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `budget_allocation_pricemetrics` (
+  `priceMatrixId` int(11) NOT NULL AUTO_INCREMENT,
+  `allocation` double NOT NULL,
+  `budget` double NOT NULL,
+  `expectedClicks` int(11) NOT NULL,
+  `costPerClick` double NOT NULL,
+  `expectedImpressions` double NOT NULL,
+  `costPerImpression` double NOT NULL,
+  `industryId` int(11) NOT NULL,
+  `channelId` int(11) NOT NULL,
+  PRIMARY KEY (`priceMatrixId`),
+  KEY `budget_allocation_pricemetrics_a9631a33` (`industryId`),
+  KEY `budget_allocation_pricemetrics_176fd3f7` (`channelId`),
+  CONSTRAINT `channelId_refs_channelId_d403d3ca` FOREIGN KEY (`channelId`) REFERENCES `budget_allocation_channel` (`channelId`),
+  CONSTRAINT `industryId_refs_industryId_9089bf7b` FOREIGN KEY (`industryId`) REFERENCES `budget_allocation_industry` (`industryId`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `budget_allocation_pricemetrics`
+--
+
+LOCK TABLES `budget_allocation_pricemetrics` WRITE;
+/*!40000 ALTER TABLE `budget_allocation_pricemetrics` DISABLE KEYS */;
+INSERT INTO `budget_allocation_pricemetrics` VALUES (1,1000,5000,3000,0.68,680000,2.2,1,1),(2,1000,5000,3000,0.68,680000,2.2,1,2),(9,1000,5000,2000,0.7,784000,2.4,1,3),(10,1000,5000,1500,0.5,50000,3.4,1,4);
+/*!40000 ALTER TABLE `budget_allocation_pricemetrics` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `channel`
 --
 
@@ -201,9 +285,7 @@ DROP TABLE IF EXISTS `channel`;
 CREATE TABLE `channel` (
   `channelid` int(11) NOT NULL AUTO_INCREMENT,
   `channelname` varchar(50) NOT NULL,
-  `min_media_buy` int(11) DEFAULT NULL,
-  `localname` varchar(50) DEFAULT NULL COMMENT 'chinese name, korean name etc',
-  `category` varchar(50) DEFAULT NULL,
+  `Min_Media_Buy` int(11) DEFAULT NULL,
   PRIMARY KEY (`channelid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='channel information';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -215,37 +297,6 @@ CREATE TABLE `channel` (
 LOCK TABLES `channel` WRITE;
 /*!40000 ALTER TABLE `channel` DISABLE KEYS */;
 /*!40000 ALTER TABLE `channel` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `channel_industry_price`
---
-
-DROP TABLE IF EXISTS `channel_industry_price`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `channel_industry_price` (
-  `channel_industry_price_id` int(11) NOT NULL AUTO_INCREMENT,
-  `channelid` int(11) NOT NULL,
-  `industryid` int(11) NOT NULL,
-  `price_per_click` decimal(10,0) DEFAULT NULL,
-  `price_impression` decimal(10,0) DEFAULT NULL,
-  PRIMARY KEY (`channel_industry_price_id`),
-  UNIQUE KEY `index_channel_industry` (`channelid`,`industryid`),
-  KEY `channelid_idx` (`channelid`),
-  KEY `industryid_idx` (`industryid`),
-  CONSTRAINT `channelid` FOREIGN KEY (`channelid`) REFERENCES `channel` (`channelid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `industryid` FOREIGN KEY (`industryid`) REFERENCES `industry` (`industryid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `channel_industry_price`
---
-
-LOCK TABLES `channel_industry_price` WRITE;
-/*!40000 ALTER TABLE `channel_industry_price` DISABLE KEYS */;
-/*!40000 ALTER TABLE `channel_industry_price` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -295,7 +346,7 @@ CREATE TABLE `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `app_label` (`app_label`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -304,7 +355,7 @@ CREATE TABLE `django_content_type` (
 
 LOCK TABLES `django_content_type` WRITE;
 /*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
-INSERT INTO `django_content_type` VALUES (1,'log entry','admin','logentry'),(2,'permission','auth','permission'),(3,'group','auth','group'),(4,'user','auth','user'),(5,'content type','contenttypes','contenttype'),(6,'session','sessions','session');
+INSERT INTO `django_content_type` VALUES (1,'log entry','admin','logentry'),(2,'permission','auth','permission'),(3,'group','auth','group'),(4,'user','auth','user'),(5,'content type','contenttypes','contenttype'),(6,'session','sessions','session'),(7,'industry','budget_allocation','industry'),(8,'channel','budget_allocation','channel'),(9,'price metrics','budget_allocation','pricemetrics'),(10,'industry','restapi','industry'),(11,'channel','restapi','channel'),(12,'price matrix','restapi','pricematrix');
 /*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -364,14 +415,12 @@ DROP TABLE IF EXISTS `market_trend`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `market_trend` (
-  `market_trend_id` int(11) NOT NULL AUTO_INCREMENT,
   `index_date` date NOT NULL,
   `product_id` int(11) NOT NULL,
   `purchase_index1688` decimal(10,0) NOT NULL,
   `purchase_indexTb` decimal(10,0) NOT NULL,
   `supply_index` decimal(10,0) NOT NULL,
-  PRIMARY KEY (`market_trend_id`),
-  UNIQUE KEY `index_by_date_product` (`index_date`,`product_id`),
+  PRIMARY KEY (`index_date`,`product_id`),
   KEY `fk_market_trend_product_dictionary1_idx` (`product_id`),
   CONSTRAINT `fk_market_trend_product_dictionary1` FOREIGN KEY (`product_id`) REFERENCES `product_dictionary` (`product_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -387,6 +436,34 @@ LOCK TABLES `market_trend` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `pricematrix`
+--
+
+DROP TABLE IF EXISTS `pricematrix`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pricematrix` (
+  `channelid` int(11) NOT NULL,
+  `industryid` int(11) NOT NULL,
+  `price_per_click` decimal(10,0) DEFAULT NULL,
+  `price_impression` decimal(10,0) DEFAULT NULL,
+  PRIMARY KEY (`channelid`,`industryid`),
+  KEY `fk_pricematrix_industry1_idx` (`industryid`),
+  CONSTRAINT `fk_pricematrix_channel1` FOREIGN KEY (`channelid`) REFERENCES `channel` (`channelid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_pricematrix_industry1` FOREIGN KEY (`industryid`) REFERENCES `industry` (`industryid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='price information based on channel and industry';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pricematrix`
+--
+
+LOCK TABLES `pricematrix` WRITE;
+/*!40000 ALTER TABLE `pricematrix` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pricematrix` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `product_dictionary`
 --
 
@@ -397,8 +474,7 @@ CREATE TABLE `product_dictionary` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `eng_kw` varchar(50) NOT NULL,
   `chn_kw` varchar(50) NOT NULL,
-  PRIMARY KEY (`product_id`),
-  UNIQUE KEY `eng_kw_UNIQUE` (`eng_kw`)
+  PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -412,6 +488,86 @@ LOCK TABLES `product_dictionary` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `restapi_channel`
+--
+
+DROP TABLE IF EXISTS `restapi_channel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `restapi_channel` (
+  `channelID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`channelID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `restapi_channel`
+--
+
+LOCK TABLES `restapi_channel` WRITE;
+/*!40000 ALTER TABLE `restapi_channel` DISABLE KEYS */;
+/*!40000 ALTER TABLE `restapi_channel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `restapi_industry`
+--
+
+DROP TABLE IF EXISTS `restapi_industry`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `restapi_industry` (
+  `industryID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`industryID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `restapi_industry`
+--
+
+LOCK TABLES `restapi_industry` WRITE;
+/*!40000 ALTER TABLE `restapi_industry` DISABLE KEYS */;
+/*!40000 ALTER TABLE `restapi_industry` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `restapi_pricematrix`
+--
+
+DROP TABLE IF EXISTS `restapi_pricematrix`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `restapi_pricematrix` (
+  `priceMatrixID` int(11) NOT NULL AUTO_INCREMENT,
+  `allocation` double NOT NULL,
+  `budget` double NOT NULL,
+  `expectedClicks` int(11) NOT NULL,
+  `costPerClick` double NOT NULL,
+  `expectedImpressions` double NOT NULL,
+  `costPerImpression` double NOT NULL,
+  `industryID` int(11) NOT NULL,
+  `channelID` int(11) NOT NULL,
+  PRIMARY KEY (`priceMatrixID`),
+  KEY `restapi_pricematrix_6df726f6` (`industryID`),
+  KEY `restapi_pricematrix_af42a130` (`channelID`),
+  CONSTRAINT `channelID_refs_channelID_417db134` FOREIGN KEY (`channelID`) REFERENCES `restapi_channel` (`channelID`),
+  CONSTRAINT `industryID_refs_industryID_85d329c7` FOREIGN KEY (`industryID`) REFERENCES `restapi_industry` (`industryID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `restapi_pricematrix`
+--
+
+LOCK TABLES `restapi_pricematrix` WRITE;
+/*!40000 ALTER TABLE `restapi_pricematrix` DISABLE KEYS */;
+/*!40000 ALTER TABLE `restapi_pricematrix` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `userlog`
 --
 
@@ -422,7 +578,7 @@ CREATE TABLE `userlog` (
   `usersessionid` int(11) NOT NULL AUTO_INCREMENT,
   `industryid` int(11) NOT NULL,
   `sessiondate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `campaign_goal` int(10) unsigned zerofill NOT NULL,
+  `campaign_goal` tinyint(4) NOT NULL,
   `initial_budget` decimal(10,0) NOT NULL,
   `comanyname` varchar(50) DEFAULT NULL,
   `companyurl` varchar(150) DEFAULT NULL,
@@ -453,4 +609,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-05 12:10:35
+-- Dump completed on 2014-12-12 12:29:44
