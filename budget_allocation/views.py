@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db import connection
 
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -10,8 +11,11 @@ from budget_allocation.serializers import ChannelSerializer, IndustrySerializer,
 # Create your views here.
 def budget_allocation_test(request):
     return render(request, 'budget_allocation/stage2_test.html', {})
-def stage2_result(request):
-    return render(request, 'budget_allocation/stage2_result.html', {})
+
+def stage2_result(request, industry, budget):
+    result = get_metrics(industry, budget)
+    context = {'category_name': industry, 'budget': budget, 'metrics_result': result}
+    return render(request, 'budget_allocation/stage2_result.html', context)
 
 
 
@@ -104,8 +108,9 @@ def budget(self):
 @api_view(['GET'])
 def metrics_result(request,industry,budget):
 
-    industryId = Industry.objects.get(pk=industry)
-    metrics_result = industryId.pricemetrics_set.filter(budget=budget)
+    # industryId = Industry.objects.get(pk=industry)
+    # metrics_result = industryId.pricemetrics_set.filter(budget=budget)
+    metrics_result = get_metrics(industry, budget)
 
     Result = []
 
@@ -121,3 +126,9 @@ def metrics_result(request,industry,budget):
 
     # serializer = MetricsResultSerializer(Result,many=True)
     return Response(data=Result)
+
+
+def get_metrics(industry, budget):
+    industry_result = Industry.objects.get(industryName=industry)
+    metrics_result = industry_result.pricemetrics_set.filter(budget=budget)
+    return metrics_result

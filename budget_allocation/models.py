@@ -5,6 +5,7 @@ from django.db import models
 class Industry(models.Model):
     industryId = models.AutoField(max_length=11, primary_key=True)
     industryName = models.CharField(max_length=100)
+    
 
 
 class Channel(models.Model):

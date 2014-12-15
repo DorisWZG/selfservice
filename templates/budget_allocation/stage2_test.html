@@ -54,10 +54,12 @@
 
                             <select id="selectCategory" class="form-control">
                                 <option value=""> Please select your busniess sector... </option>
+                                <!--
                                 <option value="1"> Education Market </option>
                                 <option value="2"> Destination Marketing </option>
                                 <option value="3"> Real Estate </option>
                                 <option value="4"> High Tech industry </option>
+                                -->
 
                             </select>
                         </div>
@@ -82,7 +84,8 @@
 
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <a class="btn btn-primary" onclick="showResult();" onchange="check_submit();"  >See Result <span class="glyphicon glyphicon-chevron-right"></span></a>
+                        {#<a class="btn btn-primary" onclick="showResult();">See Result <span class="glyphicon glyphicon-chevron-right"></span></a>#}
+                        <a id="see_result_button" class="btn btn-primary" onclick="showResultPage();">See Result <span class="glyphicon glyphicon-chevron-right"></span></a>
                         </div>
                     </div>
                 </form>
@@ -105,4 +108,15 @@
     </div>
 
     <script src="{% static 'javascript/testGetResult.js' %}"></script>
+    <script>
+    var url = "/budget_allocation/rest/industry_list";
+    $.get(url).done(function(data) {
+        var selectElem = $("#selectCategory");
+        $(data).each(function(idx, category) {
+            $("<option></option>").attr("value", category.industryName).html(category.industryName).appendTo(selectElem);
+        });
+    }).fail(function(data) {
+        alert("Status Code: " + data.status + ", Status Text: " + data.statusText + ", Response Text: " + data.responseText);
+    });
+    </script>
     {% endblock %}

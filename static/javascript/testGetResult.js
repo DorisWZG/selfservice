@@ -1,24 +1,18 @@
 function check_submit() {
     var category = $("#selectCategory").val();
     var budget = $("#selectBudget").val();
-     if (budget != "" && category != "") {
-        $('input[type="submit"]').removeClass('disabled');
-     }
-     else $('input[type="submit"]').addClass();
-//    if ($(this).val().length == 0) {
-//        $(":submit").attr("disabled", true);
-//    } else {
-//        $(":submit").removeAttr("disabled");
-//    }
+    var resultButton = $("#see_result_button");
+    if (budget != "" && category != "") {
+        resultButton.removeClass('disabled');
+    } else {
+        resultButton.addClass("disabled");
+    }
 }
+
 function showResult() {
     $("#submit").attr('disabled','disabled');
     var category = $("#selectCategory").val();
-
     var budget = $("#selectBudget").val();
-    if (budget != "" && category != "") {
-        $('input[type="submit"]').removeAttr('disabled');
-    }
     var url = "/budget_allocation/metrics_result/industry/" + category + "/budget/" + budget;
     $.get(url).done(function(data) {
         var table = $("#result-table");
@@ -39,6 +33,20 @@ function showResult() {
         alert("Status Code: " + data.status + ", Status Text: " + data.statusText + ", Response Text: " + data.responseText);
     });
 
+}
+
+function showResultPage() {
+    var category = $("#selectCategory").val();
+    var budget = $("#selectBudget").val();
+    if (category == "") {
+        alert("Please choose a category");
+        return;
+    }
+    if (budget == "") {
+        alert("Please choose a budget");
+        return;
+    }
+    window.location = "/stage2_result/industry/" + category + "/budget/" + budget;
 }
 //$.ajax({
 //        url: siteUrl + "/restapi/industry_list",
