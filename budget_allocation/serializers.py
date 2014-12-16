@@ -13,8 +13,7 @@ class ChannelSerializer(serializers.ModelSerializer):
 class IndustrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Industry
-        fields = ('industryId', 'industryName')
-
+        fields = ('industryId', 'industryName', 'subIndustry')
 
 
 class PriceMetricsSerializer(serializers.ModelSerializer):
@@ -22,7 +21,7 @@ class PriceMetricsSerializer(serializers.ModelSerializer):
     # serializers.DecimalField(max_digits=10, decimal_places=10)
     class Meta:
         model = PriceMetrics
-        fields = ('priceMatrixId', 'allocation', 'budget', 'expectedClicks','costPerClick','expectedImpressions','costPerImpression','industryId','channelId')
+        fields = ('priceMatrixId', 'allocation', 'budget', 'expectedClicks','costPerClick','expectedImpressions','costPerImpression','industryId','channelId','campaignGoal')
 
 class MetricsResultSerializer(serializers.ModelSerializer):
     # channelName = serializers.StringRelatedField(many=True)

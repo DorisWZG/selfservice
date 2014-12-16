@@ -5,7 +5,7 @@ from django.db import models
 class Industry(models.Model):
     industryId = models.AutoField(max_length=11, primary_key=True)
     industryName = models.CharField(max_length=100)
-    
+    subIndustry = models.CharField(max_length=100)
 
 
 class Channel(models.Model):
@@ -22,5 +22,6 @@ class PriceMetrics(models.Model):
     costPerClick = models.FloatField()
     expectedImpressions = models.FloatField()
     costPerImpression = models.FloatField()
+    campaignGoal = models.CharField(max_length=100)
     industryId = models.ForeignKey(Industry, db_column='industryId', max_length=10)
     channelId = models.ForeignKey(Channel, db_column='channelId', max_length=10)

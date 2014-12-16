@@ -108,8 +108,6 @@ def budget(self):
 @api_view(['GET'])
 def metrics_result(request,industry,budget):
 
-    # industryId = Industry.objects.get(pk=industry)
-    # metrics_result = industryId.pricemetrics_set.filter(budget=budget)
     metrics_result = get_metrics(industry, budget)
 
     Result = []
@@ -132,3 +130,17 @@ def get_metrics(industry, budget):
     industry_result = Industry.objects.get(industryName=industry)
     metrics_result = industry_result.pricemetrics_set.filter(budget=budget)
     return metrics_result
+
+
+@api_view(['GET'])
+def get_industryNameList(request):
+    industryName_list = Industry.objects.values('industryName').distinct()
+    return Response(data=industryName_list)
+
+
+@api_view(['GET'])
+def get_subIndustryList(request,industry):
+
+    subIndustry_list =Industry.objects.values('subIndustry').filter(industryName=industry)
+    return Response(data=subIndustry_list)
+

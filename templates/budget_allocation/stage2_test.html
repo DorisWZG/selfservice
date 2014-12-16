@@ -50,10 +50,10 @@
                 <form class="form-horizontal">
                     <div class="form-group">
                         <label class="col-sm-3 control-label" for="selectCategory">Category</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-5">
 
                             <select id="selectCategory" class="form-control">
-                                <option value=""> Please select your busniess sector... </option>
+                                <option value=""> Please select your business sector... </option>
                                 <!--
                                 <option value="1"> Education Market </option>
                                 <option value="2"> Destination Marketing </option>
@@ -61,6 +61,11 @@
                                 <option value="4"> High Tech industry </option>
                                 -->
 
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select id="selectSubCategory" class="form-control">
+                                <option value="">Please select your sub business sector...</option>
                             </select>
                         </div>
                     </div>
@@ -81,7 +86,16 @@
                             </select>
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="selectGoal">Campaign Goal</label>
+                        <div class="col-sm-9">
+                            <select id="selectGoal" class="form-control">
+                                <option value="">Select your goal</option>
+                                <option value="click">I want to get more clicks after campaign</option>
+                                <option value="impression">I want to get more impressions after campaign</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
                         {#<a class="btn btn-primary" onclick="showResult();">See Result <span class="glyphicon glyphicon-chevron-right"></span></a>#}
@@ -109,14 +123,23 @@
 
     <script src="{% static 'javascript/testGetResult.js' %}"></script>
     <script>
-    var url = "/budget_allocation/rest/industry_list";
+    var url = "/budget_allocation/get_industryNameList";
     $.get(url).done(function(data) {
         var selectElem = $("#selectCategory");
         $(data).each(function(idx, category) {
-            $("<option></option>").attr("value", category.industryName).html(category.industryName).appendTo(selectElem);
+            $("<option></option>").attr("value", category.industryName).html(category.industryName).appendTo(selectElem)
         });
     }).fail(function(data) {
         alert("Status Code: " + data.status + ", Status Text: " + data.statusText + ", Response Text: " + data.responseText);
+    });
+    var subCategory = "/budget_allocation/get_subIndustryList/industry/" + selectCategory;
+    $get(subCategory).done(function(data) {
+        var selectSubElem = $("selectSubCategory");
+    $(data).each(function(idx,category) {
+       $("<option></option>").attr("value",category.subIndustry).html(category.subIndustry).appendTo(selectSubElem)
+    });
+    }).fail(function (data) {
+        alert(data);
     });
     </script>
     {% endblock %}
