@@ -52,7 +52,7 @@
                         <label class="col-sm-3 control-label" for="selectCategory">Category</label>
                         <div class="col-sm-5">
 
-                            <select id="selectCategory" class="form-control">
+                            <select id="selectCategory" class="form-control" onchange="getSubCategory()">
                                 <option value=""> Please select your business sector... </option>
                                 <!--
                                 <option value="1"> Education Market </option>
@@ -63,6 +63,7 @@
 
                             </select>
                         </div>
+                        <label class="sr-only" for="selectSubCategory">Sub Category</label>
                         <div class="col-sm-4">
                             <select id="selectSubCategory" class="form-control">
                                 <option value="">Please select your sub business sector...</option>
@@ -126,20 +127,14 @@
     var url = "/budget_allocation/get_industryNameList";
     $.get(url).done(function(data) {
         var selectElem = $("#selectCategory");
+
         $(data).each(function(idx, category) {
-            $("<option></option>").attr("value", category.industryName).html(category.industryName).appendTo(selectElem)
+            transIndustryName = translateCategory(category.industryName);
+            $("<option></option>").attr("value", category.industryName).html(transIndustryName).appendTo(selectElem)
         });
     }).fail(function(data) {
         alert("Status Code: " + data.status + ", Status Text: " + data.statusText + ", Response Text: " + data.responseText);
     });
-    var subCategory = "/budget_allocation/get_subIndustryList/industry/" + selectCategory;
-    $get(subCategory).done(function(data) {
-        var selectSubElem = $("selectSubCategory");
-    $(data).each(function(idx,category) {
-       $("<option></option>").attr("value",category.subIndustry).html(category.subIndustry).appendTo(selectSubElem)
-    });
-    }).fail(function (data) {
-        alert(data);
-    });
+
     </script>
     {% endblock %}

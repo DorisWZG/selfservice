@@ -11,6 +11,8 @@ class Industry(models.Model):
 class Channel(models.Model):
     channelId = models.AutoField(max_length=11, primary_key=True)
     channelName = models.CharField(max_length=100)
+    channelUrl = models.URLField(max_length=200)
+    channelDescription = models.CharField(max_length=500)
     minMediaBuy = models.IntegerField(null=True)
 
 

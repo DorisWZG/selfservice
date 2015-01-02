@@ -98,7 +98,7 @@ def industry_detail(request, pk):
 
 @api_view(['GET'])
 def industry_object(pk):
-    industry = Industry.objects.get(pk=pk)
+    industry = Industry.objects.get(pk=pk).lower()
     return industry
 
 def budget(self):
@@ -127,7 +127,7 @@ def metrics_result(request,industry,budget):
 
 
 def get_metrics(industry, budget):
-    industry_result = Industry.objects.get(industryName=industry)
+    industry_result = list(Industry.objects.filter(industryName=industry))[0]
     metrics_result = industry_result.pricemetrics_set.filter(budget=budget)
     return metrics_result
 

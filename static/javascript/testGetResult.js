@@ -1,3 +1,7 @@
+$(function () {
+    $("[data-toggle='tooltip']").tooltip();
+});
+
 function check_submit() {
     var category = $("#selectCategory").val();
     var budget = $("#selectBudget").val();
@@ -48,14 +52,29 @@ function showResultPage() {
     }
     window.location = "/stage2_result/industry/" + category + "/budget/" + budget;
 }
-//$.ajax({
-//        url: siteUrl + "/restapi/industry_list",
-//        method: "GET",
-//        headers: { "Accept": "application/json; odata=verbose" },
-//        success: function (data) {
-//           console.log(JSON.stringify(data.d.results));
-//        },
-//        error: function (data) {
-//           console.log(JSON.stringify(data));
-//        }
-//});
+
+function getSubCategory() {
+    $("#selectSubCategory").children().slice(1).remove();
+    var category = $("#selectCategory").val();
+    if (category != "") {
+        var url = "/budget_allocation/get_subIndustryList/industry/" + category;
+        $.get(url).done(function(data) {
+            var selectSubElem = $("#selectSubCategory");
+            $(data).each(function(idx, subCategory) {
+               $("<option></option>").attr("value",subCategory.subIndustry).html(subCategory.subIndustry).appendTo(selectSubElem)
+            });
+        }).fail(function (data) {
+            alert(data);
+        });
+    }
+}
+
+function translateCategory(origCatStr) {
+    var parts = origCatStr.split('-');
+    var translate = "";
+    for (var i=0; i < parts.length; i++) {
+        translate += parts[i].slice(0, 1).toUpperCase() + parts[i].slice(1, parts[i].length) + " ";
+    }
+    return translate;
+
+}
