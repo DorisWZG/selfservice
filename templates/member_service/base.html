@@ -26,6 +26,8 @@
     <!-- Custom Fonts -->
     <link href="{% static 'bootstrap/font-awesome-4.1.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet" href="{% static 'javascript/jquery/jquery-ui.css' %}">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -51,7 +53,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- <a class="navbar-brand" href="index.html">Member Service</a> -->
-                <div class="navbar-brand" >Member Service</div>
+                <div class="navbar-brand" ><a href="/">Home</a> -> Member Service</div>
             </div>
             <!-- /.navbar-header -->
 
@@ -113,16 +115,18 @@
                         </li>
 
                         <li>
-                            <a class="active" href="/member_service/sales_signal_processing/">Sales Signal Processing</a>
+                            <a class="active" href="/member_service/ssp_search/">Sales Signal Processing</a>
                         </li>
                         <li>
-                            <a class="active" href="/member_service/endu/">ENDU</a>
+                            <!-- <a class="active" href="/member_service/endu/">ENDU</a> -->
+                            <a class="active" href="http://www.glogou.com/adbaidu/">ENDU</a>
                         </li>
                         <li>
-                            <a class="active" href="/member_service/wave/">WAVE</a>
+                            <!-- <a class="active" href="/member_service/wave/">WAVE</a> -->
+                            <a class="active" href="http://media-watching.com/">Media Monitoring </a>
                         </li>
                         <li>
-                            <a class="active" href="/member_service/twins/">TWINS</a>
+                            <!-- <a class="active" href="/member_service/twins/">TWINS</a>-->
                         </li>
                         <li>
                             <!-- /.nav-second-level -->
@@ -165,6 +169,15 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{% static 'javascript/sb-admin-2.js' %}"></script>
+
+    <script src="{% static 'javascript/jquery/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'javascript/jquery/jquery-ui.js' %}"></script>
+
+    <script>
+    $(function() {
+    $( ".datepicker" ).datepicker();
+    });
+    </script>
 
 </body>
 
