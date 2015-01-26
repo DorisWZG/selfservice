@@ -41,16 +41,21 @@ function showResult() {
 
 function showResultPage() {
     var category = $("#selectCategory").val();
+    var sub_category = $("#selectSubCategory").val();
     var budget = $("#selectBudget").val();
     if (category == "") {
         alert("Please choose a category");
+        return;
+    }
+    if (sub_category == "") {
+        alert("Please choose a sub category");
         return;
     }
     if (budget == "") {
         alert("Please choose a budget");
         return;
     }
-    window.location = "/stage2_result/industry/" + category + "/budget/" + budget;
+    window.location = "/stage2_result/industry/" + category + "/subindustry/" + sub_category + "/budget/" + budget;
 }
 
 function getSubCategory() {
