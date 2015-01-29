@@ -2,8 +2,8 @@ import os
 import sys
 
 # Add the app's directory to the PYTHONPATH
-sys.path.append('/home/dev/Self_Service_Project/selfservice')
-sys.path.append('/home/dev/Self_Service_Project/selfservice/selfservice')
+sys.path.append('/home/dev/SelfService')
+sys.path.append('/home/dev/SelfService/selfservice')
 #sys.path.append('/home/dev/ssp/wavamezz')
 #sys.path.append('/home/dev/ssp/msp')
 #sys.path.append('/home/dev/ssp/dashboard')
