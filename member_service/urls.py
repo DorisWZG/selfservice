@@ -4,7 +4,8 @@ from member_service import views
 
 
 urlpatterns = patterns('',
-	# url(r'^$', views.index, name='index'),
+	url(r'^$', views.ssp_search, name='index'),
+	url(r'^ssp_search/$', views.ssp_search, name='ssp_search'),
 	url(r'^sales_signal_processing/$', views.sales_signal_processing, name='sales_signal_processing'),
 	url(r'^wave/$', views.wave, name='wave'),
 	url(r'^endu/$', views.endu, name='endu'),

@@ -1,0 +1,38 @@
+{% extends "email.html" %}    
+
+    {% block title %}Self test results from Glogou, Inc{% endblock %}
+    {% block description %}{% endblock %}
+    {% block keyword %}{% endblock %}
+
+
+    {% block content %}
+
+    <!-- Page Content -->
+	
+	{% if SSP_result_by_email %}
+		<h2 style="padding-left:20px; color:#003366;">
+			The following are our SSP test results for {{product_name}}.
+		</h2>
+		<div style="padding:20px; color:#003366;">
+			{% block content%} put the customized SSP contents here {% endblock %}
+		</div>
+		
+	{% if budget_allocation_result_by_email %}
+		<h2 style="padding-left:20px; color:#003366;">
+			The following are our Budget Allocation test results for {{business_sector}} with {{budget_amount}} budget.
+		</h2>
+		<div style="padding:20px; color:#003366;">
+			{% block content%} put the customized SSP contents here {% endblock %}
+		</div>
+		
+	{% if WAVE_result_by_email %}
+		<h2 style="padding-left:20px; color:#003366;">
+			The following are our WAVE test results for {{company_name}} and your competitor {{competitor_company_name}}.
+		</h2>
+		<div style="padding:20px; color:#003366;">
+			{% block content%} put the customized SSP contents here {% endblock %}
+		</div>
+		
+	{% endif %}
+	
+    {% endblock %}

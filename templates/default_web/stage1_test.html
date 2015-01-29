@@ -41,13 +41,24 @@
                     </select>
                 </form>
                 -->
-                <div class="ui-widget">
+                <form class="form" action="/member_service/sales_signal_processing/" method="GET" style="width:100%">
+                  <p>
+                    Search Product: 
+                    <input type="text" name="keyword" class="input-medium" placeholder="product name">
+                  </p>
+                   
+<!--                   <p>Start Date: <input type="text" class="datepicker" name="date_start"></p>
+                  <p>End Date: <input type="text" class="datepicker" name="date_end"></p> -->
+
+                  <button type="submit" class="btn btn-primary">See Result</button>
+                </form>
+<!--                 <div class="ui-widget">
                     <label for="tags">Product Name:</label>
                     <input id="tags">
-                </div>
+                </div> -->
 
                 <br>
-                <a class="btn btn-primary" href="/default_web/stage1_result/">See Result <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <!-- <a class="btn btn-primary" href="/default_web/stage1_result/">See Result <span class="glyphicon glyphicon-chevron-right"></span></a> -->
             </div>
         </div>
         <!-- /.row -->

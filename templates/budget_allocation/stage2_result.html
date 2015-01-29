@@ -1,0 +1,125 @@
+
+{% extends "default_web/base.html" %}
+
+    {% load staticfiles %}
+
+    {% block title %}Glogou Product and Service{% endblock %}
+    {% block description %}{% endblock %}
+    {% block keyword %}{% endblock %}
+
+
+    {% block content %}
+
+    <!-- Page Content -->
+     <nav class="navbar navbar-default">
+        <div class="container">
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <label class="sr-only" for="selectCategory">Category</label>
+                    <select id="selectCategory" class="form-control" onchange="getSubCategory()">
+                        <option value=""> Please select your business sector... </option>
+                        <!--
+                        <option value="1"> Education Market </option>
+                        <option value="2"> Destination Marketing </option>
+                        <option value="3"> Real Estate </option>
+                        <option value="4"> High Tech industry </option>
+                        -->
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="selectSubCategory">SubCategory</label>
+                    <select id="selectSubCategory" class="form-control">
+                        <option value="">Please select your sub business sector...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only" for="selectBudget">Budget</label>
+                    <select id="selectBudget" class="form-control">
+                        <option value="">Select your budget</option>
+                        <option value="1000">1,000</option>
+                        <option value="2000">2,000</option>
+                        <option value="3000">3,000-5,000</option>
+                        <option value="5000">5,000-10,000</option>
+                        <option value="10000">10,000-20,000</option>
+                        <option value="20000">20,000-50,000</option>
+                        <option value="50000">50,000-100,000</option>
+                        <option value="100000">100,000+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="selectGoal">Campaign Goal</label>
+                    <select id="selectGoal" class="form-control">
+                        <option value="">Select your goal</option>
+                        <option value="click">I want to get more clicks after campaign</option>
+                        <option value="impression">I want to get more impressions after campaign</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    {#<a class="btn btn-primary" onclick="showResult();">See Result <span class="glyphicon glyphicon-chevron-right"></span></a>#}
+                    <a id="see_result_button" class="btn btn-primary" onclick="showResultPage();"><span class="glyphicon glyphicon-search"></span></a>
+                </div>
+            </form>
+        </div>
+        </nav>
+    <div class="container">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Result for: {{ category_name }}
+                    <small>Budget {{ budget }}</small>
+                </h1>
+            </div>
+        </div>
+
+        <!-- /.     row -->
+        <div class="row">
+            {% if metrics_result %}
+            <table class="table table-striped" id="result-table">
+                <tr>
+                    <th>Suggested Channel</th>
+                    <th>Budget Allocation</th>
+                    <th>Expected Clicks</th>
+                    <th>Average Cost per Click</th>
+                    <th>Expected Impressions</th>
+                    <th>Average Cost per Impression</th>
+                </tr>
+                {% for item in metrics_result %}
+                    <tr>
+                        <td><a href="{{ item.channelId.channelUrl }}" data-toggle="tooltip" data-placement="right" title="{{ item.channelId.channelDescription }}">{{ item.channelId.channelName }}</a></td>
+                        <td>{{ item.allocation }}</td>
+                        <td>{{ item.expectedClicks }}</td>
+                        <td>{{ item.costPerClick }}</td>
+                        <td>{{ item.expectedImpressions }}</td>
+                        <td>{{ item.costPerImpression }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </div>
+
+        <div class="row">
+            <div style="float: left"><a class="btn btn-primary" href="/budget_allocation/stage2_test/">
+                <span class="glyphicon glyphicon-chevron-left"></span>Back</a></div>
+        </div>
+    </div>
+
+    <script src="{% static 'javascript/testGetResult.js' %}"></script>
+    <script>
+    var url = "/budget_allocation/get_industryNameList";
+    $.get(url).done(function(data) {
+        var selectElem = $("#selectCategory");
+{#        $(data).each(function(idx, category) {#}
+{#            $("<option></option>").attr("value", category.industryName).html(category.industryName).appendTo(selectElem)#}
+{#        });#}
+        $(data).each(function(idx, category) {
+            transIndustryName = translateCategory(category.industryName);
+            $("<option></option>").attr("value", category.industryName).html(transIndustryName).appendTo(selectElem)
+        });
+    }).fail(function(data) {
+        alert("Status Code: " + data.status + ", Status Text: " + data.statusText + ", Response Text: " + data.responseText);
+    });
+    </script>
+    {% endblock %}

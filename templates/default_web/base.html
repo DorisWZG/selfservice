@@ -32,6 +32,9 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- jQuery Version 1.11.0 -->
+    <!-- <script src="js/jquery-1.11.0.js"></script> -->
+    <script src ="{% static 'bootstrap/js/jquery-1.11.0.js' %}"></script>
     {% block style %} {% endblock %}
     {% block script %} {% endblock %}
 
@@ -59,7 +62,7 @@
                         <a href="/default_web/product_and_service/">Product and Service</a>
                     </li>
                     <li>
-                        <a href="/member/">Member Service</a>
+                        <a href="/member_service/">Member Service</a>
                     </li>
 
                     <li class="dropdown">
@@ -112,10 +115,6 @@
 
     </div>
     <!-- /.container -->
-
-    <!-- jQuery Version 1.11.0 -->
-    <!-- <script src="js/jquery-1.11.0.js"></script> -->
-    <script src ="{% static 'bootstrap/js/jquery-1.11.0.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>

@@ -1,0 +1,5 @@
+#python-mysqldb
+django
+beautifulsoup4
+mechanize==0.2.5
+djangorestframework
