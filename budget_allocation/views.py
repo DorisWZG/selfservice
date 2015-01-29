@@ -12,8 +12,8 @@ from budget_allocation.serializers import ChannelSerializer, IndustrySerializer,
 def budget_allocation_test(request):
     return render(request, 'budget_allocation/stage2_test.html', {})
 
-def stage2_result(request, industry, budget):
-    result = get_metrics(industry, budget)
+def stage2_result(request, industry, sub_industry, budget):
+    result = get_metrics(industry, sub_industry, budget)
     context = {'category_name': industry, 'budget': budget, 'metrics_result': result}
     return render(request, 'budget_allocation/stage2_result.html', context)
 
@@ -106,9 +106,9 @@ def budget(self):
     return budget
 
 @api_view(['GET'])
-def metrics_result(request,industry,budget):
+def metrics_result(request, industry, sub_industry, budget):
 
-    metrics_result = get_metrics(industry, budget)
+    metrics_result = get_metrics(industry, sub_industry, budget)
 
     Result = []
 
@@ -126,9 +126,10 @@ def metrics_result(request,industry,budget):
     return Response(data=Result)
 
 
-def get_metrics(industry, budget):
-    industry_result = list(Industry.objects.filter(industryName=industry))[0]
-    metrics_result = industry_result.pricemetrics_set.filter(budget=budget)
+def get_metrics(industry, sub_industry, budget):
+    # industry_result = list(Industry.objects.filter(subIndustry=sub_industry))[0]
+    # metrics_result = industry_result.pricemetrics_set.filter(budget=budget)
+    metrics_result = PriceMetrics.objects.filter(industryId__subIndustry=sub_industry).filter(budget=budget)
     return metrics_result
 
 
@@ -140,7 +141,6 @@ def get_industryNameList(request):
 
 @api_view(['GET'])
 def get_subIndustryList(request,industry):
-
     subIndustry_list =Industry.objects.values('subIndustry').filter(industryName=industry)
     return Response(data=subIndustry_list)
 
