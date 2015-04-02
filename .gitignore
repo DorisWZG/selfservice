@@ -8,6 +8,6 @@
 .idea/
 data_import.xls
 import_db.py
-venv/
+venv/*
 >>>>>>> ac590dd7c8d8b6a3d17a83cf8951c5b7bb655918
 
