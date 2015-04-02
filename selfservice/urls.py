@@ -16,7 +16,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     #url(r'^restapi/', include('restapi.urls') ),
     url(r'^', include('budget_allocation.urls')),
-    url(r'^restapi/', include('restapi.urls')),
+    # url(r'^restapi/', include('restapi.urls')),
 
     url(r'^$', views.index, name='home'),
     url(r'^contact/$', views.contact, name = 'contact'),
