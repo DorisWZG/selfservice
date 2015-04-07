@@ -1,5 +1,5 @@
 
-{% extends "default_web/base.html" %}
+{% extends "budget_allocation/base.html" %}
 
     {% load staticfiles %}
 
@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label class="sr-only" for="selectCategory">Category</label>
                     <select id="selectCategory" class="form-control" onchange="getSubCategory()">
-                        <option value=""> Please select your business sector... </option>
+                        <option value=""> Business sector... </option>
                         <!--
                         <option value="1"> Education Market </option>
                         <option value="2"> Destination Marketing </option>
@@ -30,28 +30,14 @@
                 <div class="form-group">
                     <label class="sr-only" for="selectSubCategory">SubCategory</label>
                     <select id="selectSubCategory" class="form-control">
-                        <option value="">Please select your sub business sector...</option>
+                        <option value="">Sub business sector...</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label class="sr-only" for="selectBudget">Budget</label>
-                    <select id="selectBudget" class="form-control">
-                        <option value="">Select your budget</option>
-                        <option value="1000">1,000</option>
-                        <option value="2000">2,000</option>
-                        <option value="3000">3,000-5,000</option>
-                        <option value="5000">5,000-10,000</option>
-                        <option value="10000">10,000-20,000</option>
-                        <option value="20000">20,000-50,000</option>
-                        <option value="50000">50,000-100,000</option>
-                        <option value="100000">100,000+</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label class="sr-only" for="selectGoal">Campaign Goal</label>
                     <select id="selectGoal" class="form-control">
-                        <option value="">Select your goal</option>
+                        <option value="">Please select the Campaign goal</option>
                         <option value="click">I want to get more clicks after campaign</option>
                         <option value="impression">I want to get more impressions after campaign</option>
                     </select>
@@ -67,44 +53,134 @@
 
         <!-- Page Heading -->
         <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Result for: {{ category_name }}
-                    <small>Budget {{ budget }}</small>
+            <div class="col-lg-6">
+                <h1 class="page-header" >Recommended Media Channels for: <br>
+                    <small >Selected Industry: {{ category_name | title }} <br>
+                    Selected Sub Industry: {{ subcategory_name | title}}</small>
                 </h1>
             </div>
+            <div class="col-md-6">
+                <img class="banner img-responsive img-portfolio img-hover" src="/static/images/puzzle-csd.jpg">
+            </div>
+
         </div>
 
+
+        <div class="row col-lg-6">
+        {% if metrics_result %}
+        <table class="table table-striped" id="result-table">
+
+            <tr>
+            {% for item in metrics_result %}
+                <th><a href="{{ item.channelId.channelUrl }}" data-toggle="tooltip"
+                       data-placement="right" title="{{ item.channelId.channelDescription }}">
+                    {{ item.channelId.channelName }}</a></th>
+            {% endfor %}
+            </tr>
+            <tr>
+            {% for item in metrics_result %}
+                {% widthratio item.budgetPercentage 1 100 as percentage%}
+                <td>{{ percentage }} %</td>
+            {% endfor %}
+            </tr>
+        </table>
+        {% endif %}
+        </div>
+
+
+
         <!-- /.     row -->
-        <div class="row">
+        <div class="row hidden">
             {% if metrics_result %}
-            <table class="table table-striped" id="result-table">
+            <table class="table table-striped" id="result-table-old">
                 <tr>
                     <th>Suggested Channel</th>
-                    <th>Budget Allocation</th>
-                    <th>Expected Clicks</th>
-                    <th>Average Cost per Click</th>
-                    <th>Expected Impressions</th>
-                    <th>Average Cost per Impression</th>
+                    <th>Budget Percentage</th>
+{#                    <th>Budget Allocation</th>#}
+{#                    <th>Expected Clicks</th>#}
+{#                    <th>Average Cost per Click</th>#}
+{#                    <th>Expected Impressions</th>#}
+{#                    <th>Average Cost per Impression</th>#}
                 </tr>
                 {% for item in metrics_result %}
                     <tr>
                         <td><a href="{{ item.channelId.channelUrl }}" data-toggle="tooltip" data-placement="right" title="{{ item.channelId.channelDescription }}">{{ item.channelId.channelName }}</a></td>
-                        <td>{{ item.allocation }}</td>
-                        <td>{{ item.expectedClicks }}</td>
-                        <td>{{ item.costPerClick }}</td>
-                        <td>{{ item.expectedImpressions }}</td>
-                        <td>{{ item.costPerImpression }}</td>
+                        <td>{{ item.budgetPercentage }}</td>
+{#                        <td>{{ item.expectedClicks }}</td>#}
+{#                        <td>{{ item.costPerClick }}</td>#}
+{#                        <td>{{ item.expectedImpressions }}</td>#}
+{#                        <td>{{ item.costPerImpression }}</td>#}
                     </tr>
                 {% endfor %}
             </table>
             {% endif %}
         </div>
-
         <div class="row">
-            <div style="float: left"><a class="btn btn-primary" href="/budget_allocation/stage2_test/">
-                <span class="glyphicon glyphicon-chevron-left"></span>Back</a></div>
         </div>
+        <div class="row col-lg-12">
+            {% if metrics_result %}
+                {% for item in metrics_result %}
+                    <table class="table table-bordered" id="result-table">
+
+                        <tr>
+                            <th class="col-md-2" bgcolor="#e6e6fa">Suggested Channel</th>
+
+                            {% if item.campaignGoal == "CPC" %}
+                                <th class="col-md-3" bgcolor="#e6e6fa">Average CPC($)</th>
+                                <th class="col-md-3" bgcolor="#e6e6fa">Average CPC(RMB)</th>
+                                <th class="col-md-2" bgcolor="#e6e6fa">Number of Clicks</th>
+                            {% else %}
+                                <th class="col-md-3" bgcolor="#e6e6fa">Average CPM($)</th>
+                                <th class="col-md-3" bgcolor="#e6e6fa">Average CPM(RMB)</th>
+                            {% endif %}
+                            <th class="col-md-2" bgcolor="#e6e6fa">Minimum Budget</th>
+                        </tr>
+                        <tr>
+                            <td>{{ item.channelId.channelName }}</td>
+                            <hr>
+                            {% if item.costPerClick %}
+                                <td>&dollar; {{ item.costPerClick }}</td>
+                            {% else %}
+                                <td>N/A</td>
+                            {% endif %}
+
+                            {% if item.costPerClick %}
+                                {% widthratio item.costPerClick 1 6 as costPerClickRMB%}
+                                <td>&yen; {{ costPerClickRMB }}</td>
+                            {% else %}
+                                <td>N/A</td>
+                            {% endif %}
+
+                            {% if item.campaignGoal == "CPC" %}
+                                {% if item.expectedClicks %}
+                                    <td>item.expectedClicks</td>
+                                {% else %}
+                                    <td>N/A</td>
+                                {% endif %}
+                            {% endif %}
+                            <td>{{ item.channelId.minMediaBuy }}</td>
+                        </tr>
+
+                    </table>
+                {% endfor %}
+            {% endif %}
+
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4>Please contact us if you are interested for the self service.</h4>
+                    </div>
+                    <div class="col-md-4" style="float: right">
+                        <a class="=btn btn-lg btn-info btn-block" href="/contact">Contact Now !</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {#            <div style="float: left"><a class="btn btn-primary" href="/budget_allocation/stage2_test/">#}
+        {#                <span class="glyphicon glyphicon-chevron-left"></span>Back</a></div>#}
+        {#        </div>#}
     </div>
+
 
     <script src="{% static 'javascript/testGetResult.js' %}"></script>
     <script>
