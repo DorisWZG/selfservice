@@ -19,7 +19,7 @@ def stage2_result(request, industry, sub_industry, budget):
 
 # search recommended media channels for selected industry
 def recomm_channels(request, industry, sub_industry):
-    recomm_channels = PriceMetrics.objects.filter(industryId__subIndustry=sub_industry)
+    recomm_channels = PriceMetrics.objects.filter(industryId__subIndustry=sub_industry, industryId__industryName=industry)
     context = {'category_name': industry, 'subcategory_name':sub_industry,
                'metrics_result': recomm_channels}
     return render(request, 'budget_allocation/stage2_result.html', context)

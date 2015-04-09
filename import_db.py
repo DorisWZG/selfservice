@@ -42,8 +42,10 @@ for i in range(1, sheet_channel.nrows):
     channelId = int(sheet_channel.cell(i,0).value)
     channelName = sheet_channel.cell(i, 1).value
     channelUrl = sheet_channel.cell(i, 2).value
-    channelDescription = sheet_channel.cell(i, 4).value
-    minMediaBuy = sheet_channel.cell(i, 5).value
+    channelDescription = sheet_channel.cell(i, 3).value
+    minMediaBuy = sheet_channel.cell(i, 4).value
+    if minMediaBuy == '':
+        minMediaBuy = None
     # assign values from each row
     values_channel = (channelId, channelName, channelUrl, channelDescription, minMediaBuy)
 
