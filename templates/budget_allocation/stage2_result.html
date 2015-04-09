@@ -18,13 +18,6 @@
                     <label class="sr-only" for="selectCategory">Category</label>
                     <select id="selectCategory" class="form-control" onchange="getSubCategory()">
                         <option value=""> Business sector... </option>
-                        <!--
-                        <option value="1"> Education Market </option>
-                        <option value="2"> Destination Marketing </option>
-                        <option value="3"> Real Estate </option>
-                        <option value="4"> High Tech industry </option>
-                        -->
-
                     </select>
                 </div>
                 <div class="form-group">
@@ -59,13 +52,14 @@
                     Selected Sub Industry: {{ subcategory_name | title}}</small>
                 </h1>
             </div>
+            <br><br>
             <div class="col-md-6">
                 <img class="banner img-responsive img-portfolio img-hover" src="/static/images/puzzle-csd.jpg">
             </div>
 
         </div>
 
-
+        <br><br>
         <div class="row col-lg-6">
         {% if metrics_result %}
         <table class="table table-striped" id="result-table">
@@ -79,8 +73,7 @@
             </tr>
             <tr>
             {% for item in metrics_result %}
-                {% widthratio item.budgetPercentage 1 100 as percentage%}
-                <td>{{ percentage }} %</td>
+                <td>{% widthratio item.budgetPercentage 1 100 %} %</td>
             {% endfor %}
             </tr>
         </table>
@@ -90,31 +83,31 @@
 
 
         <!-- /.     row -->
-        <div class="row hidden">
-            {% if metrics_result %}
-            <table class="table table-striped" id="result-table-old">
-                <tr>
-                    <th>Suggested Channel</th>
-                    <th>Budget Percentage</th>
+{#        <div class="row hidden">#}
+{#            {% if metrics_result %}#}
+{#            <table class="table table-striped" id="result-table-old">#}
+{#                <tr>#}
+{#                    <th>Suggested Channel</th>#}
+{#                    <th>Budget Percentage</th>#}
 {#                    <th>Budget Allocation</th>#}
 {#                    <th>Expected Clicks</th>#}
 {#                    <th>Average Cost per Click</th>#}
 {#                    <th>Expected Impressions</th>#}
 {#                    <th>Average Cost per Impression</th>#}
-                </tr>
-                {% for item in metrics_result %}
-                    <tr>
-                        <td><a href="{{ item.channelId.channelUrl }}" data-toggle="tooltip" data-placement="right" title="{{ item.channelId.channelDescription }}">{{ item.channelId.channelName }}</a></td>
-                        <td>{{ item.budgetPercentage }}</td>
+{#                </tr>#}
+{#                {% for item in metrics_result %}#}
+{#                    <tr>#}
+{#                        <td><a href="{{ item.channelId.channelUrl }}" data-toggle="tooltip" data-placement="right" title="{{ item.channelId.channelDescription }}">{{ item.channelId.channelName }}</a></td>#}
+{#                        <td>{{ item.budgetPercentage }}</td>#}
 {#                        <td>{{ item.expectedClicks }}</td>#}
 {#                        <td>{{ item.costPerClick }}</td>#}
 {#                        <td>{{ item.expectedImpressions }}</td>#}
 {#                        <td>{{ item.costPerImpression }}</td>#}
-                    </tr>
-                {% endfor %}
-            </table>
-            {% endif %}
-        </div>
+{#                    </tr>#}
+{#                {% endfor %}#}
+{#            </table>#}
+{#            {% endif %}#}
+{#        </div>#}
         <div class="row">
         </div>
         <div class="row col-lg-12">
@@ -133,8 +126,9 @@
                                 <th class="col-md-3" bgcolor="#e6e6fa">Average CPM($)</th>
                                 <th class="col-md-3" bgcolor="#e6e6fa">Average CPM(RMB)</th>
                             {% endif %}
-                            <th class="col-md-2" bgcolor="#e6e6fa">Minimum Budget</th>
+                            <th class="col-md-2" bgcolor="#e6e6fa">Minimum Budget($)</th>
                         </tr>
+
                         <tr>
                             <td>{{ item.channelId.channelName }}</td>
                             <hr>
@@ -145,8 +139,8 @@
                             {% endif %}
 
                             {% if item.costPerClick %}
-                                {% widthratio item.costPerClick 1 6 as costPerClickRMB%}
-                                <td>&yen; {{ costPerClickRMB }}</td>
+
+                                <td>&yen; {% widthratio item.costPerClick 1 6 %}</td>
                             {% else %}
                                 <td>N/A</td>
                             {% endif %}
@@ -158,10 +152,13 @@
                                     <td>N/A</td>
                                 {% endif %}
                             {% endif %}
-                            <td>{{ item.channelId.minMediaBuy }}</td>
+                            <td>&dollar; {{ item.channelId.minMediaBuy }}</td>
                         </tr>
 
                     </table>
+                    {% if item.campaignGoal == 'CPC' %}
+                    <p><font color="#dc143c bold">Notice: Number of Clicks are the total budget you are decided to investment in which divided by average CPC.</font></p>
+                    {% endif %}
                 {% endfor %}
             {% endif %}
 

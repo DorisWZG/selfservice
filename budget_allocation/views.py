@@ -21,7 +21,7 @@ def stage2_result(request, industry, sub_industry, budget):
 def recomm_channels(request, industry, sub_industry):
     recomm_channels = PriceMetrics.objects.filter(industryId__subIndustry=sub_industry)
     context = {'category_name': industry, 'subcategory_name':sub_industry,
-               'metrics_result': recomm_channels, 'metrics_range': range(0, len(recomm_channels))}
+               'metrics_result': recomm_channels}
     return render(request, 'budget_allocation/stage2_result.html', context)
 
 
@@ -126,7 +126,7 @@ def metrics_result(request, industry, sub_industry, budget):
         items_detail['costPerClick'] = items.costPerClick
         items_detail['expectedImpressions'] = items.expectedImpressions
         items_detail['costPerImpression'] = items.costPerImpression
-        # items_detail['minMediaBuy'] = items.minMediaBuy
+        items_detail['minMediaBuy'] = items.minMediaBuy
         Result.append(items_detail)
 
     # serializer = MetricsResultSerializer(Result,many=True)

@@ -4,8 +4,9 @@ import xlrd
 import MySQLdb
 
 category = xlrd.open_workbook("data_import.xls")
-# sheet = category.sheet_by_name("industry")
-sheet = category.sheet_by_name("pricemetrics")
+sheet_industry = category.sheet_by_name("industry")
+sheet_channel = category.sheet_by_name("channel")
+sheet_metrics = category.sheet_by_name("pricemetrics")
 
 # establish a mysql connection
 database = MySQLdb.connect (host = "localhost", user = "root", passwd = "", db = "self_service")
@@ -13,8 +14,9 @@ database = MySQLdb.connect (host = "localhost", user = "root", passwd = "", db =
 # get the cursor, which is used to traverse the database, line by line
 cursor = database.cursor()
 
-# query = """INSERT INTO budget_allocation_industry (industryId,industryName,subIndustry) VALUES(%s, %s, %s)"""
-query = """INSERT INTO budget_allocation_pricemetrics (priceMatrixId,allocation,budget,budgetPercentage,expectedClicks,
+query_industry = """INSERT INTO budget_allocation_industry (industryId,industryName,subIndustry) VALUES(%s, %s, %s)"""
+query_channel = """INSERT INTO budget_allocation_channel (channelId, channelName, channelUrl, channelDescription, minMediaBuy) VALUES(%s, %s, %s, %s, %s)"""
+query_metrics = """INSERT INTO budget_allocation_pricemetrics (priceMatrixId,allocation,budget,budgetPercentage,expectedClicks,
            costPerClick,expectedImpressions,costPerImpression,campaignGoal,industryId,channelId)
            VALUES(%s,%s, %s, %s,%s, %s, %s,%s, %s, %s ,%s)"""
 
@@ -24,30 +26,39 @@ def convert(func, val):
     except ValueError:
         return None
 
-types = [ int, int, int, float, int, float, int, int, str, int, int ]
-for i in range(1, sheet.nrows):
-    args = []
-    # industryId = int(sheet.cell(i,0).value)
-    # industryName = sheet.cell(i, 1).value
-    # subIndustry = sheet.cell(i, 2).value
-    for j in range(0, 11):
-        args.append(convert(types[j], sheet.cell(i, j).value))
-    # priceMatrixId = int(sheet.cell(i,0).value)
-    # allocation = convert(int, sheet.cell(i, 1).value)
-    # budget = convert(int, sheet.cell(i, 2).value)
-    # budgetPercentage = convert(float,sheet.cell(i, 3).value)
-    # expectedClicks = convert(int, sheet.cell(i, 4).value)
-    # costPerClick = convert(float,sheet.cell(i, 5).value)
-    # expectedImpressions = convert(int, sheet.cell(i, 6).value)
-    # costPerImpression = convert(int, sheet.cell(i, 7).value)
-    # campaignGoal = sheet.cell(i, 8).value
-    # industryId = int(sheet.cell(i, 9).value)
-    # channelId = int(sheet.cell(i, 10).value)
-
+# import industry data to db
+for i in range(1, sheet_industry.nrows):
+    industryId = int(sheet_industry.cell(i,0).value)
+    industryName = sheet_industry.cell(i, 1).value
+    subIndustry = sheet_industry.cell(i, 2).value
     # assign values from each row
-    # values = (priceMatrixId, allocation, budget, budgetPercentage, expectedClicks, costPerClick, expectedImpressions, costPerImpression, campaignGoal, industryId, channelId)
-    print args
-    cursor.execute(query, args)
+    values_industry = (industryId, industryName, subIndustry)
+
+    print values_industry
+    cursor.execute(query_industry, values_industry)
+
+# import channel data to db
+for i in range(1, sheet_channel.nrows):
+    channelId = int(sheet_channel.cell(i,0).value)
+    channelName = sheet_channel.cell(i, 1).value
+    channelUrl = sheet_channel.cell(i, 2).value
+    channelDescription = sheet_channel.cell(i, 4).value
+    minMediaBuy = sheet_channel.cell(i, 5).value
+    # assign values from each row
+    values_channel = (channelId, channelName, channelUrl, channelDescription, minMediaBuy)
+
+    print values_channel
+    cursor.execute(query_channel, values_channel)
+
+# import pricemetrics data to db
+types = [ int, int, int, float, int, float, int, int, str, int, int ]
+for i in range(1, sheet_metrics.nrows):
+    args_metrics = []
+    for j in range(0, 11):
+        args_metrics.append(convert(types[j], sheet_metrics.cell(i, j).value))
+
+    print args_metrics
+    cursor.execute(query_metrics, args_metrics)
 
 cursor.close()
 database.commit()
