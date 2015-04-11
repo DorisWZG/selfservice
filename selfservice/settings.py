@@ -45,7 +45,7 @@ INSTALLED_APPS = (
     'member_service',
     'budget_allocation',
     'rest_framework',
-    'restapi',
+    # 'restapi',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -1,5 +1,7 @@
 $(function () {
     $("[data-toggle='tooltip']").tooltip();
+//    $('.dropdown-toggle').dropdown();
+    $("[data-toggle='dropdown-toggle']").dropdown();
 });
 
 function check_submit() {
@@ -51,11 +53,11 @@ function showResultPage() {
         alert("Please choose a sub category");
         return;
     }
-    if (budget == "") {
-        alert("Please choose a budget");
-        return;
-    }
-    window.location = "/stage2_result/industry/" + category + "/subindustry/" + sub_category + "/budget/" + budget;
+//    if (budget == "") {
+//        alert("Please choose a budget");
+//        return;
+//    }
+    window.location = "/stage2_result/industry/" + category + "/subindustry/" + sub_category;
 }
 
 function getSubCategory() {
@@ -66,7 +68,8 @@ function getSubCategory() {
         $.get(url).done(function(data) {
             var selectSubElem = $("#selectSubCategory");
             $(data).each(function(idx, subCategory) {
-               $("<option></option>").attr("value",subCategory.subIndustry).html(subCategory.subIndustry).appendTo(selectSubElem)
+               transSubIndustryName = translateCategory(subCategory.subIndustry);
+               $("<option></option>").attr("value",subCategory.subIndustry).html(transSubIndustryName).appendTo(selectSubElem)
             });
         }).fail(function (data) {
             alert(data);

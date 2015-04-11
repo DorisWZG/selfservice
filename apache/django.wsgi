@@ -19,5 +19,3 @@ with open('/home/dev/Workspace/sspEnvFolder/self_service_platform/SelfService/ap
 
     writer.write('latest result is here\n')
 writer.close()
-
-
