@@ -10,4 +10,9 @@ data_import.xls
 import_db.py
 venv/*
 >>>>>>> ac590dd7c8d8b6a3d17a83cf8951c5b7bb655918
-
+=======
+apache/django.wsgi.BACKUP.30616.wsgi
+apache/django.wsgi.BASE.30616.wsgi
+apache/django.wsgi.LOCAL.30616.wsgi
+apache/django.wsgi.REMOTE.30616.wsgi
+apache/xiaoFeb022015Back.wsgi
