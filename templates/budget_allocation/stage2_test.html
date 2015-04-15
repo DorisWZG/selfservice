@@ -23,7 +23,42 @@
         </div>
 
         <div class="row">
-            <div class="col-md-9">
+             <div class="col-md-12">
+                <h4 class="#{$fa-css-prefix}-align-left">Choose the Category and Sub Category to Start a Campaign:</h4>
+
+                <form class="form-horizontal #{$fa-css-prefix}-align-left" >
+                    <div class="form-group">
+                        <label class="col-md-1 control-label" for="selectCategory">Category</label>
+                        <div class="col-md-2">
+                            <select id="selectCategory" class="form-control" onchange="getSubCategory()">
+                                <option value=""> Business sector... </option>
+                            </select>
+                        </div>
+                        <label class="col-md-1 control-label" for="selectSubCategory">Sub Category</label>
+                        <div class="col-md-2">
+                            <select id="selectSubCategory" class="form-control">
+                                <option value="">Sub business sector...</option>
+                            </select>
+                        </div>
+                        <label class="col-md-1 control-label" for="selectGoal">Campaign Goal</label>
+                        <div class="col-md-3">
+                            <select id="selectGoal" class="form-control">
+                                <option value="">Please select the Campaign goal</option>
+                                <option value="click">I want to get more clicks after campaign</option>
+                                <option value="impression">I want to get more impressions after campaign</option>
+                            </select>
+                        </div>
+                         <div class="col-md-2">
+                        {#<a class="btn btn-primary" onclick="showResult();">See Result <span class="glyphicon glyphicon-chevron-right"></span></a>#}
+                        <a id="see_result_button" class="btn btn-primary" onclick="showResultPage();">See Result <span class="glyphicon glyphicon-chevron-right"></span></a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+
+            <div class="col-md-12">
                 <section id="AllCustomers" class="tile-list selectable on-load-fade-in">
                     <a href="http://www.baidu.com">
                         <span class="tile">
@@ -82,46 +117,7 @@
                 </section>
             </div>
 
-            <div class="col-md-3">
-                 <h3 class="#{$fa-css-prefix}-align-left">Choose A Campaign:</h3>
 
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="selectCategory">Category</label>
-                        <div class="col-sm-8">
-                            <select id="selectCategory" class="form-control" onchange="getSubCategory()">
-                                <option value=""> Business sector... </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="selectSubCategory">Sub Category</label>
-                        <div class="col-sm-8">
-                            <select id="selectSubCategory" class="form-control">
-                                <option value="">Sub business sector...</option>
-                            </select>
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="selectGoal">Campaign Goal</label>
-                        <div class="col-sm-8">
-                            <select id="selectGoal" class="form-control">
-                                <option value="">Please select the Campaign goal</option>
-                                <option value="click">I want to get more clicks after campaign</option>
-                                <option value="impression">I want to get more impressions after campaign</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-8">
-                        {#<a class="btn btn-primary" onclick="showResult();">See Result <span class="glyphicon glyphicon-chevron-right"></span></a>#}
-                        <a id="see_result_button" class="btn btn-primary" onclick="showResultPage();">See Result <span class="glyphicon glyphicon-chevron-right"></span></a>
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
         <!-- /.row -->
         <div class="row">
