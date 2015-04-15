@@ -45,75 +45,89 @@
     <div class="container">
 
         <!-- Page Heading -->
-        <div class="row">
-            <div class="col-lg-6">
-                <h1 class="page-header" >Recommended Media Channels for: <br>
-                    <small >Selected Industry: {{ category_name | title }} <br>
-                    Selected Sub Industry: {{ subcategory_name | title}}</small>
-                </h1>
-            </div>
-            <br><br>
-            <div class="col-md-6">
-                <img class="banner img-responsive img-portfolio img-hover" src="/static/images/puzzle-csd.jpg">
-            </div>
-
+{#        <div class="row">#}
+{#            <div class="col-lg-6">#}
+{#                <h1 class="page-header" >Recommended Media Channels for: <br>#}
+{#                    <small >Selected Industry: {{ category_name | title }} <br>#}
+{#                    Selected Sub Industry: {{ subcategory_name | title}}</small>#}
+{#                </h1>#}
+{#            </div>#}
+{#            <br><br>#}
+{#            <div class="col-md-6">#}
+{#                <img class="banner img-responsive img-portfolio img-hover" src="/static/images/puzzle-csd.jpg">#}
+{#            </div>#}
+{##}
+{#        </div>#}
+        <div class="row col-lg-12">
+        <div id="container">
+            <img src="/static/images/puzzle-csd.jpg" style="width: 100%" height="300">
+            <p id="text">
+                Recommended Media Channels for: <br>
+                Selected Industry: {{ category_name | title }} <br>
+                Selected sub industry: {{ subcategory_name | title }}
+            </p>
+        </div>
+        <hr>
         </div>
 
-        <br><br>
-            <div class="row col-lg-6">
-            {% if metrics_result %}
-                <table class="table table-striped" id="result-table">
+        <div class="row col-lg-12">
+        <div class="row col-lg-6">
+        <br>
+        {% if metrics_result %}
+            <table class="table table-striped" id="result-table">
 
-                    <tr>
-                    {% for item in metrics_result %}
-                        <th><a href="{{ item.channelId.channelUrl }}" data-toggle="tooltip"
-                               data-placement="right" title="{{ item.channelId.channelDescription }}">
-                            {{ item.channelId.channelName }}</a></th>
-                    {% endfor %}
-                    </tr>
+                <tr>
+                {% for item in metrics_result %}
+                    <th><a href="{{ item.channelId.channelUrl }}" data-toggle="tooltip"
+                           data-placement="right" title="{{ item.channelId.channelDescription }}">
+                        {{ item.channelId.channelName }}</a></th>
+                {% endfor %}
+                </tr>
 
-                    <tr>
-                     {% for item in metrics_result %}
-                        <th>
-                        {% if item.channelId.channelName == "Baidu" %}
-                            <a href="{{ item.channelId.channelUrl }}">
-                            <img src="{% static "images/logos/baidu_click.png" %}" height="50" width="50"/></a>
-                        {% elif item.channelId.channelName == "Weibo" %}
-                            <a href="{{ item.channelId.channelUrl }}">
-                            <img src="{% static "images/logos/weibo_click.png" %}" height="50" width="50"/></a>
-                        {% elif item.channelId.channelName == "Wechat" %}
-                            <a href="{{ item.channelId.channelUrl }}">
-                            <img src="{% static "images/logos/wechat_click.jpeg" %}" height="50" width="50"/></a>
-                        {% elif item.channelId.channelName == "360" %}
-                            <a href="{{ item.channelId.channelUrl }}">
-                            <img src="{% static "images/logos/360_click.jpeg" %}" height="50" width="50"/></a>
-                        {% elif item.channelId.channelName == "Ctrip" %}
-                            <a href="{{ item.channelId.channelUrl }}">
-                            <img src="{% static "images/logos/ctrip_click.jpeg" %}" height="50" width="50"/></a>
-                        {% elif item.channelId.channelName == "Soufun" %}
-                            <a href="{{ item.channelId.channelUrl }}">
-                            <img src="{% static "images/logos/soufun_click.jpeg" %}" height="50" width="50"/></a>
-                        {% elif item.channelId.channelName == "Youku" %}
-                            <a href="{{ item.channelId.channelUrl }}">
-                            <img src="{% static "images/logos/youku_click.jpeg" %}" height="50" width="50"/></a>
-                        {% elif item.channelId.channelName == "Tmall" %}
-                            <a href="{{ item.channelId.channelUrl }}">
-                            <img src="{% static "images/logos/tmall_click.jpeg" %}" height="50" width="50"/></a>
-                        {% elif item.channelId.channelName == "Others" %}
-                            <a href="/contact">
-                            <img src="{% static "images/logos/contact_click.png" %}" height="50" width="50"/></a>
-                        </th>
-                        {% endif %}
-                    {% endfor %}
-                    </tr>
+                <tr>
+                 {% for item in metrics_result %}
+                    <th>
+                    {% if item.channelId.channelName == "Baidu" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/baidu_click.png" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "Weibo" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/weibo_click.png" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "Wechat" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/wechat_click.jpeg" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "360" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/360_click.jpeg" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "Ctrip" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/ctrip_click.jpeg" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "Soufun" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/soufun_click.jpeg" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "Youku" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/youku_click.jpeg" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "Tmall" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/tmall_click.jpeg" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "Others" %}
+                        <a href="/contact">
+                        <img src="{% static "images/logos/contact_click.png" %}" height="50" width="50"/></a>
+                    </th>
+                    {% endif %}
+                {% endfor %}
+                </tr>
 
-                    <tr>
-                    {% for item in metrics_result %}
-                        <td>{% widthratio item.budgetPercentage 1 100 %} %</td>
-                    {% endfor %}
-                    </tr>
-                </table>
-            {% endif %}
+                <tr>
+                {% for item in metrics_result %}
+                    <td>{% widthratio item.budgetPercentage 1 100 %} %</td>
+                {% endfor %}
+                </tr>
+            </table>
+        {% endif %}
+    </div>
+        <div class="row col-md-6" id="piechart" style="min-width: 310px; height: 300px; max-width: 600px"></div>
         </div>
 {#        <div class="row col-md-6">#}
 {#            The minimum budget for Ctrip, Soufun and Tmall are different corresponding to each investment. Please contact us for details.#}
@@ -222,6 +236,65 @@
 
 
     <script src="{% static 'javascript/testGetResult.js' %}"></script>
+    <script src="{% static 'javascript/highchart.js' %}"></script>
+{#    <script src="http://code.highcharts.com/modules/exporting.js"></script>#}
+    <script>
+    $(function () {
+
+    $(document).ready(function () {
+
+        // Build the chart
+        $('#piechart').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Recommended channels for selected industry.'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.0f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'recommend channel',
+                data: [
+                    {% for item in metrics_result %}
+
+                        {% if item.channelId.channelName != 'Baidu' %}
+                            ['{{ item.channelId.channelName }}', {{ item.budgetPercentage }}],
+
+                        {% else %}
+                           {   name: '{{ item.channelId.channelName }}',
+                                y: {{ item.budgetPercentage }},
+                                sliced: true,
+                                selected:true
+                            },
+                        {% endif %}
+                    {% endfor %}
+                ]
+
+                }]
+        });
+    });
+
+});
+    </script>
     <script>
     var url = "/budget_allocation/get_industryNameList";
     $.get(url).done(function(data) {

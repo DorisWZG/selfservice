@@ -38,7 +38,6 @@ def sales_signal_processing(request,keyword=None, date_start=None, date_end=None
             print "start date: "+ date_start.strftime("%B %d, %Y")
             print "end date: "+ date_end.strftime("%B %d, %Y")
             data = get_market_trend(keyword,date_start,date_end)
-
             if data=={}:
                 zipped_data['error'] = "1"
                 print "error: "+zipped_data['error']

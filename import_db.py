@@ -9,8 +9,8 @@ sheet_channel = category.sheet_by_name("channel")
 sheet_metrics = category.sheet_by_name("pricemetrics")
 
 # establish a mysql connection
-database = MySQLdb.connect (host = "localhost", user = "root", passwd = "", db = "self_service")
-
+# database = MySQLdb.connect (host = "localhost", user = "root", passwd = "", db = "self_service")
+database = MySQLdb.connect(host = "ads-in-china.com", user = "self_service", passwd = "cmbjxccwtn", db = "self_service")
 # get the cursor, which is used to traverse the database, line by line
 cursor = database.cursor()
 
