@@ -1,5 +1,6 @@
 *.pyc
 *.log
+*.txt
 *.out
 <<<<<<< HEAD
 *.sql
@@ -16,3 +17,4 @@ apache/django.wsgi.BASE.30616.wsgi
 apache/django.wsgi.LOCAL.30616.wsgi
 apache/django.wsgi.REMOTE.30616.wsgi
 apache/xiaoFeb022015Back.wsgi
+=========
