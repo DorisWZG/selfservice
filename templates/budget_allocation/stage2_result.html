@@ -186,7 +186,7 @@
                             <td>{{ item.channelId.channelName }}</td>
                             <hr>
                             {% if item.costPerClick %}
-                                <td>&dollar; {{ item.costPerClick }}</td>
+                                <td>&dollar; {{ item.costPerClick | floatformat:2 }}</td>
                             {% else %}
                                 <td>N/A</td>
                             {% endif %}
