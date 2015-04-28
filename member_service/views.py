@@ -16,7 +16,7 @@ def sales_signal_processing(request,keyword=None, date_start=None, date_end=None
     # comments below after database has been setup
 
     # data = get_ali_index('valve')
-    #data = get_market_trend('stainless steel mineral spring pump','2014-03-06','2014-12-06')
+    data = get_market_trend('stainless steel mineral spring pump','2014-03-06','2014-12-06')
     zipped_data={}
     zipped_data['error'] = "1"
     if request.method == 'GET':

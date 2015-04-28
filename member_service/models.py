@@ -20,7 +20,7 @@ class Product_Dictionary_C2(models.Model):
     cat2_id = models.DecimalField(primary_key=True, max_digits=15,decimal_places=0)
     eng_kw = models.CharField(unique=True, max_length=50)
     chn_kw = models.CharField(max_length=50)
-    pd_c1_id = models.ForeignKey('Product_Dictionary_C1')
+    cat1 = models.ForeignKey('Product_Dictionary_C1')
 
     class Meta:
         # managed = False
@@ -34,7 +34,7 @@ class Product_Dictionary_C3(models.Model):
     cat3_id = models.DecimalField(primary_key=True, max_digits=15,decimal_places=0)
     eng_kw = models.CharField(unique=True, max_length=50)
     chn_kw = models.CharField(max_length=50)
-    pd_c2_id = models.ForeignKey('Product_Dictionary_C2')
+    cat2 = models.ForeignKey('Product_Dictionary_C2')
 
     class Meta:
         # managed = False

@@ -10,11 +10,12 @@ urlpatterns = patterns('',
 	url(r'^real_estate_case/$', views.real_estate_case, name='real_estate_case'),
 	url(r'^high_tech_case/$', views.high_tech_case, name='high_tech_case'),
 
-	url(r'^stage1_test/$', views.market_test, name='stage1_test'),
+	url(r'^stage1_test/$', views.getCat, name='getCat'),
+    url(r'getCat2/cat/(?P<cat>.+)?$', views.getCat2, name = 'getCat2'),
 	url(r'^stage1_result/$', views.stage1_result, name='stage1_result'),
 
-	url(r'^stage2_test/$', views.budget_allocation_test, name='stage2_test'),
-	url(r'^stage2_result/$', views.stage2_result, name='stage2_result'),
+	# url(r'^stage2_test/$', views.budget_allocation_test, name='stage2_test'),
+	# url(r'^stage2_result/$', views.stage2_result, name='stage2_result'),
 
 	url(r'^stage3_test/$', views.wave_test, name='stage3_test'),
 	url(r'^stage3_result/$', views.stage3_result, name='stage3_result'),

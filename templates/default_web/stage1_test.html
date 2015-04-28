@@ -1,66 +1,92 @@
-{% extends "default_web/base.html" %}    
+{% extends "default_web/base.html" %}
 
-    {% block title %}Glogou Product and Service{% endblock %}
-    {% block description %}{% endblock %}
-    {% block keyword %}{% endblock %}
+{#    {% block title %}Glogou Product and Service{% endblock %}#}
+{% block description %}{% endblock %}
+{% block keyword %}{% endblock %}
+{% block title %}Glogou Featured Client in Education Sector{% endblock %}
 
 
-    {% block content %}
+{% block content %}
+
     <!-- Page Content -->
-    <div class="container">
+    <div id="page-wrapper">
 
-        <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Sales Signal Processing
-                    <small>provide detail market information about your products</small>
-                </h1>
+                <h1 class="page-header">Please choose the product you want to search</h1>
+                <!--start sample search -->
+                <form class="form-inline" id="cat-form" action="/default_web/getCat" method="GET" style="width:100%">
+                    <div class="form-group dropdown col-sm-2" style="padding-left: 0px">
+                        <label class="sr-only" for="cat1">Category_1</label>
+                        <input type="text" class="form-control hidden" id="cat1">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="cat1-list"
+                                data-toggle="dropdown" aria-expanded="true" style="width: 100%; text-align: left">
+                            <strong>Please Select</strong>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuCat1">
+                            {% for cat1 in all_cat1 %}
+                            <li><a>{{ cat1.eng_kw }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="form-group dropdown col-sm-2" style="padding-left: 0px">
+                        <label class="sr-only" for="cat2">Category_2</label>
+                        <input type="text" class="form-control hidden" id="cat2">
+                        <button class="btn btn-default dropdown-toggle disabled"  type="button" id="cat2-list"
+                                data-toggle="dropdown" aria-expanded="true" style="width: 100%; text-align: left">
+                            All
+                            <span class="caret"></span>
+                        </button>
+                        <ul id = "dropdown-cat2" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuCat2">
+                        </ul>
+                    </div>
+                    <div class="form-group dropdown col-sm-2" style="padding-left: 0px">
+                        <label class="sr-only" for="cat3">Category_3</label>
+                        <input type="text" class="form-control hidden" id="cat3">
+                        <button class="btn btn-default dropdown-toggle disabled" type="button" id="cat3-list"
+                                data-toggle="dropdown" aria-expanded="true" style="width: 100%; text-align: left">
+                            All
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuCat3">
+                        </ul>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
             </div>
         </div>
-        <!-- /.row -->
+    </div>
+<script>
+var cat1 = "";
+$("#cat-form ul.dropdown-menu li").on('click', function() {
+    var group_parent = $(this).parent().parent();
+    var selected = $(this).children("a").html();
+    cat1 = selected;
+    group_parent.find("button strong").html(selected);
+    var input = group_parent.find("input[type='text']").val(selected);
+    if (input != "") {
+        $("#cat2-list").removeClass("disabled");
+        getCat2();
+    }
+});
 
-        <!-- Project One -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="banner img-responsive img-portfolio img-hover" src="/static/images/marketing_indicator.png">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Please input the product name you want to analyze</h3>
-                <!-- <h4>Subheading</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p> -->
-                <!--
-                <form action="">
-                    category
-                    <select name="category">
-                        <option value="education"> Education Market </option>
-                        <option value="dest_mkt"> Destination Marketing </option>
-                        <option value="real_estate"> Real Estate </option>
-                        <option value="high_tech"> High Tech industry </option>
-                    </select>
-                </form>
-                -->
-                <form class="form" action="/member_service/sales_signal_processing/" method="GET" style="width:100%">
-                  <p>
-                    Search Product: 
-                    <input type="text" name="keyword" class="input-medium" placeholder="product name">
-                  </p>
-                   
-<!--                   <p>Start Date: <input type="text" class="datepicker" name="date_start"></p>
-                  <p>End Date: <input type="text" class="datepicker" name="date_end"></p> -->
+function getCat2() {
+    if (cat1 != "") {
+        var url = "/default_web/getCat2/cat/" + cat1;
 
-                  <button type="submit" class="btn btn-primary">See Result</button>
-                </form>
-<!--                 <div class="ui-widget">
-                    <label for="tags">Product Name:</label>
-                    <input id="tags">
-                </div> -->
+        $("#dropdown-cat2").empty();
+        $.get(url).done(function (data) {
+            var ul = document.getElementById("dropdown-cat2");
+            $(data).each(function (key, val) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(val.eng_kw));
+                ul.appendChild(li);
 
-                <br>
-                <!-- <a class="btn btn-primary" href="/default_web/stage1_result/">See Result <span class="glyphicon glyphicon-chevron-right"></span></a> -->
-            </div>
-            </div>
-        </div>
-        <!-- /.row -->
-    {% endblock %}
+            });
+        });
+    }
+}
+</script>
+
+{% endblock %}
