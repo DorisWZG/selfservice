@@ -2,7 +2,7 @@ __author__ = 'Yuer'
 import json
 from pprint import pprint
 import datetime
-from member_service.models import Market_Trend
+from member_service.models import Market_Trend, Product_Dictionary_C1, Product_Dictionary_C2
 from initialization import db_connection
 
 def read_json_obj(filename):
@@ -48,7 +48,39 @@ def check_latest_record(cat1, cat2, cat3):
     db.close()
     return latest_date
 
+def read_cat1(fileCat1):
 
+
+    with open(fileCat1) as data:
+        for item in data:
+            print item
+            cat1 = item.split("---")
+
+            record = Product_Dictionary_C1()
+
+            record.cat1_id = cat1[1]
+            record.chn_kw = cat1[0]
+            record.eng_kw = cat1[2]
+            record.save()
+
+def read_cat2(fileCat2):
+
+
+    with open(fileCat2) as data:
+        for item in data:
+            print item
+            cat1 = item.split("---")
+
+            record = Product_Dictionary_C2()
+
+            # Product_Dictionary_C1.objects.create(record.cat1_id = Product_Dictionary_C1.cat1_id)
+            record.cat2_id = cat1[2]
+            record.chn_kw = cat1[0]
+            record.eng_kw = cat1[2]
+            record.save()
+
+fileCat1 = '../product_name_en_ch_list_cat1.txt'
+read_cat1(fileCat1)
 
 filename = '../crawled_results_1_3.txt'
 read_json_obj(filename)
