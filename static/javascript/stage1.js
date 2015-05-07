@@ -21,7 +21,7 @@ function bindCatSelection(divElem) {
 }
 
 function fillNextCat(nextDiv, api, catId) {
-    $.get('/default_web/' + api + '/' + catId).done(function(data) {
+    $.get('/member_service/' + api + '/' + catId).done(function(data) {
         var ulElem = nextDiv.children('ul');
         ulElem.children().slice(1).remove();
         if (data.length > 0) {
