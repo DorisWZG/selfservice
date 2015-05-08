@@ -1,17 +1,16 @@
 function bindCatSelection(divElem) {
     divElem.find('ul.dropdown-menu li').click(function() {
-        var parentDiv = $(this).parent().parent();
-        parentDiv.find('button strong').text($(this).children('a').text());
+        divElem.find('button strong').text($(this).children('a').text());
         var selectedCatId = $(this).children('span.hidden').text();
-        parentDiv.children('input[type="text"]').val(selectedCatId);
-        var nextDiv = parentDiv.next('div');
+        divElem.children('input[type="text"]').val(selectedCatId);
+        var nextDiv = divElem.next('div');
         if (nextDiv.length) {
-            fillNextCat(nextDiv, parentDiv.children('img').prop('name'), selectedCatId);
+            fillNextCat(nextDiv, selectedCatId);
         }
     });
     var reqVal = divElem.children('label.hidden').text();
     if (reqVal != '') {
-        reqLi = divElem.find('li').filter(function() {
+        var reqLi = divElem.find('li').filter(function() {
             return $(this).children('span.hidden').text() == reqVal;
         });
         if (reqLi.length > 0) {
@@ -20,7 +19,8 @@ function bindCatSelection(divElem) {
     }
 }
 
-function fillNextCat(nextDiv, api, catId) {
+function fillNextCat(nextDiv, catId) {
+    var api = nextDiv.children('img.hidden').prop('name');
     $.get('/member_service/' + api + '/' + catId).done(function(data) {
         var ulElem = nextDiv.children('ul');
         ulElem.children().slice(1).remove();
