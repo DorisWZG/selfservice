@@ -53,11 +53,11 @@ function showResultPage() {
         alert("Please choose a sub category");
         return;
     }
-    if (budget == "") {
-        alert("Please choose a budget");
-        return;
-    }
-    window.location = "/stage2_result/industry/" + category + "/subindustry/" + sub_category + "/budget/" + budget;
+//    if (budget == "") {
+//        alert("Please choose a budget");
+//        return;
+//    }
+    window.location = "/stage2_result/industry/" + category + "/subindustry/" + sub_category;
 }
 
 function getSubCategory() {

@@ -4151,3 +4151,26 @@ button.close{
 		display:none!important
 	}
 }
+#container
+{
+    /*height:200px;*/
+    width:100%;
+    position:relative;
+}
+
+#image
+{
+    position:top;
+    left:0;
+    top:0;
+}
+#text
+{
+    z-index:300;
+    position: absolute;
+    color:darkslateblue;
+    font-size:20px;
+    /*font-weight:bold;*/
+    left:30px;
+    top:30px;
+}

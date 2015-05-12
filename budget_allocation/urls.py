@@ -6,7 +6,9 @@ from urlparse import urlparse
 urlpatterns = patterns('',
 
 	url(r'^stage2_test/$', views.budget_allocation_test, name='stage2_test'),
-	url(r'^stage2_result/industry/(?P<industry>.+)/subindustry/(?P<sub_industry>.+)/budget/(?P<budget>.+)/?$', views.stage2_result, name='stage2_result'),
+	# url(r'^stage2_result/industry/(?P<industry>.+)/subindustry/(?P<sub_industry>.+)/budget/(?P<budget>.+)/?$', views.stage2_result, name='stage2_result'),
+
+    url(r'^stage2_result/industry/(?P<industry>.+)/subindustry/(?P<sub_industry>.+)/?$', views.recomm_channels, name='recomm_channels'),
 
     url(r'channel_list/$', 'budget_allocation.views.channel_list', name='channel_list'),
     url(r'rest/industry_list/$', 'budget_allocation.views.industry_list', name='industry_list'),

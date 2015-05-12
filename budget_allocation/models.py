@@ -18,8 +18,8 @@ class Channel(models.Model):
 
 class PriceMetrics(models.Model):
     priceMatrixId = models.AutoField(max_length=11, primary_key=True)
-    allocation = models.FloatField()
-    budget = models.FloatField()
+    allocation = models.FloatField(null=True)
+    budget = models.FloatField(null=True)
     budgetPercentage = models.FloatField(null=True)
     expectedClicks = models.IntegerField(null=True)
     costPerClick = models.FloatField(null=True)

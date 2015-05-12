@@ -60,8 +60,8 @@ def db_connection():
     """config mysqldb connection"""
 
     db = MySQLdb.connect(host="127.0.0.1", # your host, usually localhost
-        user="self_service", # your username
-        passwd="cmbjxccwtn", # your password
+        user="root", # your username
+        passwd="", # your password
         db="self_service",
         use_unicode=True,
         charset="utf8") # name of the data base
