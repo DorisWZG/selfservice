@@ -79,7 +79,7 @@
                 <div class="form-group dropdown col-sm-2" style="padding-left: 0px">
                     <label class="hidden">{{ cat1 }}</label>
                     <label class="sr-only" for="cat1">Category_1</label>
-                    <img name="getCat2" class="hidden" src="">
+                    <img name="getCat1" class="hidden" src="">
                     <input type="text" class="form-control hidden" id="cat1" name="cat1">
                     <button class="btn btn-default dropdown-toggle" type="button" id="cat1-list"
                             data-toggle="dropdown" aria-expanded="true" style="width: 100%; text-align: left">
@@ -92,7 +92,7 @@
                 <div class="form-group dropdown col-sm-2" style="padding-left: 0px">
                     <label class="hidden">{{ cat2 }}</label>
                     <label class="sr-only" for="cat2">Category_2</label>
-                    <img name="getCat3" class="hidden" src="">
+                    <img name="getCat2" class="hidden" src="">
                     <input type="text" class="form-control hidden" id="cat2" name="cat2">
                     <button class="btn btn-default dropdown-toggle disabled"  type="button" id="cat2-list"
                             data-toggle="dropdown" aria-expanded="true" style="width: 100%; text-align: left">
@@ -106,6 +106,7 @@
                 <div class="form-group dropdown col-sm-2" style="padding-left: 0px">
                     <label class="hidden">{{ cat3 }}</label>
                     <label class="sr-only" for="cat3">Category_3</label>
+                    <img name="getCat3" class="hidden" src="">
                     <input type="text" class="form-control hidden" id="cat3" name="cat3">
                     <button class="btn btn-default dropdown-toggle disabled" type="button" id="cat3-list"
                             data-toggle="dropdown" aria-expanded="true" style="width: 100%; text-align: left">
@@ -149,7 +150,7 @@
 </div>
 <script src ="{% static 'javascript/stage1.js' %}"></script>
 <script>
-fillNextCat($('#cat-form div:first'), 'getCat1', 'All');
+fillNextCat($('#cat-form div:first'), 'All');
 {% if purchase_index1688 %}
 $('#demo_trends').addClass('hidden');
 createTrendChart($('#indexSummary'),
