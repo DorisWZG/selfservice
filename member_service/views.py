@@ -43,7 +43,7 @@ def stage1(request):
         demo_purchase_index1688, demo_purchase_indexTb, demo_supply_index = [], [], []
         for i in range(365, -1, -1):
             sample_date = today - datetime.timedelta(days=i)
-            epoch = int(time.mktime(sample_date.timetuple())) * 1000
+            epoch = float(time.mktime(sample_date.timetuple())) * 1000
             # demo_purchase_index1688.append([ epoch, random.randint(0, 5000) ])
             # demo_purchase_indexTb.append([ epoch, random.randint(0, 5000) ])
             # demo_supply_index.append([ epoch, random.randint(0, 5000) ])
@@ -64,7 +64,7 @@ def stage1(request):
         result = Market_Trend.objects.filter(criteria).order_by('index_date')
         purchase_index1688, purchase_indexTb, supply_index = [], [], []
         for record in result:
-            epoch = int(time.mktime(record.index_date.timetuple())) * 1000
+            epoch = float(time.mktime(record.index_date.timetuple())) * 1000
             purchase_index1688.append([ epoch, int(record.purchase_index1688) ])
             purchase_indexTb.append([ epoch, int(record.purchase_indextb) ])
             supply_index.append([ epoch, int(record.supply_index) ])
