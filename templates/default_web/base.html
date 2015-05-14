@@ -54,7 +54,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-2">
-						<!--a class="navbar-brand" href="index.html">--><a class="navbar-brand" href="#"><img src="../../static/images/glogou/glogou-long.png" alt="glogou logo" title="glogou logo"></a>
+						<!--a class="navbar-brand" href="index.html">--><a class="navbar-brand" href="#"><img src="../../static/images/glogou-long.png" alt="glogou logo" title="glogou logo"></a>
                         <!--<div class="top-number"><p><i class="fa fa-phone-square"></i>  1-508-309-2110</p></div>-->
                     </div>
                     <div class="col-xs-10">
@@ -72,15 +72,15 @@
 								<li><a href="https://www.facebook.com/Glogou"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="https://twitter.com/glogou"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="https://www.linkedin.com/company/glogou-inc-"><i class="fa fa-linkedin"></i></a></li>
-								<!--<li><a href="http://www.weibo.com/glogou"><img src="images/glogou/sinaweibo.png" /></a></li>-->
+								<li><a href="http://www.weibo.com/glogou"><i class="fa fa-weibo"></i></a></li>
                             </ul>
-                            <!--<div class="search" id="cse">
+                            <div class="search" id="cse">
 								<gcse:searchbox-only></gcse:searchbox-only>
-                                <form role="form">
+                                <!--<form role="form">
                                     <input type="text" class="search-form" autocomplete="off" placeholder="Search">
                                     <i class="fa fa-search"></i>
-                                </form>
-							</div>-->
+                                </form>-->
+							</div>
 							</div>
                        </div>
                     </div>
@@ -220,6 +220,31 @@
             </div>
         </div>
     </footer><!--/#footer part ends here-->
+
+    <script src="../../static/javascript/jquery-1.11.3.min.js"></script>
+    <script src="../../static/javascript/jquery.js"></script>
+    <script src="../../static/javascript/bootstrap.min.js"></script>
+    <script src="../../static/javascript/jquery.prettyPhoto.js"></script>
+    <script src="../../static/javascript/jquery.isotope.min.js"></script>
+    <script src="../../static/javascript/main.js"></script>
+    <script src="../../static/javascript/wow.min.js"></script>
+
+	<script>
+	$(document).ready(function() {
+		setTimeout(function() {
+			var msg = "Search";
+			jQuery("input.gsc-input").val(msg);
+			jQuery("input.gsc-input").focus(function() {
+				$(this).val("");
+			});
+			jQuery("input.gsc-input").blur(function() {
+				if ($(this).val().trim() == "") {
+					$(this).val(msg);
+				}
+			});
+		}, 1000);
+	});
+	</script>
     
 </body>
 
