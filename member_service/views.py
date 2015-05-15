@@ -16,21 +16,21 @@ import datetime
 import random
 
 def getCat1(request):
-    all_cats1 = Product_Dictionary_C1.objects.all()
+    all_cats1 = Product_Dictionary_C1.objects.all().order_by('eng_kw')
     result = []
     for cat1 in all_cats1:
         result.append({ 'id': str(cat1.cat1_id), 'eng_kw': cat1.eng_kw })
     return HttpResponse(json.dumps(result), content_type='application/json')
 
 def getCat2(request, cat1):
-    all_cats2 = Product_Dictionary_C2.objects.filter(cat1_id = cat1)
+    all_cats2 = Product_Dictionary_C2.objects.filter(cat1_id = cat1).order_by('eng_kw')
     result = []
     for cat2 in all_cats2:
         result.append({ 'id': str(cat2.cat2_id), 'eng_kw': cat2.eng_kw })
     return HttpResponse(json.dumps(result), content_type='application/json')
 
 def getCat3(request, cat2):
-    all_cats3 = Product_Dictionary_C3.objects.filter(cat2_id = cat2)
+    all_cats3 = Product_Dictionary_C3.objects.filter(cat2_id = cat2).order_by('eng_kw')
     result = []
     for cat3 in all_cats3:
         result.append({ 'id': str(cat3.cat3_id), 'eng_kw': cat3.eng_kw })
