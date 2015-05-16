@@ -1,0 +1,139 @@
+{% extends "default_web/base.html" %}
+{% load staticfiles%}
+
+{#    {% block title %}Glogou Product and Service{% endblock %}#}
+{% block description %}{% endblock %}
+{% block keyword %}{% endblock %}
+{% block title %}Glogou Featured Client in Education Sector{% endblock %}
+
+
+{% block content %}
+
+<!-- Page Content -->
+<div>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <div class="row">
+        <div class="col-md-2" id="SideMenu">
+            <div class="list-group panel">
+
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active"><a href="#">Opportunity Alert</a></li>
+                    <li role="presentation"><a href="/budget_allocation/stage2_test">Self Planning</a></li>
+                    <li role="presentation">
+                       <a href="#share" data-toggle="collapse" data-parent="#SideMenu">Share</a>
+                       <p></p>
+                        <div class="collapse" id="share" align="center">
+                            <a class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></a>
+                       </div>
+                    </li>
+                    <li role="presentation"><a href="/contact">Contact us</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-10 container">
+            <h1 class="page-header">Please choose the product you want to search</h1>
+            <!--start sample search -->
+            <form class="form-inline" id="cat-form" action="/default_web/sales_opportunities" method="GET" style="width:100%">
+                <div class="form-group dropdown col-sm-2" style="padding-left: 0px">
+                    <label class="hidden">{{ cat1 }}</label>
+                    <label class="sr-only" for="cat1">Category_1</label>
+                    <img name="getCat2" class="hidden" src="">
+                    <input type="text" class="form-control hidden" id="cat1" name="cat1">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="cat1-list"
+                            data-toggle="dropdown" aria-expanded="true" style="width: 100%; text-align: left">
+                        <strong>Please Select</strong>
+                        <span class="caret text-right"></span>
+                    </button>
+                    <ul class="dropdown-menu pre-scrollable" role="menu" aria-labelledby="dropdownMenuCat1">
+                    </ul>
+                </div>
+                <div class="form-group dropdown col-sm-2" style="padding-left: 0px">
+                    <label class="hidden">{{ cat2 }}</label>
+                    <label class="sr-only" for="cat2">Category_2</label>
+                    <img name="getCat3" class="hidden" src="">
+                    <input type="text" class="form-control hidden" id="cat2" name="cat2">
+                    <button class="btn btn-default dropdown-toggle disabled"  type="button" id="cat2-list"
+                            data-toggle="dropdown" aria-expanded="true" style="width: 100%; text-align: left">
+                        <strong>All</strong>
+                        <span class="caret text-right"></span>
+                    </button>
+                    <ul class="dropdown-menu pre-scrollable" role="menu" aria-labelledby="dropdownMenuCat2">
+                        <li><a>All</a></li>
+                    </ul>
+                </div>
+                <div class="form-group dropdown col-sm-2" style="padding-left: 0px">
+                    <label class="hidden">{{ cat3 }}</label>
+                    <label class="sr-only" for="cat3">Category_3</label>
+                    <input type="text" class="form-control hidden" id="cat3" name="cat3">
+                    <button class="btn btn-default dropdown-toggle disabled" type="button" id="cat3-list"
+                            data-toggle="dropdown" aria-expanded="true" style="width: 100%; text-align: left">
+                        <strong>All</strong>
+                        <span class="caret text-right"></span>
+                    </button>
+                    <ul class="dropdown-menu pre-scrollable" role="menu" aria-labelledby="dropdownMenuCat3">
+                        <li><a>All</a></li>
+                    </ul>
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <hr>
+            <div>
+                <div id="sample_img" class="hidden">
+                    <img src="{% static 'images/sample_index_trend.png' %}">
+                </div>
+                <div id="demo_trends">
+                    <h4>Following is a sample trend chart.</h4>
+                    <p><span class="label label-primary">Purchase Index 1688: According to the industry in 1688 to calculate the frequency of the search market from an integrated value, the higher the index indicates more market purchases in 1688.</span></p>
+                    <p><span class="label label-success">Purchase Index Taobao: According to Taobao market volume (Taobao Marketplace + TMall) in the industry in an integrated value calculated from, the higher the index represents more purchases in Taobao market.</span></p>
+                    <p><span class="label label-danger">Supply Index: According to the 1688 market where industry has supplied an integrated numeric Internet product, calculated by the number, the higher the index indicates more 1688 Market Products.</span></p>
+                </div>
+                <ul class="nav nav-tabs">
+                    <li class="nav active"><a href="#indexSummary" data-toggle="tab">Whole market Trend</a></li>
+                    <li class="nav"><a href="#purchaseIndex1688" data-toggle="tab">Purchase Index 1688 Trend</a></li>
+                    <li class="nav"><a href="#purchaseIndexTb" data-toggle="tab">Purchase Index Taobao Trend</a></li>
+                    <li class="nav"><a href="#supplyIndex" data-toggle="tab">Supply Index Trend</a></li>
+                </ul>
+            <!-- Tab panes -->
+                <div class="tab-content row">
+                    <div class="tab-pane fade in active col-md-12" id="indexSummary"></div>
+                    <div class="tab-pane fade in col-md-12" id="purchaseIndex1688"></div>
+                    <div class="tab-pane fade in col-md-12" id="purchaseIndexTb"></div>
+                    <div class="tab-pane fade in col-md-12" id="supplyIndex"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src ="{% static 'javascript/sales_opportunities.js' %}"></script>
+<script>
+fillNextCat($('#cat-form div:first'), 'getCat1', 'All');
+{% if purchase_index1688 %}
+$('#demo_trends').addClass('hidden');
+createTrendChart($('#indexSummary'),
+        [ $('#purchaseIndex1688'), $('#purchaseIndexTb'), $('#supplyIndex') ],
+        [ 'Purchase Index 1688 Trends', 'Purchase Index Taobao Trends', 'Supply Index Trends' ],
+        [ 'Purchase Index 1688', 'Purchase Index Taobao', 'Supply Index' ],
+        [ {{ purchase_index1688 }}, {{ purchase_indexTb }}, {{ supply_index }} ],
+        [ 0, 2, 8 ]);
+{% elif demo_purchase_index1688 %}
+$('#demo_trends').removeClass('hidden');
+createTrendChart($('#indexSummary'),
+        [ $('#purchaseIndex1688'), $('#purchaseIndexTb'), $('#supplyIndex') ],
+        [ 'Purchase Index 1688 Trends', 'Purchase Index Taobao Trends', 'Supply Index Trends' ],
+        [ 'Purchase Index 1688', 'Purchase Index Taobao', 'Supply Index' ],
+        [ {{ demo_purchase_index1688 }}, {{ demo_purchase_indexTb }}, {{ demo_supply_index }} ],
+        [ 0, 2, 8 ]);
+{% endif %}
+
+</script>
+
+{% endblock %}
