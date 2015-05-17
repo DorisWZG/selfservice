@@ -1,10 +1,10 @@
 {% extends "default_web/base.html" %}
 {% load staticfiles%}
 
-{#    {% block title %}Glogou Product and Service{% endblock %}#}
+{#    {% block title %}Sales Opportunities in China and Asia, Demand and Supply in China and Asia, Market Trend{% endblock %}#}
 {% block description %}{% endblock %}
 {% block keyword %}{% endblock %}
-{% block title %}Glogou Featured Client in Education Sector{% endblock %}
+{% block title %}Sales Opportunities in China and Asia,  Demand and Supply in China and Asia, Market Trend{% endblock %}
 
 
 {% block content %}
@@ -27,23 +27,25 @@
                         <a href="#alert" data-toggle="collapse" data-parent="#SideMenu">Opportunity Alert</a>
                         <div class="collapse form-group" id="alert">
                             <form class="form-horizontal #{$fa-css-prefix}-align-left" >
-                                <input type="text" class="form-control" placeholder="Enter contact name...">
+                                <input type="text" class="form-control" placeholder="Your Name...">
                                 <p></p>
-                                <input type="text" class="form-control" placeholder="Enter contact number...">
+                                <input type="text" class="form-control" placeholder="Your Phone Number...">
                                 <p></p>
-                                <input type="text" class="form-control" placeholder="Enter company name...">
+                                <input type="text" class="form-control" placeholder="Company Name...">
                                 <p></p>
-                                <input type="text" class="form-control" placeholder="Enter email address...">
+                                <input type="text" class="form-control" placeholder="Your Email Address...">
                                 <p></p>
-                                <button class="btn btn-default" type="submit" align="center">Get Newsletter</button>
+                                <input type="text" class="form-control" placeholder="Enter Product You Want to Follow...">
+                                <p></p>
+                                <button class="btn btn-default" type="submit" align="center">Subscribe to Alert Newsletter</button>
                             </form>
                         </div>
                     </li>
                     <li role="presentation">
-                        <a href="#customize" data-toggle="collapse" data-parent="#SideMenu">Customized Industry</a>
+                        <a href="#customize" data-toggle="collapse" data-parent="#SideMenu">Follow a Product</a>
 
                         <div class="collapse" id="customize">
-                            <small>Customize your own product industry to get notice from corresponding market trend!</small>
+                            <small>Input a special product to get market opportunity report</small>
                             <br>
                             <div>
                                 <div class="input-group">
@@ -55,17 +57,17 @@
                             </div><!-- /.row -->
                         </div>
                     </li>
-                    <li role="presentation"><a href="/member_service/sales_opportunities/">Self Signal Processing</a></li>
+                    <li role="presentation"><a href="/member_service/sales_opportunities/">Sales Signal Processing</a></li>
                     <li role="presentation">
-                       <a href="#share" data-toggle="collapse" data-parent="#SideMenu">Share Report</a>
+                       <a href="#share" data-toggle="collapse" data-parent="#SideMenu">Share This Page</a>
                        <p></p>
                         <div class="collapse" id="share" align="center">
                             <a class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></a>
                        </div>
                     </li>
-                    <li role="presentation"><a href="/budget_allocation/stage2_test">Self Planning</a></li>
-                    <li role="presentation"><a href="http://www.glogou.com/adbaidu/">ENDU</a></li>
-                    <li role="presentation"><a href="http://media-watching.com">Media Monitoring</a></li>
+                    <li role="presentation"><a href="/budget_allocation/stage2_test">Advertise Your Product in China</a></li>
+                    <li role="presentation"><a href="http://www.glogou.com/adbaidu/">Advertise Your Product on Baidu</a></li>
+                    <li role="presentation"><a href="http://media-watching.com">Media Monitoring in Asia</a></li>
 
                     <li role="presentation"><a href="/contact">Contact us</a></li>
                 </ul>
@@ -73,7 +75,8 @@
         </div>
 
         <div class="col-md-9 container">
-            <h1 class="page-header">Please choose the product you want to search</h1>
+            <h1 class="page-header">Discover Sales Opportunities in Asia and China</h1>
+            <h4>Select Product Categoy, Find Demand and Supply Mis-Match</h4>
             <!--start sample search -->
             <form class="form-inline" id="cat-form" action="/member_service/sales_opportunities" method="GET" style="width:100%">
                 <div class="form-group dropdown col-sm-2" style="padding-left: 0px">
@@ -131,10 +134,10 @@
                     <p><span class="label label-danger">Supply Index: According to the 1688 market where industry has supplied an integrated numeric Internet product, calculated by the number, the higher the index indicates more 1688 Market Products.</span></p>
                 </div>
                 <ul class="nav nav-tabs">
-                    <li class="nav active"><a href="#indexSummary" data-toggle="tab">Whole market Trend</a></li>
-                    <li class="nav"><a href="#purchaseIndex1688" data-toggle="tab">Purchase Index 1688 Trend</a></li>
-                    <li class="nav"><a href="#purchaseIndexTb" data-toggle="tab">Purchase Index Taobao Trend</a></li>
-                    <li class="nav"><a href="#supplyIndex" data-toggle="tab">Supply Index Trend</a></li>
+                    <li class="nav active"><a href="#indexSummary" data-toggle="tab">Market Overview</a></li>
+                    <li class="nav"><a href="#purchaseIndex1688" data-toggle="tab">Retail Demand</a></li>
+                    <li class="nav"><a href="#purchaseIndexTb" data-toggle="tab">Wholesale Demand</a></li>
+                    <li class="nav"><a href="#supplyIndex" data-toggle="tab">Supply</a></li>
                 </ul>
             <!-- Tab panes -->
                 <div class="tab-content row">

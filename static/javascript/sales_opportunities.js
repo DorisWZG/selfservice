@@ -40,7 +40,7 @@ function fillNextCat(nextDiv, catId) {
 
 function createTrendChart(summary_div, divs, titles, names, datum, colorIndices) {
     summary_div.children().remove();
-    summary_div.highcharts('StockChart', createChartDict('Indices Trends Summary', names, datum, colorIndices));
+    summary_div.highcharts('StockChart', createChartDict('Demand and Supply For The Product in China', names, datum, colorIndices));
     summary_div.highcharts().reflow();
     for (var i = 0; i < divs.length; i++) {
         var div = divs[i];
