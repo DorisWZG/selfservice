@@ -36,7 +36,7 @@ def getCat3(request, cat2):
         result.append({ 'id': str(cat3.cat3_id), 'eng_kw': cat3.eng_kw })
     return HttpResponse(json.dumps(result), content_type='application/json')
 
-def stage1(request):
+def sales_opportunities(request):
     context = request.GET.dict()
     if len(context) == 0:
         today = datetime.date.today()
@@ -71,7 +71,7 @@ def stage1(request):
         context['purchase_index1688'] = purchase_index1688
         context['purchase_indexTb'] = purchase_indexTb
         context['supply_index'] = supply_index
-    return render(request, 'member_service/stage1.html', context)
+    return render(request, 'member_service/sales_opportunities.html', context)
 
 
 #def sales_signal_processing(request):

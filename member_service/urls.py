@@ -12,7 +12,7 @@ urlpatterns = patterns('',
 	url(r'^twins/$', views.twins, name='twins'),
 	url(r'base_test/$', views.base_test, name='test'),
 
-    url(r'^stage1/$', views.stage1, name='stage1'),
+    url(r'^sales_opportunities/$', views.sales_opportunities, name='sales_opportunities'),
     url(r'^getCat1/.*$', views.getCat1, name = 'getCat1'),
     url(r'^getCat2/(?P<cat1>.+)?$', views.getCat2, name = 'getCat2'),
     url(r'^getCat3/(?P<cat2>.+)?$', views.getCat3, name = 'getCat3'),
