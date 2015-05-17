@@ -1,15 +1,31 @@
 __author__ = 'Yuer'
+
+# This script will load data to database 
+# To run this script, one need to 
+# 1. set up path for django settings.
+# 2. set up path for crawled data files (need to have those crawled data file first, five of them. on github crawler depository. 
+#    after get from github, need to uncompress them and put into some directories.
+# 3. set up path for categories files (need to have those categories files, three of them).
+#
+# Note: for some reasons we do not understand yet, this script is very slow, 
+#       to speed up, we temporarily disable check data record in read_json_obj        #latest_date = check_latest_record(cat1, cat2, cat3)
+
 import os
 import sys
 import json
+#sys.path.append("/home/dev/Workspace/sspEnvFolder/self_service_platform/SelfService/")
+sys.path.append("C:\\tmp3\\projects\\SelfService\\")
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'selfservice.settings')
+
+import django
 from pprint import pprint
 import datetime
 from member_service.models import Market_Trend,Product_Dictionary_C1,Product_Dictionary_C2,Product_Dictionary_C3
 from initialization import db_connection
 import codecs
-import django
-django.setup()
-import mysql
+# import django
+# django.setup()
+# import mysql
 from django.db import IntegrityError, DataError
 
 def read_json_obj(filename,fail_log_name, all_log_name):
@@ -33,7 +49,10 @@ def read_json_obj(filename,fail_log_name, all_log_name):
             index_len = len(item['purchase_index1688'])
             d_last = datetime.datetime.strptime(item['d_last'],'%Y-%m-%d').date()
 
-            latest_date = check_latest_record(cat1, cat2, cat3)
+            #latest_date = check_latest_record(cat1, cat2, cat3)
+            # _BL_, tempoary not check date record
+            latest_date = None
+
             for i in range(0, index_len):
                 cur_date = d_last-datetime.timedelta(item['daydiff']-1-i)
                 if latest_date is None or latest_date < cur_date:
@@ -43,8 +62,11 @@ def read_json_obj(filename,fail_log_name, all_log_name):
                     record.supply_index = item['supply_index'][i]
                     record.purchase_index1688 = item['purchase_index1688'][i]
                     record.purchase_indextb = item['purchase_indexTb'][i]
-                    print record.supply_index
-                    record.save()
+                    #print record.supply_index
+                    try:
+                        record.save()
+                    except:
+                        break
 
 
 
@@ -171,6 +193,39 @@ def read_cat3():
             #ef.close()
 
 
+def load_to_db_recursive_one_dir(dir_name, fail_log_name, all_log_name, all_file_name):
+
+    cnt = 0
+    error_cnt = 0
+
+    for root, dirs, files in os.walk(dir_name):
+        for name in files:
+           filename = os.path.join(root,name)
+           #print filename
+           if "crawled_results" in filename:
+               cnt += 1
+               print 'cnt %d'%(cnt)
+               print filename
+               try:
+                   all_file_name.write(filename)
+                   all_file_name.flush()
+               except:
+                   error_cnt += 1
+                   print '=============Failed: write: filename %s, error_cnt %d'%(filename, error_cnt)
+                   continue
+
+               try:
+                    read_json_obj(filename,fail_log_name,all_log_name)
+               except:
+                   error_cnt += 1
+                   print '=============Failed: read_json, filename %s, error_cnt %d'%(filename, error_cnt)
+                   continue
+
+        print 'All complete ! dir_name %s, cnt %d, error_cnt %d'%(dir_name, cnt, error_cnt)
+        
+        return cnt, error_cnt
+
+# Load category file to database
 read_cat1()
 read_cat2()
 read_cat3()
@@ -180,18 +235,39 @@ read_cat3()
 fail_log_name = open("fail_log.txt","w")
 all_log_name = open("all_log.txt","w")
 all_file_name = open("all_file.txt",'w')
-cnt = 0
-for root, dirs, files in os.walk('../result'):
-    for name in files:
-       filename = os.path.join(root,name)
-       #print filename
-       if "crawled_results" in filename:
-           cnt += 1
-           print cnt
-           print filename
-           all_file_name.write(filename)
-           all_file_name.flush()
-           read_json_obj(filename,fail_log_name,all_log_name)
+
+# NEED to set up the path for the crawled data
+# There are total five sets of crawled results file
+dir_results_initial_crawl = '../crawled_market_trend_results/results_initial_crawl'
+dir_results_all_fail_recrawl = '../crawled_market_trend_results/results_all_fail_recrawl'
+dir_results_all_fail_fail_recrawl = '../crawled_market_trend_results/results_all_fail_fail_recrawl'
+dir_results_cat1_has_cat2 = '../crawled_market_trend_results/cat1_has_cat2_crawled_results54' 
+dir_results_cat2_has_cat3 = '../crawled_market_trend_results/cat2_has_cat3_crawled_results723' 
+
+cnt_initial_crawl, err_cnt_initial_crawl          = load_to_db_recursive_one_dir(dir_results_initial_crawl, fail_log_name, all_log_name, all_file_name)
+cnt_fail_recrawl, err_cnt_fail_recrawl            = load_to_db_recursive_one_dir(dir_results_all_fail_recrawl, fail_log_name, all_log_name, all_file_name)
+cnt_fail_fail_recrawl, err_cnt_fail_fail_recrawl  = load_to_db_recursive_one_dir(dir_results_all_fail_fail_recrawl, fail_log_name, all_log_name, all_file_name)
+cnt_cat1_has_cat2, err_cnt_cat1_has_cat2          = load_to_db_recursive_one_dir(dir_results_cat1_has_cat2, fail_log_name, all_log_name, all_file_name)
+cnt_cat2_has_cat3, err_cnt_cat2_has_cat3          = load_to_db_recursive_one_dir(dir_results_cat2_has_cat3, fail_log_name, all_log_name, all_file_name)
+
+all_file_name.write('\n\n')
+
+tmp = 'cnt_initial_crawl %d, err_cnt_initial_crawl %d\n'%(cnt_initial_crawl, err_cnt_initial_crawl)
+all_file_name.write(tmp)
+
+tmp = 'cnt_fail_recrawl %d, err_cnt_fail_recrawl %d\n' %(cnt_fail_recrawl, err_cnt_fail_recrawl)
+all_file_name.write(tmp)
+
+tmp = 'cnt_fail_fail_recrawl %d, err_cnt_fail_fail_recrawl %d\n' %(cnt_fail_fail_recrawl, err_cnt_fail_fail_recrawl)
+all_file_name.write(tmp)
+
+tmp = 'cnt_cat1_has_cat2 %d, err_cnt_cat1_has_cat2 %d\n' %(cnt_cat1_has_cat2, err_cnt_cat1_has_cat2)       
+all_file_name.write(tmp)
+   
+tmp = 'cnt_cat2_has_cat3 %d, err_cnt_cat2_has_cat3 %d\n' %(cnt_cat2_has_cat3, err_cnt_cat2_has_cat3)
+all_file_name.write(tmp)
+
+
 all_file_name.close()
 all_log_name.close()
 fail_log_name.close()
