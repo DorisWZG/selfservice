@@ -76,7 +76,7 @@
 
         <div class="col-md-9 container">
             <h1 class="page-header">Discover Sales Opportunities in Asia and China</h1>
-            <h4>Select product category, get Demand and Supply Data, Mismatch in supply and demand trend implies opportunities</h4>
+            <h4>Select product category, get Demand and Supply Data, Mismatch in supply and demand trend may imply <b>OPPORTUNITIES</b></h4>
             <!--start sample search -->
             <form class="form-inline" id="cat-form" action="/member_service/sales_opportunities" method="GET" style="width:100%">
                 <div class="form-group dropdown col-sm-2" style="padding-left: 0px">
@@ -160,16 +160,16 @@ fillNextCat($('#cat-form div:first'), 'All');
 $('#demo_trends').addClass('hidden');
 createTrendChart($('#indexSummary'),
         [ $('#purchaseIndex1688'), $('#purchaseIndexTb'), $('#supplyIndex') ],
-        [ 'Purchase Index 1688 Trends', 'Purchase Index Taobao Trends', 'Supply Index Trends' ],
-        [ 'Purchase Index 1688', 'Purchase Index Taobao', 'Supply Index' ],
+        [ 'Wholesale Demand Trend', 'Retail Demant Trend', 'Supply Trend' ],
+        [ 'Wholesale Demand Index', 'Retail Demand Index', 'Supply Index' ],
         [ {{ purchase_index1688 }}, {{ purchase_indexTb }}, {{ supply_index }} ],
         [ 0, 2, 8 ]);
 {% elif demo_purchase_index1688 %}
 $('#demo_trends').removeClass('hidden');
 createTrendChart($('#indexSummary'),
         [ $('#purchaseIndex1688'), $('#purchaseIndexTb'), $('#supplyIndex') ],
-        [ 'Purchase Index 1688 Trends', 'Purchase Index Taobao Trends', 'Supply Index Trends' ],
-        [ 'Purchase Index 1688', 'Purchase Index Taobao', 'Supply Index' ],
+        [ 'Wholesale Demand Trend', 'Retail Demand Trend', 'Supply Trend' ],
+        [ 'Wholesale Demand Index', 'Retail Demand Index', 'Supply Index' ],
         [ {{ demo_purchase_index1688 }}, {{ demo_purchase_indexTb }}, {{ demo_supply_index }} ],
         [ 0, 2, 8 ]);
 {% endif %}

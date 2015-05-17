@@ -47,9 +47,19 @@ def sales_opportunities(request):
             # demo_purchase_index1688.append([ epoch, random.randint(0, 5000) ])
             # demo_purchase_indexTb.append([ epoch, random.randint(0, 5000) ])
             # demo_supply_index.append([ epoch, random.randint(0, 5000) ])
-            period = i / 15 % 15
-            demo_purchase_index1688.append([ epoch, random.randint(period * 1000, (period + 1) * 1000) ])
-            demo_purchase_indexTb.append([ epoch, random.randint(period * 1000, (period + 1) * 1000) ])
+
+            # BL_NOTE, The following random model has no special reasons. We just try different numbers to make
+            # the curve looks better. One can feel free to choose different numbers to get better curve
+            # The random model has one linear increase component, which is base_increase,
+            # together with periodic random model. The period was chosen to be 30 to match days in a month
+
+            step = 30
+            period = i / step % step
+            period = step - period
+            base_increase = (365 -i)*80
+            
+            demo_purchase_index1688.append([ epoch, random.randint(1*base_increase + period * 1000, 1*base_increase + 2*(period + 1) * 1000) ])
+            demo_purchase_indexTb.append([ epoch, random.randint(2*base_increase + period * 1000, 2*base_increase + 4*(period + 1) * 1000) ])
             demo_supply_index.append([ epoch, random.randint(period * 1000, (period + 1) * 1000) ])
 
         context['demo_purchase_index1688'] = demo_purchase_index1688
