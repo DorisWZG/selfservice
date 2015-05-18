@@ -57,7 +57,7 @@ def sales_opportunities(request):
             period = i / step % step
             period = step - period
             base_increase = (365 -i)*80
-            
+
             demo_purchase_index1688.append([ epoch, random.randint(1*base_increase + period * 1000, 1*base_increase + 2*(period + 1) * 1000) ])
             demo_purchase_indexTb.append([ epoch, random.randint(2*base_increase + period * 1000, 2*base_increase + 4*(period + 1) * 1000) ])
             demo_supply_index.append([ epoch, random.randint(period * 1000, (period + 1) * 1000) ])
