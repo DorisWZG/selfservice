@@ -3,7 +3,7 @@
 
     {% load staticfiles %}
 
-    {% block title %}Glogou Product and Service{% endblock %}
+    {% block title %}China and Asia Media Planning, Media Buy{% endblock %}
     {% block description %}{% endblock %}
     {% block keyword %}{% endblock %}
 
@@ -31,12 +31,12 @@
                     <label class="sr-only" for="selectGoal">Campaign Goal</label>
                     <select id="selectGoal" class="form-control">
                         <option value="">Please select the Campaign goal</option>
-                        <option value="click">I want to get more clicks after campaign</option>
-                        <option value="impression">I want to get more impressions after campaign</option>
+                        <option value="click">More clicks (Sales leads)</option>
+                        <option value="impression">More impressions</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    {#<a class="btn btn-primary" onclick="showResult();">See Result <span class="glyphicon glyphicon-chevron-right"></span></a>#}
+                    {#<a class="btn btn-primary" onclick="showResult();">See Recommendation <span class="glyphicon glyphicon-chevron-right"></span></a>#}
                     <a id="see_result_button" class="btn btn-primary" onclick="showResultPage();"><span class="glyphicon glyphicon-search"></span></a>
                     <a class="btn btn-primary" href="/budget_allocation/stage2_test/">
                     <span class="glyphicon glyphicon-chevron-left"></span>Back</a>
@@ -49,9 +49,9 @@
         <!-- Page Heading -->
 {#        <div class="row">#}
 {#            <div class="col-lg-6">#}
-{#                <h1 class="page-header" >Recommended Media Channels for: <br>#}
-{#                    <small >Selected Industry: {{ category_name | title }} <br>#}
-{#                    Selected Sub Industry: {{ subcategory_name | title}}</small>#}
+{#                <h1 class="page-header" >Recommended Media Channels and Budget Allocation for: <br>#}
+{#                    <small >Industry: {{ category_name | title }} <br>#}
+{#                    Sub-Category: {{ subcategory_name | title}}</small>#}
 {#                </h1>#}
 {#            </div>#}
 {#            <br><br>#}
@@ -64,9 +64,9 @@
         <div id="container">
             <img src="/static/images/puzzle-csd.jpg" style="width: 100%" height="300">
             <p id="text">
-                Recommended Media Channels for: <br>
-                Selected Industry: {{ category_name | title }} <br>
-                Selected sub industry: {{ subcategory_name | title }}
+                Recommended Media Channels and Budget Allocation for: <br>
+                Industry:     <b>{{ category_name | title }} </b><br>
+                Sub-category: <b>{{ subcategory_name | title }}</b>
             </p>
         </div>
         <hr>
@@ -132,7 +132,7 @@
         <div class="row col-md-6" id="piechart" style="min-width: 310px; height: 300px; max-width: 600px"></div>
         </div>
 {#        <div class="row col-md-6">#}
-{#            The minimum budget for Ctrip, Soufun and Tmall are different corresponding to each investment. Please contact us for details.#}
+{#            The minimum budget for a few channels depends on the choice of your campaigns. Please contact us for details.#}
 {#        </div>#}
 
         <!-- /.     row -->
@@ -214,7 +214,7 @@
 
                     </table>
                     {% if item.campaignGoal == 'CPC' %}
-                    <p><font color="#dc143c bold">Notice: Number of Clicks are the total budget you are decided to investment in which divided by average CPC.</font></p>
+                    <p><font color="#dc143c bold">Note: Number of Clicks will be equal to the your total budget divided by the cost-per-click.</font></p>
                     {% endif %}
                 {% endfor %}
             {% endif %}
@@ -222,11 +222,11 @@
             <div class="well">
                 <div class="row">
                     <div class="col-md-8">
-                        <h4>The minimum budget for Ctrip, Soufun and Tmall are different corresponding to each investment.
-                            Please contact us for details if you are interested for the self service.</h4>
+                        <h4>The minimum budget for a few channels depends on the choice of your campaigns..
+                            Please contact us for details for a specific media.</h4>
                     </div>
                     <div class="col-md-4" style="float: right">
-                        <a class="=btn btn-lg btn-info btn-block" href="/contact">Contact Now !</a>
+                        <a class="=btn btn-lg btn-info btn-block" href="/contact">Contact Now</a>
                     </div>
                 </div>
             </div>
@@ -330,7 +330,7 @@
                 plotShadow: false
             },
             title: {
-                text: 'Recommended channels for selected industry.'
+                text: 'Recommended channels and budget allocation for the campaign'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

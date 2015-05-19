@@ -16,40 +16,50 @@ import datetime
 import random
 
 def getCat1(request):
-    all_cats1 = Product_Dictionary_C1.objects.all()
+    all_cats1 = Product_Dictionary_C1.objects.all().order_by('eng_kw')
     result = []
     for cat1 in all_cats1:
         result.append({ 'id': str(cat1.cat1_id), 'eng_kw': cat1.eng_kw })
     return HttpResponse(json.dumps(result), content_type='application/json')
 
 def getCat2(request, cat1):
-    all_cats2 = Product_Dictionary_C2.objects.filter(cat1_id = cat1)
+    all_cats2 = Product_Dictionary_C2.objects.filter(cat1_id = cat1).order_by('eng_kw')
     result = []
     for cat2 in all_cats2:
         result.append({ 'id': str(cat2.cat2_id), 'eng_kw': cat2.eng_kw })
     return HttpResponse(json.dumps(result), content_type='application/json')
 
 def getCat3(request, cat2):
-    all_cats3 = Product_Dictionary_C3.objects.filter(cat2_id = cat2)
+    all_cats3 = Product_Dictionary_C3.objects.filter(cat2_id = cat2).order_by('eng_kw')
     result = []
     for cat3 in all_cats3:
         result.append({ 'id': str(cat3.cat3_id), 'eng_kw': cat3.eng_kw })
     return HttpResponse(json.dumps(result), content_type='application/json')
 
-def stage1(request):
+def sales_opportunities(request):
     context = request.GET.dict()
     if len(context) == 0:
         today = datetime.date.today()
         demo_purchase_index1688, demo_purchase_indexTb, demo_supply_index = [], [], []
         for i in range(365, -1, -1):
             sample_date = today - datetime.timedelta(days=i)
-            epoch = int(time.mktime(sample_date.timetuple())) * 1000
+            epoch = float(time.mktime(sample_date.timetuple())) * 1000
             # demo_purchase_index1688.append([ epoch, random.randint(0, 5000) ])
             # demo_purchase_indexTb.append([ epoch, random.randint(0, 5000) ])
             # demo_supply_index.append([ epoch, random.randint(0, 5000) ])
-            period = i / 15 % 15
-            demo_purchase_index1688.append([ epoch, random.randint(period * 1000, (period + 1) * 1000) ])
-            demo_purchase_indexTb.append([ epoch, random.randint(period * 1000, (period + 1) * 1000) ])
+
+            # BL_NOTE, The following random model has no special reasons. We just try different numbers to make
+            # the curve looks better. One can feel free to choose different numbers to get better curve
+            # The random model has one linear increase component, which is base_increase,
+            # together with periodic random model. The period was chosen to be 30 to match days in a month
+
+            step = 30
+            period = i / step % step
+            period = step - period
+            base_increase = (365 -i)*80
+
+            demo_purchase_index1688.append([ epoch, random.randint(1*base_increase + period * 1000, 1*base_increase + 2*(period + 1) * 1000) ])
+            demo_purchase_indexTb.append([ epoch, random.randint(2*base_increase + period * 1000, 2*base_increase + 4*(period + 1) * 1000) ])
             demo_supply_index.append([ epoch, random.randint(period * 1000, (period + 1) * 1000) ])
 
         context['demo_purchase_index1688'] = demo_purchase_index1688
@@ -64,14 +74,14 @@ def stage1(request):
         result = Market_Trend.objects.filter(criteria).order_by('index_date')
         purchase_index1688, purchase_indexTb, supply_index = [], [], []
         for record in result:
-            epoch = int(time.mktime(record.index_date.timetuple())) * 1000
+            epoch = float(time.mktime(record.index_date.timetuple())) * 1000
             purchase_index1688.append([ epoch, int(record.purchase_index1688) ])
             purchase_indexTb.append([ epoch, int(record.purchase_indextb) ])
             supply_index.append([ epoch, int(record.supply_index) ])
         context['purchase_index1688'] = purchase_index1688
         context['purchase_indexTb'] = purchase_indexTb
         context['supply_index'] = supply_index
-    return render(request, 'member_service/stage1.html', context)
+    return render(request, 'member_service/sales_opportunities.html', context)
 
 
 #def sales_signal_processing(request):
