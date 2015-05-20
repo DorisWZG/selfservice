@@ -32,7 +32,11 @@ def subscriber_contact(request):
                 'Opportunity Alert Subscriber',
                 "Name:"+request.POST['name']+ " " + "Contact number:"+request.POST['number']+ " " + "Company name:"+ request.POST['CompanyName'] + " " + "email:"+ request.POST['email'] + " " + "Message:" + request.POST['message'],
                 'glogoutest@gmail.com',
+<<<<<<< HEAD
                 ['help@glogou.com']
+=======
+                ['liusicen627@gmail.com']
+>>>>>>> origin/budget_allocation2
             )
             return HttpResponseRedirect('*/thanks/')
     #return HttpResponse('Thanks')
