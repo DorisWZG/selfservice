@@ -1,14 +1,14 @@
-{% extends "default_web/base.html" %}
+{% extends "member_service/sales_opportunities.html" %}
 {% load staticfiles%}
 
-{#    {% block title %}Sales Opportunities in China and Asia, Demand and Supply in China and Asia, Market Trend{% endblock %}#}
+{#    {% block title %}Glogou Product and Service{% endblock %}#}
 {% block description %}{% endblock %}
 {% block keyword %}{% endblock %}
-{% block title %}Sales Opportunities in China and Asia,  Demand and Supply in China and Asia, Market Trend{% endblock %}
+{% block title %}Glogou Featured Client in Education Sector{% endblock %}
+
 
 
 {% block content %}
-
 <!-- Page Content -->
 <div>
     <div id="fb-root"></div>
@@ -19,6 +19,15 @@
       js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
+
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <div class="row">
         <div class="col-md-3" id="SideMenu">
             <div class="list-group panel">
@@ -27,17 +36,17 @@
                         <a href="#alert" data-toggle="collapse" data-parent="#SideMenu">Opportunity Alert</a>
                         <div class="collapse form-group" id="alert">
                             <form class="form-horizontal #{$fa-css-prefix}-align-left" action="/member_service/subscriber_contact/" method="POST">{% csrf_token %}
-                                <input type="text" class="form-control" name="name" placeholder="Enter contact name...">
+                                <input type="text" class="form-control" name="name" value={{name}}>
                                 <p></p>
-                                <input type="text" class="form-control" name="number" placeholder="Enter contact number...">
+                                <input type="text" class="form-control" name="number" value={{number}}>
                                 <p></p>
-                                <input type="text" class="form-control" name="CompanyName" placeholder="Enter company name...">
+                                <input type="text" class="form-control" name="CompanyName" value={{CompanyName}}>
                                 <p></p>
-                                <input type="text" class="form-control" name="email" placeholder="Enter email address...">
+                                <input type="text" class="form-control" name="email" value={{email}}>
                                 <p></p>
-                                <textarea class="form-control" name="message" rows="5" placeholder="Please leave a message about your industry"></textarea>
+                                <textarea class="form-control" name="message" rows="5">{{message}}</textarea>
                                 <p></p>
-                                <button class="btn btn-default" type="submit" align="center">Subscribe to Alert Newsletter</button>
+                                <button class="btn btn-default" type="submit" value="submit" align="center">Subscribe to Alert Newsletter</button>
                             </form>
                         </div>
                     </li>
@@ -77,7 +86,7 @@
         <div class="col-md-9 container">
             <h1 class="page-header">Discover Sales Opportunities in Asia and China</h1>
             <h4>Select product category, get Demand and Supply Data, Mismatch in supply and demand trend may imply <b>OPPORTUNITIES</b></h4>
-            <h6>Demand and Supply Data for a product are collected from different sources. <b>Sales Signal Processing</b> technologies are used to filter out unreliable data </h6>
+            <h6>Demand and Supply Data for a product are collect from different sources. <b>Sales Signal Processing</b> technologies are used to filter out unreliable data </h6>
 
             <!--start sample search -->
             <form class="form-inline" id="cat-form" action="/member_service/sales_opportunities" method="GET" style="width:100%">
@@ -124,19 +133,19 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
-
-            <div style="margin-top: 10px;">
+            <hr>
+            <div>
                 <div id="sample_img" class="hidden">
                     <img src="{% static 'images/sample_index_trend.png' %}">
                 </div>
-                <!--<div id="demo_trends">
+                <div id="demo_trends">
                     <h4>Following is a sample market trend chart. The color of curve shows:</h4>
                     <p>
                         <span class="label label-primary">Wholesale Demand</span>
                         <span class="label label-success">Retain Demand</span>
                         <span class="label label-danger">Supply</span>
                         </p>
-                </div>-->
+                </div>
                 <ul class="nav nav-tabs">
                     <li class="nav active"><a href="#indexSummary" data-toggle="tab">Market Overview</a></li>
                     <li class="nav"><a href="#purchaseIndex1688" data-toggle="tab">Retail Demand</a></li>
@@ -151,10 +160,7 @@
                     <div class="tab-pane fade in col-md-12" id="supplyIndex"></div>
                 </div>
             </div>
-            <h4> <span id="demo_trends">Above is a sample trend chart.</span> The color of curve shows:<span class="label label-primary" style="margin-left: 30px;">Wholesale Demand</span>
-                <span class="label label-success">Retain Demand</span>
-                <span class="label label-danger">Supply</span>
-            </h4>
+
         </div>
     </div>
 </div>

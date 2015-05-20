@@ -24,17 +24,17 @@ function fillNextCat(nextDiv, catId) {
     $.get('/member_service/' + api + '/' + catId).done(function(data) {
         var ulElem = nextDiv.children('ul');
         ulElem.children().slice(1).remove();
+        ulElem.children().first().click();
         if (data.length > 0) {
             $(data).each(function (idx, item) {
                 $('<li><span class="hidden">' + item['id'] + '</span><a>' + item['eng_kw'] + '</a></li>').appendTo(ulElem);
             });
             nextDiv.children('button').removeClass('disabled');
         }
-        bindCatSelection(nextDiv);
-        if (data.length == 0) {
-            ulElem.children().first().click();
+        else {
             nextDiv.children('button').addClass('disabled');
         }
+        bindCatSelection(nextDiv);
     });
 }
 

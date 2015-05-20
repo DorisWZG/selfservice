@@ -6,14 +6,44 @@ from getAliIndex import get_ali_index
 # Create your views here.
 from initialization import db_connection
 from read_from_db import get_market_trend
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.core.mail import send_mail
 from django.db.models import Q
 from member_service.models import Product_Dictionary_C1, Product_Dictionary_C2, Product_Dictionary_C3, Market_Trend
 import json
 import time
 import datetime
 import random
+
+def subscriber_contact(request):
+    errors = []
+    if request.method == 'POST':
+        if not request.POST.get('name'):
+            errors.append('Enter your name.')
+        if not request.POST.get('number'):
+            errors.append('Enter your contact number.')
+        if not request.POST.get('CompanyName'):
+            errors.append('Enter your company name.')
+        if not (request.POST.get('email') and '@' in request.POST['email']):
+            errors.append('Enter a valid e-mail address.')
+        if not errors:
+            send_mail(
+                'Opportunity Alert Subscriber',
+                "Name:"+request.POST['name']+ " " + "Contact number:"+request.POST['number']+ " " + "Company name:"+ request.POST['CompanyName'] + " " + "email:"+ request.POST['email'] + " " + "Message:" + request.POST['message'],
+                'glogoutest@gmail.com',
+                ['liusicen627@gmail.com']
+            )
+            return HttpResponseRedirect('*/thanks/')
+    #return HttpResponse('Thanks')
+    return render(request, 'member_service/subscriber_contact.html', {
+        'errors': errors,
+        'name': request.POST.get('name'),
+        'number': request.POST.get('number'),
+        'CompanyName': request.POST.get('CompanyName'),
+        'email': request.POST.get('email'),
+        'message': request.POST.get('message')
+    })
 
 def getCat1(request):
     all_cats1 = Product_Dictionary_C1.objects.all().order_by('eng_kw')
