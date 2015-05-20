@@ -16,14 +16,23 @@ import time
 import datetime
 import random
 
+
+def ValidPhone(p):
+    seq_type = type(p)
+    p = seq_type().join(filter(seq_type.isdigit, p))
+    if p > "0000000000" and p < "9999999999" and len(p) == 10:
+        return True
+    else:
+        return False
+
 def subscriber_contact(request):
     errors = []
     context = create_demo_data()
     if request.method == 'POST':
         if not request.POST.get('name'):
             errors.append('Enter your name.')
-        if not request.POST.get('number'):
-            errors.append('Enter your contact number.')
+        if not ValidPhone(request.POST.get('number')):
+            errors.append('Enter your 10 digit contact number.')
         if not request.POST.get('CompanyName'):
             errors.append('Enter your company name.')
         if not (request.POST.get('email') and '@' in request.POST['email']):
