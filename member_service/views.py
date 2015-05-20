@@ -18,6 +18,7 @@ import random
 
 def subscriber_contact(request):
     errors = []
+    context = create_demo_data()
     if request.method == 'POST':
         if not request.POST.get('name'):
             errors.append('Enter your name.')
@@ -32,15 +33,12 @@ def subscriber_contact(request):
                 'Opportunity Alert Subscriber',
                 "Name:"+request.POST['name']+ " " + "Contact number:"+request.POST['number']+ " " + "Company name:"+ request.POST['CompanyName'] + " " + "email:"+ request.POST['email'] + " " + "Message:" + request.POST['message'],
                 'glogoutest@gmail.com',
-<<<<<<< HEAD
                 ['help@glogou.com']
-=======
-                ['liusicen627@gmail.com']
->>>>>>> origin/budget_allocation2
             )
-            return HttpResponseRedirect('*/thanks/')
-    #return HttpResponse('Thanks')
-    return render(request, 'member_service/subscriber_contact.html', {
+
+            return render(request, 'member_service/sales_opportunities.html', context)
+
+    context.update({
         'errors': errors,
         'name': request.POST.get('name'),
         'number': request.POST.get('number'),
@@ -48,6 +46,7 @@ def subscriber_contact(request):
         'email': request.POST.get('email'),
         'message': request.POST.get('message')
     })
+    return render(request, 'member_service/subscriber_contact.html', context)
 
 def getCat1(request):
     all_cats1 = Product_Dictionary_C1.objects.all().order_by('eng_kw')
@@ -69,6 +68,43 @@ def getCat3(request, cat2):
     for cat3 in all_cats3:
         result.append({ 'id': str(cat3.cat3_id), 'eng_kw': cat3.eng_kw })
     return HttpResponse(json.dumps(result), content_type='application/json')
+
+
+def create_demo_data():
+
+        context = {}
+
+        today = datetime.date.today()
+        demo_purchase_index1688, demo_purchase_indexTb, demo_supply_index = [], [], []
+        for i in range(365, -1, -1):
+            sample_date = today - datetime.timedelta(days=i)
+            epoch = float(time.mktime(sample_date.timetuple())) * 1000
+            # demo_purchase_index1688.append([ epoch, random.randint(0, 5000) ])
+            # demo_purchase_indexTb.append([ epoch, random.randint(0, 5000) ])
+            # demo_supply_index.append([ epoch, random.randint(0, 5000) ])
+
+            # BL_NOTE, The following random model has no special reasons. We just try different numbers to make
+            # the curve looks better. One can feel free to choose different numbers to get better curve
+            # The random model has one linear increase component, which is base_increase,
+            # together with periodic random model. The period was chosen to be 30 to match days in a month
+
+            step = 30
+            period = i / step % step
+            period = step - period
+            base_increase = (365 -i)*80
+
+            demo_purchase_index1688.append([ epoch, random.randint(1*base_increase + period * 1000, 1*base_increase + 2*(period + 1) * 1000) ])
+            demo_purchase_indexTb.append([ epoch, random.randint(2*base_increase + period * 1000, 2*base_increase + 4*(period + 1) * 1000) ])
+            demo_supply_index.append([ epoch, random.randint(period * 1000, (period + 1) * 1000) ])
+
+        context['demo_purchase_index1688'] = demo_purchase_index1688
+        context['demo_purchase_indexTb'] = demo_purchase_indexTb
+        context['demo_supply_index'] = demo_supply_index
+        context['cat1'] = None
+        context['cat2'] = None
+        context['cat3'] = None
+
+        return context
 
 def sales_opportunities(request):
     context = request.GET.dict()
