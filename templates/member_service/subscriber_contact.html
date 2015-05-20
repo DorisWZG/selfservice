@@ -1,14 +1,14 @@
-{% extends "default_web/base.html" %}
+{% extends "member_service/sales_opportunities.html" %}
 {% load staticfiles%}
 
-{#    {% block title %}Sales Opportunities in China and Asia, Demand and Supply in China and Asia, Market Trend{% endblock %}#}
+{#    {% block title %}Glogou Product and Service{% endblock %}#}
 {% block description %}{% endblock %}
 {% block keyword %}{% endblock %}
-{% block title %}Sales Opportunities in China and Asia,  Demand and Supply in China and Asia, Market Trend{% endblock %}
+{% block title %}Glogou Featured Client in Education Sector{% endblock %}
+
 
 
 {% block content %}
-
 <!-- Page Content -->
 <div>
     <div id="fb-root"></div>
@@ -19,6 +19,15 @@
       js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
+
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <div class="row">
         <div class="col-md-3" id="SideMenu">
             <div class="list-group panel">
@@ -27,17 +36,17 @@
                         <a href="#alert" data-toggle="collapse" data-parent="#SideMenu">Opportunity Alert</a>
                         <div class="collapse form-group" id="alert">
                             <form class="form-horizontal #{$fa-css-prefix}-align-left" action="/member_service/subscriber_contact/" method="POST">{% csrf_token %}
-                                <input type="text" class="form-control" name="name" placeholder="Enter contact name...">
+                                <input type="text" class="form-control" name="name" value={{name}}>
                                 <p></p>
-                                <input type="text" class="form-control" name="number" placeholder="Enter contact number...">
+                                <input type="text" class="form-control" name="number" value={{number}}>
                                 <p></p>
-                                <input type="text" class="form-control" name="CompanyName" placeholder="Enter company name...">
+                                <input type="text" class="form-control" name="CompanyName" value={{CompanyName}}>
                                 <p></p>
-                                <input type="text" class="form-control" name="email" placeholder="Enter email address...">
+                                <input type="text" class="form-control" name="email" value={{email}}>
                                 <p></p>
-                                <textarea class="form-control" name="message" rows="5" placeholder="Please leave a message about your industry"></textarea>
+                                <textarea class="form-control" name="message" rows="5">{{message}}</textarea>
                                 <p></p>
-                                <button class="btn btn-default" type="submit" align="center">Subscribe to Alert Newsletter</button>
+                                <button class="btn btn-default" type="submit" value="submit" align="center">Subscribe to Alert Newsletter</button>
                             </form>
                         </div>
                     </li>
