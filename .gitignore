@@ -2,7 +2,6 @@
 *.log
 *.out
 <<<<<<< HEAD
-*.sql
 *.DS_Store
 =======
 .idea/
