@@ -18,12 +18,17 @@ import random
 import re
 
 def ValidPhone(p):
-    seq_type = type(p)
-    p = seq_type().join(filter(seq_type.isdigit, p))
-    if p > "0000000000" and p < "9999999999" and len(p) == 10:
-        return True
-    else:
+    if re.search(r'[^\.\(\)\-0-9]', p):
         return False
+    else:
+        seq_type = type(p)
+        p = seq_type().join(filter(seq_type.isdigit, p))
+        try:
+            int(p)
+            if len(p)>4:
+                return True
+        except:
+            return False
 
 def ValidEmail(m):
     if re.match(r"[^@]+@[^@]+\.[^@]+", m):
@@ -38,11 +43,13 @@ def subscriber_contact(request):
         if not request.POST.get('name'):
             errors.append('Enter your name.')
         if not ValidPhone(request.POST.get('number')):
-            errors.append('Enter your 10 digit contact number.')
+            errors.append('Enter your contact number.')
         if not request.POST.get('CompanyName'):
             errors.append('Enter your company name.')
         if not ValidEmail(request.POST.get('email')):
             errors.append('Enter a valid e-mail address.')
+        if not request.POST.get('message'):
+            errors.append('Enter industry and product categories.')
         if not errors:
             send_mail(
                 'Opportunity Alert Subscriber',

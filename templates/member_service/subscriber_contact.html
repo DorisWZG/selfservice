@@ -26,8 +26,6 @@
             <li>{{ error }}</li>
             {% endfor %}
         </ul>
-    {% else %}
-        <p align="center"><font size="4"><strong>Thank you for subscribing to Opportunity Alert Newsletter, we will contact you shortly!</strong></font></p>
     {% endif %}
 
     <div class="row">
@@ -72,22 +70,6 @@
                             </form>
                         </div>
                     </li>
-                    <li role="presentation">
-                        <a href="#customize" data-toggle="collapse" data-parent="#SideMenu">Follow a Product</a>
-
-                        <div class="collapse" id="customize">
-                            <small>Input a special product to get market opportunity report</small>
-                            <br>
-                            <div>
-                                <div class="input-group">
-                                  <input type="text" class="form-control" placeholder="Input a Product Industry or Keyword...">
-                                  <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Go!</button>
-                                  </span>
-                                </div><!-- /input-group -->
-                            </div><!-- /.row -->
-                        </div>
-                    </li>
                     <li role="presentation"><a href="/member_service/sales_opportunities/">Sales Signal Processing</a></li>
                     <li role="presentation">
                        <a href="#share" data-toggle="collapse" data-parent="#SideMenu">Share This Page</a>
@@ -104,6 +86,11 @@
                 </ul>
             </div>
         </div>
+
+        {% if not errors %}
+            <br>
+            <p align="center"><font size="4"><strong>Thank you for subscribing to Opportunity Alert Newsletter, we will contact you shortly!</strong></font></p>
+        {% endif %}
 
         <div class="col-md-9 container">
             <h1 class="page-header">Discover Sales Opportunities in Asia and China</h1>
