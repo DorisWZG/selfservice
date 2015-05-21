@@ -1,0 +1,392 @@
+
+{% extends "asia_media_planning/base.html" %}
+
+    {% load staticfiles %}
+
+    {% block title %}China and Asia Media Planning, Media Buy{% endblock %}
+    {% block description %}{% endblock %}
+    {% block keyword %}{% endblock %}
+
+
+    {% block content %}
+
+    <!-- Page Content -->
+     <nav class="navbar navbar-default">
+        <div class="container">
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <label class="sr-only" for="selectCategory">Category</label>
+                    <select id="selectCategory" class="form-control" onchange="getSubCategory()">
+                        <option value=""> Business sector... </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="selectSubCategory">SubCategory</label>
+                    <select id="selectSubCategory" class="form-control">
+                        <option value="">Sub business sector...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only" for="selectGoal">Campaign Goal</label>
+                    <select id="selectGoal" class="form-control">
+                        <option value="">Please select the Campaign goal</option>
+                        <option value="click">More clicks (Sales leads)</option>
+                        <option value="impression">More impressions</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    {#<a class="btn btn-primary" onclick="showResult();">See Recommendation <span class="glyphicon glyphicon-chevron-right"></span></a>#}
+                    <a id="see_result_button" class="btn btn-primary" onclick="showResultPage();"><span class="glyphicon glyphicon-search"></span></a>
+                    <a class="btn btn-primary" href="/asia_media_planning/china_media/">
+                    <span class="glyphicon glyphicon-chevron-left"></span>Back</a>
+                </div>
+            </form>
+        </div>
+    </nav>
+    <div class="container">
+
+        <!-- Page Heading -->
+{#        <div class="row">#}
+{#            <div class="col-lg-6">#}
+{#                <h1 class="page-header" >Recommended Media Channels and Budget Allocation for: <br>#}
+{#                    <small >Industry: {{ category_name | title }} <br>#}
+{#                    Sub-Category: {{ subcategory_name | title}}</small>#}
+{#                </h1>#}
+{#            </div>#}
+{#            <br><br>#}
+{#            <div class="col-md-6">#}
+{#                <img class="banner img-responsive img-portfolio img-hover" src="/static/images/puzzle-csd.jpg">#}
+{#            </div>#}
+{##}
+{#        </div>#}
+        <div class="row col-lg-12">
+        <div id="container">
+            <img src="/static/images/puzzle-csd.jpg" style="width: 100%" height="300">
+            <p id="text">
+                Recommended Media Channels and Budget Allocation for: <br>
+                Industry:     <b>{{ category_name | title }} </b><br>
+                Sub-category: <b>{{ subcategory_name | title }}</b>
+            </p>
+        </div>
+        <hr>
+        </div>
+
+        <div class="row col-lg-12">
+        <div class="row col-lg-6">
+        <br>
+        {% if metrics_result %}
+            <table class="table table-striped" id="result-table">
+
+                <tr>
+                {% for item in metrics_result %}
+                    <th><a href="{{ item.channelId.channelUrl }}" data-toggle="tooltip"
+                           data-placement="right" title="{{ item.channelId.channelDescription }}">
+                        {{ item.channelId.channelName }}</a></th>
+                {% endfor %}
+                </tr>
+
+                <tr>
+                 {% for item in metrics_result %}
+                    <th>
+                    {% if item.channelId.channelName == "Baidu" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/baidu_click.png" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "Weibo" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/weibo_click.png" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "Wechat" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/wechat_click.jpeg" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "360" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/360_click.jpeg" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "Ctrip" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/ctrip_click.jpeg" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "Soufun" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/soufun_click.jpeg" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "Youku" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/youku_click.jpeg" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "Tmall" %}
+                        <a href="{{ item.channelId.channelUrl }}">
+                        <img src="{% static "images/logos/tmall_click.jpeg" %}" height="50" width="50"/></a>
+                    {% elif item.channelId.channelName == "Others" %}
+                        <a href="/contact">
+                        <img src="{% static "images/logos/contact_click.png" %}" height="50" width="50"/></a>
+                    </th>
+                    {% endif %}
+                {% endfor %}
+                </tr>
+
+                <tr>
+                {% for item in metrics_result %}
+                    <td>{% widthratio item.budgetPercentage 1 100 %} %</td>
+                {% endfor %}
+                </tr>
+            </table>
+        {% endif %}
+    </div>
+        <div class="row col-md-6" id="piechart" style="min-width: 310px; height: 300px; max-width: 600px"></div>
+        </div>
+{#        <div class="row col-md-6">#}
+{#            The minimum budget for a few channels depends on the choice of your campaigns. Please contact us for details.#}
+{#        </div>#}
+
+        <!-- /.     row -->
+{#        <div class="row hidden">#}
+{#            {% if metrics_result %}#}
+{#            <table class="table table-striped" id="result-table-old">#}
+{#                <tr>#}
+{#                    <th>Suggested Channel</th>#}
+{#                    <th>Budget Percentage</th>#}
+{#                    <th>Budget Allocation</th>#}
+{#                    <th>Expected Clicks</th>#}
+{#                    <th>Average Cost per Click</th>#}
+{#                    <th>Expected Impressions</th>#}
+{#                    <th>Average Cost per Impression</th>#}
+{#                </tr>#}
+{#                {% for item in metrics_result %}#}
+{#                    <tr>#}
+{#                        <td><a href="{{ item.channelId.channelUrl }}" data-toggle="tooltip" data-placement="right" title="{{ item.channelId.channelDescription }}">{{ item.channelId.channelName }}</a></td>#}
+{#                        <td>{{ item.budgetPercentage }}</td>#}
+{#                        <td>{{ item.expectedClicks }}</td>#}
+{#                        <td>{{ item.costPerClick }}</td>#}
+{#                        <td>{{ item.expectedImpressions }}</td>#}
+{#                        <td>{{ item.costPerImpression }}</td>#}
+{#                    </tr>#}
+{#                {% endfor %}#}
+{#            </table>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#        <div class="row">#}
+{#        </div>#}
+        <div class="row col-lg-12">
+            {% if metrics_result %}
+                {% for item in metrics_result %}
+                    <table class="table table-bordered" id="result-table">
+
+                        <tr>
+                            <th class="col-md-2" bgcolor="#e6e6fa">Suggested Channel</th>
+
+                            {% if item.campaignGoal == "CPC" %}
+                                <th class="col-md-3" bgcolor="#e6e6fa">Average CPC($)</th>
+                                <th class="col-md-3" bgcolor="#e6e6fa">Average CPC(RMB)</th>
+                                <th class="col-md-2" bgcolor="#e6e6fa">Number of Clicks</th>
+                            {% else %}
+                                <th class="col-md-3" bgcolor="#e6e6fa">Average CPM($)</th>
+                                <th class="col-md-3" bgcolor="#e6e6fa">Average CPM(RMB)</th>
+                            {% endif %}
+                            <th class="col-md-2" bgcolor="#e6e6fa">Minimum Budget($)</th>
+                        </tr>
+
+                        <tr>
+                            <td>{{ item.channelId.channelName }}</td>
+                            <hr>
+                            {% if item.costPerClick %}
+                                <td>&dollar; {{ item.costPerClick | floatformat:2 }}</td>
+                            {% else %}
+                                <td>N/A</td>
+                            {% endif %}
+
+                            {% if item.costPerClick %}
+
+                                <td>&yen; {% widthratio item.costPerClick 1 6 %}</td>
+                            {% else %}
+                                <td>N/A</td>
+                            {% endif %}
+
+                            {% if item.campaignGoal == "CPC" %}
+                                {% if item.expectedClicks %}
+                                    <td>item.expectedClicks</td>
+                                {% else %}
+                                    <td>N/A</td>
+                                {% endif %}
+                            {% endif %}
+                            {% if item.channelId.minMediaBuy %}
+                                <td>&dollar; {{ item.channelId.minMediaBuy }}</td>
+                            {% else %}
+                                <td>N/A</td>
+                            {% endif %}
+                        </tr>
+
+                    </table>
+                    {% if item.campaignGoal == 'CPC' %}
+                    <p><font color="#dc143c bold">Note: Number of Clicks will be equal to the your total budget divided by the cost-per-click.</font></p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4>The minimum budget for a few channels depends on the choice of your campaigns..
+                            Please contact us for details for a specific media.</h4>
+                    </div>
+                    <div class="col-md-4" style="float: right">
+                        <a class="=btn btn-lg btn-info btn-block" href="/contact">Contact Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="{% static 'javascript/testGetResult.js' %}"></script>
+    <script src="{% static 'javascript/highchart.js' %}"></script>
+{#    <script src="http://code.highcharts.com/modules/exporting.js"></script>#}
+    <script>
+    $(function () {
+
+    $(document).ready(function () {
+        // Load the fonts
+        Highcharts.createElement('link', {
+           href: '//fonts.googleapis.com/css?family=Dosis:400,600',
+           rel: 'stylesheet',
+           type: 'text/css'
+        }, null, document.getElementsByTagName('head')[0]);
+
+        Highcharts.theme = {
+           colors: ["#7cb5ec", "#f7a35c", "#90ee7e", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
+              "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
+           chart: {
+              backgroundColor: null,
+              style: {
+                 fontFamily: "Dosis, sans-serif"
+              }
+           },
+           title: {
+              style: {
+                 fontSize: '16px',
+                 fontWeight: 'bold',
+                 textTransform: 'uppercase'
+              }
+           },
+           tooltip: {
+              borderWidth: 0,
+              backgroundColor: 'rgba(219,219,216,0.8)',
+              shadow: false
+           },
+           legend: {
+              itemStyle: {
+                 fontWeight: 'bold',
+                 fontSize: '13px'
+              }
+           },
+           xAxis: {
+              gridLineWidth: 1,
+              labels: {
+                 style: {
+                    fontSize: '12px'
+                 }
+              }
+           },
+           yAxis: {
+              minorTickInterval: 'auto',
+              title: {
+                 style: {
+                    textTransform: 'uppercase'
+                 }
+              },
+              labels: {
+                 style: {
+                    fontSize: '12px'
+                 }
+              }
+           },
+           plotOptions: {
+              candlestick: {
+                 lineColor: '#404048'
+              }
+           },
+
+
+           // General
+           background2: '#F0F0EA'
+
+        };
+
+        // Apply the theme
+        Highcharts.setOptions(Highcharts.theme);
+
+        // Radialize the colors
+        Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+            return {
+                radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                stops: [
+                    [0, color],
+                    [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                ]
+            };
+        });
+
+        // Build the chart
+        $('#piechart').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Recommended channels and budget allocation for the campaign'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.0f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'recommend channel',
+                data: [
+                    {% for item in metrics_result %}
+
+                        {% if item.channelId.channelName != 'Baidu' %}
+                            ['{{ item.channelId.channelName }}', {{ item.budgetPercentage }}],
+
+                        {% else %}
+                           {   name: '{{ item.channelId.channelName }}',
+                                y: {{ item.budgetPercentage }},
+                                sliced: true,
+                                selected:true
+                            },
+                        {% endif %}
+                    {% endfor %}
+                ]
+
+                }]
+        });
+    });
+
+});
+    </script>
+    <script>
+    var url = "/asia_media_planning/get_industryNameList";
+    $.get(url).done(function(data) {
+        var selectElem = $("#selectCategory");
+{#        $(data).each(function(idx, category) {#}
+{#            $("<option></option>").attr("value", category.industryName).html(category.industryName).appendTo(selectElem)#}
+{#        });#}
+        $(data).each(function(idx, category) {
+            transIndustryName = translateCategory(category.industryName);
+            $("<option></option>").attr("value", category.industryName).html(transIndustryName).appendTo(selectElem)
+        });
+    }).fail(function(data) {
+        alert("Status Code: " + data.status + ", Status Text: " + data.statusText + ", Response Text: " + data.responseText);
+    });
+    </script>
+    {% endblock %}

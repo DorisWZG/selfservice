@@ -10,10 +10,6 @@
 {% block content %}
 
 <!-- Page Content -->
-{% if not errors %}
-        <p align="center"><font size="4"><strong>Thank you for subscribing to Opportunity Alert Newsletter, we will contact you shortly!</strong></font></p>
-{% endif %}
-
 <div>
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
@@ -39,10 +35,26 @@
                                 <p></p>
                                 <input type="text" class="form-control" name="email" placeholder="Enter email address...">
                                 <p></p>
-                                <textarea class="form-control" name="message" rows="5" placeholder="Enter industry and product categories you want to receive opportunity alerts"></textarea>
+                                <textarea class="form-control" name="message" rows="5" placeholder="Please leave a message about your industry"></textarea>
                                 <p></p>
                                 <button class="btn btn-default" type="submit" align="center">Subscribe to Alert Newsletter</button>
                             </form>
+                        </div>
+                    </li>
+                    <li role="presentation">
+                        <a href="#customize" data-toggle="collapse" data-parent="#SideMenu">Follow a Product</a>
+
+                        <div class="collapse" id="customize">
+                            <small>Input a special product to get market opportunity report</small>
+                            <br>
+                            <div>
+                                <div class="input-group">
+                                  <input type="text" class="form-control" placeholder="Input a Product Industry or Keyword...">
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Go!</button>
+                                  </span>
+                                </div><!-- /input-group -->
+                            </div><!-- /.row -->
                         </div>
                     </li>
                     <li role="presentation"><a href="/member_service/sales_opportunities/">Sales Signal Processing</a></li>
@@ -53,7 +65,7 @@
                             <a class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></a>
                        </div>
                     </li>
-                    <li role="presentation"><a href="/budget_allocation/stage2_test">Advertise Your Product in China</a></li>
+                    <li role="presentation"><a href="/asia_media_planning/china_media">Advertise Your Product in China</a></li>
                     <li role="presentation"><a href="http://www.glogou.com/adbaidu/">Advertise Your Product on Baidu</a></li>
                     <li role="presentation"><a href="http://media-watching.com">Media Monitoring in Asia</a></li>
 
@@ -65,7 +77,7 @@
         <div class="col-md-9 container">
             <h1 class="page-header">Discover Sales Opportunities in Asia and China</h1>
             <h4>Select product category, get Demand and Supply Data, Mismatch in supply and demand trend may imply <b>OPPORTUNITIES</b></h4>
-            <h6>Demand and Supply Data for a product are collected from different sources. <b>Sales Signal Processing</b> technologies are used to filter out unreliable data </h6>
+            <h6>Demand and Supply Data for a product are collect from different sources. <b>Sales Signal Processing</b> technologies are used to filter out unreliable data </h6>
 
             <!--start sample search -->
             <form class="form-inline" id="cat-form" action="/member_service/sales_opportunities" method="GET" style="width:100%">
@@ -112,19 +124,19 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
-
-            <div style="margin-top: 10px;">
+            <hr>
+            <div>
                 <div id="sample_img" class="hidden">
                     <img src="{% static 'images/sample_index_trend.png' %}">
                 </div>
-                <!--<div id="demo_trends">
+                <div id="demo_trends">
                     <h4>Following is a sample market trend chart. The color of curve shows:</h4>
                     <p>
                         <span class="label label-primary">Wholesale Demand</span>
                         <span class="label label-success">Retain Demand</span>
                         <span class="label label-danger">Supply</span>
                         </p>
-                </div>-->
+                </div>
                 <ul class="nav nav-tabs">
                     <li class="nav active"><a href="#indexSummary" data-toggle="tab">Market Overview</a></li>
                     <li class="nav"><a href="#purchaseIndex1688" data-toggle="tab">Retail Demand</a></li>
@@ -139,10 +151,7 @@
                     <div class="tab-pane fade in col-md-12" id="supplyIndex"></div>
                 </div>
             </div>
-            <h4> <span id="demo_trends">Above is a sample trend chart.</span> The color of curve shows:<span class="label label-primary" style="margin-left: 30px;">Wholesale Demand</span>
-                <span class="label label-success">Retain Demand</span>
-                <span class="label label-danger">Supply</span>
-            </h4>
+
         </div>
     </div>
 </div>
