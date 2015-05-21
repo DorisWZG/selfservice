@@ -45,13 +45,13 @@ class Product_Dictionary_C3(models.Model):
 
 class Market_Trend(models.Model):
     # market_trend_id = models.IntegerField(primary_key=True)
-    index_date = models.DateField()
+    index_date = models.DateField(db_index=True)
     purchase_index1688 = models.DecimalField(max_digits=10, decimal_places=0)
     purchase_indextb = models.DecimalField(db_column='purchase_indexTb', max_digits=10, decimal_places=0) # Field name made lowercase.
     supply_index = models.DecimalField(max_digits=10, decimal_places=0)
-    cat1_id = models.DecimalField(max_digits=15,decimal_places=0)
-    cat2_id = models.DecimalField(max_digits=15,decimal_places=0,null=True)
-    cat3_id = models.DecimalField(max_digits=15,decimal_places=0,null=True)
+    cat1_id = models.DecimalField(db_index=True, max_digits=15,decimal_places=0)
+    cat2_id = models.DecimalField(db_index=True, max_digits=15,decimal_places=0,null=True)
+    cat3_id = models.DecimalField(db_index=True, max_digits=15,decimal_places=0,null=True)
 
     class Meta:
         # managed = False
