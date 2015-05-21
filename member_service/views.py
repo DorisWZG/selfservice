@@ -6,7 +6,7 @@ from getAliIndex import get_ali_index
 # Create your views here.
 from initialization import db_connection
 from read_from_db import get_market_trend
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.db.models import Q
@@ -15,28 +15,44 @@ import json
 import time
 import datetime
 import random
+import re
+
+def ValidPhone(p):
+    seq_type = type(p)
+    p = seq_type().join(filter(seq_type.isdigit, p))
+    if p > "0000000000" and p < "9999999999" and len(p) == 10:
+        return True
+    else:
+        return False
+
+def ValidEmail(m):
+    if re.match(r"[^@]+@[^@]+\.[^@]+", m):
+        return True
+    else:
+        return False
 
 def subscriber_contact(request):
     errors = []
+    context = create_demo_data()
     if request.method == 'POST':
         if not request.POST.get('name'):
             errors.append('Enter your name.')
-        if not request.POST.get('number'):
-            errors.append('Enter your contact number.')
+        if not ValidPhone(request.POST.get('number')):
+            errors.append('Enter your 10 digit contact number.')
         if not request.POST.get('CompanyName'):
             errors.append('Enter your company name.')
-        if not (request.POST.get('email') and '@' in request.POST['email']):
+        if not ValidEmail(request.POST.get('email')):
             errors.append('Enter a valid e-mail address.')
         if not errors:
             send_mail(
                 'Opportunity Alert Subscriber',
                 "Name:"+request.POST['name']+ " " + "Contact number:"+request.POST['number']+ " " + "Company name:"+ request.POST['CompanyName'] + " " + "email:"+ request.POST['email'] + " " + "Message:" + request.POST['message'],
                 'glogoutest@gmail.com',
-                ['liusicen627@gmail.com']
+                ['help@glogou.com']
             )
-            return HttpResponseRedirect('*/thanks/')
-    #return HttpResponse('Thanks')
-    return render(request, 'member_service/subscriber_contact.html', {
+            return render(request, 'member_service/subscriber_contact.html', context)
+
+    context.update({
         'errors': errors,
         'name': request.POST.get('name'),
         'number': request.POST.get('number'),
@@ -44,6 +60,44 @@ def subscriber_contact(request):
         'email': request.POST.get('email'),
         'message': request.POST.get('message')
     })
+    return render(request, 'member_service/subscriber_contact.html', context)
+
+
+def create_demo_data():
+
+        context = {}
+
+        today = datetime.date.today()
+        demo_purchase_index1688, demo_purchase_indexTb, demo_supply_index = [], [], []
+        for i in range(365, -1, -1):
+            sample_date = today - datetime.timedelta(days=i)
+            epoch = float(time.mktime(sample_date.timetuple())) * 1000
+            # demo_purchase_index1688.append([ epoch, random.randint(0, 5000) ])
+            # demo_purchase_indexTb.append([ epoch, random.randint(0, 5000) ])
+            # demo_supply_index.append([ epoch, random.randint(0, 5000) ])
+
+            # BL_NOTE, The following random model has no special reasons. We just try different numbers to make
+            # the curve looks better. One can feel free to choose different numbers to get better curve
+            # The random model has one linear increase component, which is base_increase,
+            # together with periodic random model. The period was chosen to be 30 to match days in a month
+
+            step = 30
+            period = i / step % step
+            period = step - period
+            base_increase = (365 -i)*80
+
+            demo_purchase_index1688.append([ epoch, random.randint(1*base_increase + period * 1000, 1*base_increase + 2*(period + 1) * 1000) ])
+            demo_purchase_indexTb.append([ epoch, random.randint(2*base_increase + period * 1000, 2*base_increase + 4*(period + 1) * 1000) ])
+            demo_supply_index.append([ epoch, random.randint(period * 1000, (period + 1) * 1000) ])
+
+        context['demo_purchase_index1688'] = demo_purchase_index1688
+        context['demo_purchase_indexTb'] = demo_purchase_indexTb
+        context['demo_supply_index'] = demo_supply_index
+        context['cat1'] = None
+        context['cat2'] = None
+        context['cat3'] = None
+
+        return context
 
 def getCat1(request):
     all_cats1 = Product_Dictionary_C1.objects.all().order_by('eng_kw')

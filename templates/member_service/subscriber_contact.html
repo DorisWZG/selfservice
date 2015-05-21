@@ -26,6 +26,8 @@
             <li>{{ error }}</li>
             {% endfor %}
         </ul>
+    {% else %}
+        <p align="center"><font size="4"><strong>Thank you for subscribing to Opportunity Alert Newsletter, we will contact you shortly!</strong></font></p>
     {% endif %}
 
     <div class="row">
@@ -36,15 +38,35 @@
                         <a href="#alert" data-toggle="collapse" data-parent="#SideMenu">Opportunity Alert</a>
                         <div class="collapse form-group" id="alert">
                             <form class="form-horizontal #{$fa-css-prefix}-align-left" action="/member_service/subscriber_contact/" method="POST">{% csrf_token %}
-                                <input type="text" class="form-control" name="name" value={{name}}>
+                                {% if not name %}
+                                    <input type="text" class="form-control" name="name" placeholder="Enter contact name...">
+                                {% else %}
+                                    <input type="text" class="form-control" name="name" value={{name}}>
+                                {% endif %}
                                 <p></p>
-                                <input type="text" class="form-control" name="number" value={{number}}>
+                                {% if not number %}
+                                    <input type="text" class="form-control" name="number" placeholder="Enter contact number...">
+                                {% else %}
+                                    <input type="text" class="form-control" name="number" value={{number}}>
+                                {% endif %}
                                 <p></p>
-                                <input type="text" class="form-control" name="CompanyName" value={{CompanyName}}>
+                                {% if not CompanyName %}
+                                    <input type="text" class="form-control" name="CompanyName" placeholder="Enter company name...">
+                                {% else %}
+                                    <input type="text" class="form-control" name="CompanyName" value={{CompanyName}}>
+                                {% endif %}
                                 <p></p>
-                                <input type="text" class="form-control" name="email" value={{email}}>
+                                {% if not email %}
+                                    <input type="text" class="form-control" name="email" placeholder="Enter email address...">
+                                {% else %}
+                                    <input type="text" class="form-control" name="email" value={{email}}>
+                                {% endif %}
                                 <p></p>
-                                <textarea class="form-control" name="message" rows="5">{{message}}</textarea>
+                                {% if not message %}
+                                    <textarea class="form-control" name="message" rows="5" placeholder="Enter industry and product categories you want to receive opportunity alerts"></textarea>
+                                {% else %}
+                                    <textarea class="form-control" name="message" rows="5">{{message}}</textarea>
+                                {% endif %}
                                 <p></p>
                                 <button class="btn btn-default" type="submit" value="submit" align="center">Subscribe to Alert Newsletter</button>
                             </form>
@@ -74,7 +96,7 @@
                             <a class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></a>
                        </div>
                     </li>
-                    <li role="presentation"><a href="/budget_allocation/stage2_test">Advertise Your Product in China</a></li>
+                    <li role="presentation"><a href="/asia_media_planning/china_media">Advertise Your Product in China</a></li>
                     <li role="presentation"><a href="http://www.glogou.com/adbaidu/">Advertise Your Product on Baidu</a></li>
                     <li role="presentation"><a href="http://media-watching.com">Media Monitoring in Asia</a></li>
 

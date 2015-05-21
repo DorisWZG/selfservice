@@ -1,0 +1,95 @@
+{% extends "default_web/base.html" %}    
+
+    {% block title %}Glogou Product and Service{% endblock %}
+    {% block description %}{% endblock %}
+    {% block keyword %}{% endblock %}
+
+
+    {% block content %}
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Budget Allocation
+                    <small>How to allocate the budget for various marketing product </small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Project One -->
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="banner img-responsive img-portfolio img-hover" src="/static/images/puzzle-csd.jpg"></img>
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>Service We provide:</h3>
+                <h4>Subheading</h4>
+                <p>bla bla bla...</p>
+                <!--
+                <form action="">
+                    category
+                    <select name="category">
+                        <option value="education"> Education Market</option>
+                        <option value="dest_mkt"> Destination Marketing</option>
+                        <option value="real_estate"> Real Estate</option>
+                        <option value="high_tech"> High Tech industry</option>
+                    </select>
+                </form>
+                -->
+                <div class="ui-widget">
+
+                <form action="">
+                    category
+                    <select name="category">
+                        <option value=""> Please select your busniess sector... </option>
+                        <option value="education"> Education Market </option>
+                        <option value="dest_mkt"> Destination Marketing </option>
+                        <option value="real_estate"> Real Estate </option>
+                        <option value="high_tech"> High Tech industry </option>
+                    </select>
+                </form>
+                <br>
+
+                  <form action="">
+                    budget
+                    <select name="budget">
+                    <option value="">Select one...</option>
+                    <option value="ActionScript">1,000</option>
+                    <option value="AppleScript">2,000</option>
+                    <option value="Asp">3,000-5,000</option>
+                    <option value="BASIC">5,000-10,000</option>
+                    <option value="C">10,000-20,000</option>
+                    <option value="C++">20,000-50,000</option>
+                    <option value="Clojure">50,000-100,000</option>
+                    <option value="COBOL">100,000+</option>
+<!--                     <option value="ColdFusion">ColdFusion</option>
+                    <option value="Erlang">Erlang</option>
+                    <option value="Fortran">Fortran</option>
+                    <option value="Groovy">Groovy</option>
+                    <option value="Haskell">Haskell</option>
+                    <option value="Java">Java</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Lisp">Lisp</option>
+                    <option value="Perl">Perl</option>
+                    <option value="PHP">PHP</option>
+                    <option value="Python">Python</option>
+                    <option value="Ruby">Ruby</option>
+                    <option value="Scala">Scala</option>
+                    <option value="Scheme">Scheme</option> -->
+                  </select>
+                </form>
+                </div>
+
+                <br>
+                <a class="btn btn-primary" href="/default_web/china_media_result/">See Result <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    {% endblock %}
