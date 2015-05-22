@@ -1,4 +1,5 @@
-You need to update your own database on your local server using the following SQL scripts:
+/* Because URLs for budget allocation is changed, certain fields and names in database need to be changed as well */
+/* Run the following SQL scripts to update database */
 
 LOCK TABLES self_service.budget_allocation_pricemetrics WRITE;
 ALTER TABLE self_service.budget_allocation_pricemetrics RENAME To self_service.asia_media_planning_pricemetrics;
