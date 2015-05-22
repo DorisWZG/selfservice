@@ -12,7 +12,7 @@
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">the WAVE result page is under construction, please wait
+                <h1 class="page-header">the budget allocation result page is under construction, please wait
                     <small>...</small>
                 </h1>
             </div>
@@ -37,13 +37,9 @@
                 <br> 
 
                 <br>
-                <a class="btn btn-primary" href="/default_web/stage3_test/"> Back <span class="glyphicon glyphicon-chevron-right"> </span></a>
-                <br>
-                <br>
+                <a class="btn btn-primary" href="/asia_media_planning/china_media_test/"> Back <span class="glyphicon glyphicon-chevron-right"> </span></a>
+                <a class="btn btn-primary" href="/budget_allocation/stage3_test/"> Continue test <span class="glyphicon glyphicon-chevron-right"> </span></a>
                 <a class="btn btn-primary" href="#"> Send result to Email <span class="glyphicon glyphicon-chevron-right"> </span></a>
-                <br>
-                <br>
-                <a class="btn btn-primary" href=""> Start your member service <span class="glyphicon glyphicon-chevron-right"> </span></a>
             </div>
         </div>
         <!-- /.row -->

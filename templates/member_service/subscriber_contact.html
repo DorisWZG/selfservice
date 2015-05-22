@@ -1,0 +1,199 @@
+{% extends "member_service/sales_opportunities.html" %}
+{% load staticfiles%}
+
+{#    {% block title %}Glogou Product and Service{% endblock %}#}
+{% block description %}{% endblock %}
+{% block keyword %}{% endblock %}
+{% block title %}Glogou Featured Client in Education Sector{% endblock %}
+
+
+
+{% block content %}
+<!-- Page Content -->
+<div>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-3" id="SideMenu">
+            <div class="list-group panel">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active">
+                        <a href="#alert" data-toggle="collapse" data-parent="#SideMenu">Opportunity Alert</a>
+                        <div class="collapse form-group" id="alert">
+                            <form class="form-horizontal #{$fa-css-prefix}-align-left" action="/member_service/subscriber_contact/" method="POST">{% csrf_token %}
+                                {% if not name %}
+                                    <input type="text" class="form-control" name="name" placeholder="Enter contact name...">
+                                {% else %}
+                                    <input type="text" class="form-control" name="name" value={{name}}>
+                                {% endif %}
+                                <p></p>
+                                {% if not number %}
+                                    <input type="text" class="form-control" name="number" placeholder="Enter contact number...">
+                                {% else %}
+                                    <input type="text" class="form-control" name="number" value={{number}}>
+                                {% endif %}
+                                <p></p>
+                                {% if not CompanyName %}
+                                    <input type="text" class="form-control" name="CompanyName" placeholder="Enter company name...">
+                                {% else %}
+                                    <input type="text" class="form-control" name="CompanyName" value={{CompanyName}}>
+                                {% endif %}
+                                <p></p>
+                                {% if not email %}
+                                    <input type="text" class="form-control" name="email" placeholder="Enter email address...">
+                                {% else %}
+                                    <input type="text" class="form-control" name="email" value={{email}}>
+                                {% endif %}
+                                <p></p>
+                                {% if not message %}
+                                    <textarea class="form-control" name="message" rows="5" placeholder="Enter industry and product categories you want to receive opportunity alerts"></textarea>
+                                {% else %}
+                                    <textarea class="form-control" name="message" rows="5">{{message}}</textarea>
+                                {% endif %}
+                                <p></p>
+                                <button class="btn btn-default" type="submit" value="submit" align="center">Subscribe to Alert Newsletter</button>
+                            </form>
+                        </div>
+                    </li>
+                    <li role="presentation"><a href="/member_service/sales_opportunities/">Sales Signal Processing</a></li>
+                    <li role="presentation">
+                       <a href="#share" data-toggle="collapse" data-parent="#SideMenu">Share This Page</a>
+                       <p></p>
+                        <div class="collapse" id="share" align="center">
+                            <a class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></a>
+                       </div>
+                    </li>
+                    <li role="presentation"><a href="/asia_media_planning/china_media">Advertise Your Product in China</a></li>
+                    <li role="presentation"><a href="http://www.glogou.com/adbaidu/">Advertise Your Product on Baidu</a></li>
+                    <li role="presentation"><a href="http://media-watching.com">Media Monitoring in Asia</a></li>
+
+                    <li role="presentation"><a href="/contact">Contact us</a></li>
+                </ul>
+            </div>
+        </div>
+
+        {% if not errors %}
+            <br>
+            <p align="center"><font size="4"><strong>Thank you for subscribing to Opportunity Alert Newsletter, we will contact you shortly!</strong></font></p>
+        {% endif %}
+
+        <div class="col-md-9 container">
+            <h1 class="page-header">Discover Sales Opportunities in Asia and China</h1>
+            <h4>Select product category, get Demand and Supply Data, Mismatch in supply and demand trend may imply <b>OPPORTUNITIES</b></h4>
+            <h6>Demand and Supply Data for a product are collect from different sources. <b>Sales Signal Processing</b> technologies are used to filter out unreliable data </h6>
+
+            <!--start sample search -->
+            <form class="form-inline" id="cat-form" action="/member_service/sales_opportunities" method="GET" style="width:100%">
+                <div class="form-group dropdown col-sm-2" style="padding-left: 0px">
+                    <label class="hidden">{{ cat1 }}</label>
+                    <label class="sr-only" for="cat1">Category_1</label>
+                    <img name="getCat1" class="hidden" src="">
+                    <input type="text" class="form-control hidden" id="cat1" name="cat1">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="cat1-list"
+                            data-toggle="dropdown" aria-expanded="true" style="width: 100%; text-align: left">
+                        <strong>Please Select</strong>
+                        <span class="caret text-right"></span>
+                    </button>
+                    <ul class="dropdown-menu pre-scrollable" role="menu" aria-labelledby="dropdownMenuCat1">
+                    </ul>
+                </div>
+                <div class="form-group dropdown col-sm-2" style="padding-left: 0px">
+                    <label class="hidden">{{ cat2 }}</label>
+                    <label class="sr-only" for="cat2">Category_2</label>
+                    <img name="getCat2" class="hidden" src="">
+                    <input type="text" class="form-control hidden" id="cat2" name="cat2">
+                    <button class="btn btn-default dropdown-toggle disabled"  type="button" id="cat2-list"
+                            data-toggle="dropdown" aria-expanded="true" style="width: 100%; text-align: left">
+                        <strong>All</strong>
+                        <span class="caret text-right"></span>
+                    </button>
+                    <ul class="dropdown-menu pre-scrollable" role="menu" aria-labelledby="dropdownMenuCat2">
+                        <li><a>All</a></li>
+                    </ul>
+                </div>
+                <div class="form-group dropdown col-sm-2" style="padding-left: 0px">
+                    <label class="hidden">{{ cat3 }}</label>
+                    <label class="sr-only" for="cat3">Category_3</label>
+                    <img name="getCat3" class="hidden" src="">
+                    <input type="text" class="form-control hidden" id="cat3" name="cat3">
+                    <button class="btn btn-default dropdown-toggle disabled" type="button" id="cat3-list"
+                            data-toggle="dropdown" aria-expanded="true" style="width: 100%; text-align: left">
+                        <strong>All</strong>
+                        <span class="caret text-right"></span>
+                    </button>
+                    <ul class="dropdown-menu pre-scrollable" role="menu" aria-labelledby="dropdownMenuCat3">
+                        <li><a>All</a></li>
+                    </ul>
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <hr>
+            <div>
+                <div id="sample_img" class="hidden">
+                    <img src="{% static 'images/sample_index_trend.png' %}">
+                </div>
+                <div id="demo_trends">
+                    <h4>Following is a sample market trend chart. The color of curve shows:</h4>
+                    <p>
+                        <span class="label label-primary">Wholesale Demand</span>
+                        <span class="label label-success">Retain Demand</span>
+                        <span class="label label-danger">Supply</span>
+                        </p>
+                </div>
+                <ul class="nav nav-tabs">
+                    <li class="nav active"><a href="#indexSummary" data-toggle="tab">Market Overview</a></li>
+                    <li class="nav"><a href="#purchaseIndex1688" data-toggle="tab">Retail Demand</a></li>
+                    <li class="nav"><a href="#purchaseIndexTb" data-toggle="tab">Wholesale Demand</a></li>
+                    <li class="nav"><a href="#supplyIndex" data-toggle="tab">Supply</a></li>
+                </ul>
+            <!-- Tab panes -->
+                <div class="tab-content row">
+                    <div class="tab-pane fade in active col-md-12" id="indexSummary"></div>
+                    <div class="tab-pane fade in col-md-12" id="purchaseIndex1688"></div>
+                    <div class="tab-pane fade in col-md-12" id="purchaseIndexTb"></div>
+                    <div class="tab-pane fade in col-md-12" id="supplyIndex"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src ="{% static 'javascript/sales_opportunities.js' %}"></script>
+<script>
+fillNextCat($('#cat-form div:first'), 'All');
+{% if purchase_index1688 %}
+$('#demo_trends').addClass('hidden');
+createTrendChart($('#indexSummary'),
+        [ $('#purchaseIndex1688'), $('#purchaseIndexTb'), $('#supplyIndex') ],
+        [ 'Wholesale Demand Trend', 'Retail Demant Trend', 'Supply Trend' ],
+        [ 'Wholesale Demand Index', 'Retail Demand Index', 'Supply Index' ],
+        [ {{ purchase_index1688 }}, {{ purchase_indexTb }}, {{ supply_index }} ],
+        [ 0, 2, 8 ]);
+{% elif demo_purchase_index1688 %}
+$('#demo_trends').removeClass('hidden');
+createTrendChart($('#indexSummary'),
+        [ $('#purchaseIndex1688'), $('#purchaseIndexTb'), $('#supplyIndex') ],
+        [ 'Wholesale Demand Trend', 'Retail Demand Trend', 'Supply Trend' ],
+        [ 'Wholesale Demand Index', 'Retail Demand Index', 'Supply Index' ],
+        [ {{ demo_purchase_index1688 }}, {{ demo_purchase_indexTb }}, {{ demo_supply_index }} ],
+        [ 0, 2, 8 ]);
+{% endif %}
+
+</script>
+
+{% endblock %}

@@ -25,6 +25,12 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'glogoutest@gmail.com'
+EMAIL_HOST_PASSWORD = 'glogoutest2015'
+
 ALLOWED_HOSTS = [
     'ads-in-china.com',
     '127.0.0.1',
@@ -43,7 +49,7 @@ INSTALLED_APPS = (
     # add new apps below, the order is important
     'default_web',
     'member_service',
-    'budget_allocation',
+    'asia_media_planning',
     'rest_framework',
     # 'restapi',
 )

@@ -15,7 +15,7 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     #url(r'^restapi/', include('restapi.urls') ),
-    url(r'^', include('budget_allocation.urls')),
+    url(r'^', include('asia_media_planning.urls')),
     # url(r'^restapi/', include('restapi.urls')),
 
     url(r'^$', views.index, name='home'),
@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^member/$', views.member_service),
     url(r'^default_web/', include('default_web.urls')),
     url(r'^member_service/', include('member_service.urls')),
-    url(r'^budget_allocation/',include('budget_allocation.urls')),
+    url(r'^asia_media_planning/',include('asia_media_planning.urls')),
 
     url(r'^accounts/login/$', 'selfservice.views.login'),
     url(r'^accounts/auth/$', 'selfservice.views.auth_view'),

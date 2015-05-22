@@ -19,7 +19,7 @@ function showResult() {
     $("#submit").attr('disabled','disabled');
     var category = $("#selectCategory").val();
     var budget = $("#selectBudget").val();
-    var url = "/budget_allocation/metrics_result/industry/" + category + "/budget/" + budget;
+    var url = "/asia_media_planning/metrics_result/industry/" + category + "/budget/" + budget;
     $.get(url).done(function(data) {
         var table = $("#result-table");
         table.find("tr").slice(1).remove();
@@ -57,14 +57,14 @@ function showResultPage() {
 //        alert("Please choose a budget");
 //        return;
 //    }
-    window.location = "/stage2_result/industry/" + category + "/subindustry/" + sub_category;
+    window.location = "/china_media_result/" + category + "/" + sub_category;
 }
 
 function getSubCategory() {
     $("#selectSubCategory").children().slice(1).remove();
     var category = $("#selectCategory").val();
     if (category != "") {
-        var url = "/budget_allocation/get_subIndustryList/industry/" + category;
+        var url = "/asia_media_planning/get_subIndustryList/industry/" + category;
         $.get(url).done(function(data) {
             var selectSubElem = $("#selectSubCategory");
             $(data).each(function(idx, subCategory) {

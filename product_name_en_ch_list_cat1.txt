@@ -1,0 +1,55 @@
+女装 --- 10166---Women's clothing
+LED --- 123614002---LED
+安全、防护 --- 70---Security & Protection
+办公、文教 --- 67---Office Supplies
+包装 --- 68---Package
+宠物及园艺 --- 122916001---Pets and gardening
+传媒、广电 --- 53---Media, radio and television
+代理 --- 51---Agent
+电工电气 --- 5---Electrical Equipment
+电子元器件 --- 57---Electronic Components
+二手设备转让 --- 2829---Used equipment for sale
+纺织、皮革 --- 4---Textile, Leather
+服饰配件、饰品 --- 54---Clothing accessories, jewelry
+钢铁 --- 123614001---Steel
+个人防护 --- 3007---Personal Protection
+工艺品、礼品 --- 17---Crafts, gifts
+化工 --- 8---Chemical industry
+环保 --- 64---Environmental protection
+机床 --- 1426---Machine tool
+机械及行业设备 --- 65---Machinery and equipment industry
+家纺家饰 --- 96---Textile Furnishings
+加工 --- 2805---Machining
+家用电器 --- 6---Household appliances
+家装、建材 --- 13---Home improvement, building materials
+交通运输 --- 12---Transportation
+精细化学品 --- 56---Fine Chemicals
+库存积压 --- 32---Overstock
+美妆日化 --- 97---Beauty cosmetic
+母婴用品 --- 1501---Baby products
+男装 --- 10165---Men's clothing
+内衣 --- 312---Underwear
+能源 --- 10---Energy
+农业 --- 1---Agriculture
+汽车用品 --- 122916002---Automotive supplies
+汽摩及配件 --- 71---Auto Parts & Accessories
+日用百货 --- 15---Daily necessities
+商务服务 --- 69---Business Services
+食品、饮料 --- 2---Food, beverages
+数码、电脑 --- 7---Digital, computer
+通信产品 --- 509---Communication Products
+童装 --- 311---Kids wear
+玩具 --- 1813---Toy
+五金、工具 --- 59---Hardware, tools
+箱包皮具 --- 1042954---Luggage and leather goods
+项目合作 --- 73---Project Cooperation
+橡塑 --- 55---Rubber and plastic
+鞋 --- 1038378---Shoe
+眼镜及配件 --- 80---Glasses and accessories
+冶金矿产 --- 9---Metallurgy and Minerals
+医药、保养 --- 66---Health & Beauty
+仪器仪表 --- 10208---Instrumentation
+印刷 --- 72---Print
+运动户外 --- 18---Sports & Outdoors
+照明工业 --- 58---Lighting Industry
+纸业 --- 52---Paper
