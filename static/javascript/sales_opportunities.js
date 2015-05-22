@@ -2,7 +2,15 @@ function bindCatSelection(divElem) {
     divElem.find('ul.dropdown-menu li').click(function() {
         divElem.find('button strong').text($(this).children('a').text());
         var selectedCatId = $(this).children('span.hidden').text();
+        
+        // The following line will show category id on URL, such as:?cat1=1&cat2=128&cat3=142
+        // __IMPORTANT__, This shall be controlled by global variable in python: if g_URL_SHOW_CAT_ID_OR_NAME == 0
         divElem.children('input[type="text"]').val(selectedCatId);
+        
+        // The following line will show category name on URL, such as:?cat1=Agriculture&cat2=Agricultural+equipment&cat3=Fishing+equipment
+        // This shall be controlled by global variable in python: if g_URL_SHOW_CAT_ID_OR_NAME == 1
+        // divElem.children('input[type="text"]').val($(this).children('a').text());
+
         var nextDiv = divElem.next('div');
         if (nextDiv.length) {
             fillNextCat(nextDiv, selectedCatId);
