@@ -1,0 +1,44 @@
+class Solution:
+    # @param {integer} numCourses
+    # @param {integer[][]} prerequisites
+    # @return {boolean}
+    def canFinish(self, numCourses, prerequisites):
+        n=len(prerequisites)
+        if n==0:
+            return True
+        dic1={}
+        c2=set([p[1] for p in prerequisites])
+        nodes=set([])
+        for i in range(n):
+            if prerequisites[i][0] not in c2:
+                nodes.add(prerequisites[i][0])
+            if prerequisites[i][0] not in dic1:
+                dic1[prerequisites[i][0]]=[prerequisites[i][1]]
+            else:
+                dic1[prerequisites[i][0]].append(prerequisites[i][1])
+        if len(nodes)==0:
+            return False
+        print nodes
+        c1=set(dic1.keys())
+        allset=c1|c2
+        alllist=set([])
+        l1=set([])
+        r1=self.DFS(nodes,dic1,alllist,l1)
+        print r1,allset,l1,nodes,dic1
+        return r1 and allset==l1
+
+        
+    def DFS(self,nodes,dic1,alllist=set([]),l1=set([])):
+        for node in nodes:
+            #print node,alllist
+            l1.add(node)
+            if node not in alllist:
+                alllist.add(node)
+                if node in dic1:
+                    if not self.DFS(dic1[node],dic1,alllist,l1):
+                        return False
+                alllist.remove(node)
+            else:
+                return False
+        return True
+a=Solution()

@@ -1,0 +1,119 @@
+def countPrimes(n):
+        if n==2:
+            return 1
+        if n<2:
+            return 0
+        nums=[i for i in range(2,n+1)]
+        jj=0
+        while nums[jj]**2<=n:
+            print nums
+            divider=nums[jj]
+            j=jj+1
+            while j<len(nums):
+                if nums[j]%divider==0:
+                    nums.remove(nums[j])
+                else:
+                    j=j+1
+            jj=jj+1
+        
+        return len(nums)
+
+
+def isIsomorphic(s, t):
+        dic={}
+        n=len(s)
+        if n<2:
+            return True
+        for i in range(n):
+            if s[i] not in dic:
+                dic[s[i]]=t[i]
+            else:
+                if dic[s[i]]!=t[i]:
+                    return False
+        print dic
+        return True
+
+
+
+
+class Solution:
+    # @return a string
+    def getPermutation(self, n, k):
+        nums=[i for i in range(1,n+1)]
+        jie=self.jiecheng(n-1)
+        left=k
+        seq=""
+        i=n-2
+        while i>=0:
+            left=k%jie[i]
+            if left>0:
+                bitindex=k//jie[i]
+            else:
+                bitindex=k//jie[i]-1
+                left=jie[i]
+            bit=nums[bitindex]
+            seq=seq+str(bit)
+            nums.pop(bitindex)
+            i=i-1
+            k=left
+        seq=seq+str(nums[0])
+        return seq
+            
+        
+    def jiecheng(self,k):
+        allres=[0]*k
+        allres[0]=1
+        for i in range(1,k):
+            allres[i]=allres[i-1]*(i+1)
+        return allres
+
+
+
+class Solution:
+    def maximizeResult(self,n):
+        strn=str(n)
+        n=len(strn)
+        bits=[int(strn[i]) for i in range(n)]
+        bitssort=sorted(bits,reverse=True)
+        if bits==bitssort:
+            temp=bits[-2]
+            bits[-2]=bits[-1]
+            bits[-1]=temp
+        else:
+            for i in range(n):
+                if bits[i]!=bitssort[i]:
+                    break
+            changeindex1=bits.index(bitssort[i])
+            changeindex2=i
+            temp=bits[changeindex2]
+            bits[changeindex2]=bits[changeindex1]
+            bits[changeindex1]=temp
+        seq=""
+        for bit in bits:
+            seq=seq+str(bit)
+        res=int(seq)
+        return res
+
+
+
+def longestConsecutive(nums):
+        dic={}
+        n=len(nums)
+            
+        for i in range(n):
+            if nums[i] not in dic:
+                dic[nums[i]]=1
+                if nums[i]-1 in dic:
+                    dic[nums[i]]=dic[nums[i]]+dic[nums[i]-1]
+                    temp=dic[nums[i]-1]
+                    dic[nums[i]-dic[nums[i]-1]]=dic[nums[i]]
+                    print dic
+                if nums[i]+1 in dic:
+                    dic[nums[i]]=dic[nums[i]]+dic[nums[i]+1]
+                    dic[nums[i]+dic[nums[i]+1]]=dic[nums[i]]
+                    if nums[i]-1 in dic:
+                        dic[nums[i]-temp]=dic[nums[i]]
+                    print dic
+        print dic
+                        
+        return max(dic.values())
