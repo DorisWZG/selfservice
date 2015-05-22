@@ -1,14 +1,7 @@
-
 {% extends "budget_allocation/base.html" %}
 
-    {% load staticfiles %}
 
-    {% block title %}Asia and China Media Planning{% endblock %}
-    {% block description %}{% endblock %}
-    {% block keyword %}{% endblock %}
-
-
-    {% block content %}
+    {% block content_main %}
 
     <!-- Page Content -->
     <div class="container">
@@ -59,34 +52,34 @@
 
 
             <div class="col-md-12">
-                <section id="AllCustomers" class="tile-list selectable on-load-fade-in">
+                <section id="AllCustomers" class="tile-list selectable on-load-fade-in col-md-4">
                     <a href="http://www.glogou.com/adbaidu/">
                         <span class="tile">
-                            <img src="/static/images/logos/baidu.jpg" width="228"></span>
+                            <img src="../../static/images/logos/baidu.jpg" width="228"></span>
                         <header>Baidu</header>
                         <footer>The leading search engine in China</footer>
                     </a>
                     <a href="http://weibo-marketing.glogou.com/">
                         <span class="tile">
-                            <img src="/static/images/logos/weibo.jpeg" width="225"></span>
+                            <img src="../../static/images/logos/weibo.jpeg" width="225"></span>
                         <header>Weibo</header>
                         <footer>The top social media in China</footer>
                     </a>
                     <a href="http://glogou.com/china-online-marketing/wechat.php">
                         <span class="tile">
-                            <img src="/static/images/logos/wechat1.jpeg" width="215"></span>
+                            <img src="../../static/images/logos/wechat1.jpeg" width="215"></span>
                         <header>Wechat</header>
                         <footer>The top social media on smart phone</footer>
                     </a>
                     <a href="http://www.glogou.com/china-online-marketing/soufun.html">
                         <span class="tile">
-                            <img src="/static/images/logos/soufun.jpg" width="228"></span>
+                            <img src="../../static/images/logos/soufun.jpg" width="228"></span>
                         <header>Soufun</header>
                         <footer>Property investment platform</footer>
                     </a>
                     <a href="http://glogou.com/china-online-marketing/youku.html">
                         <span class="tile">
-                            <img src="/static/images/logos/youku.png" width="228"></span>
+                            <img src="../../static/images/logos/youku.png" width="228"></span>
                         <header>Youku Inc.</header>
                         <footer>China's biggest video sites</footer>
                     </a>
@@ -104,13 +97,13 @@
                     </a>
                     <a href="http://www.glogou.com/china-online-marketing/taobao.html">
                         <span class="tile">
-                            <img src="/static/images/logos/taobao.jpg" width="220"></span>
+                            <img src="../../static/images/logos/taobao.jpg" width="220"></span>
                         <header>Taobao</header>
                         <footer>Ecommerce website for everything </footer>
                     </a>
                     <a href="http://hao.360.cn/">
                         <span class="tile">
-                            <img src="/static/images/logos/360.jpg" width="220"></span>
+                            <img src="../../static/images/logos/360.jpg" width="220"></span>
                         <header>360 Search Engine</header>
                         <footer>The second largest search engine in China</footer>
                     </a>
@@ -135,7 +128,7 @@
 
     </div>
 
-    <script src="{% static 'javascript/testGetResult.js' %}"></script>
+    <script src="../../static/javascript/testGetResult.js"></script>
     <script>
     var url = "/budget_allocation/get_industryNameList";
     $.get(url).done(function(data) {
@@ -150,7 +143,5 @@
     });
 
     </script>
-
-
 
     {% endblock %}

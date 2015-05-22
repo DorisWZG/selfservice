@@ -1,160 +1,313 @@
-{% extends "default_web/base.html" %}    
-
-    {% block title %}Glogou Self Service Platform{% endblock %}
-    {% block description %}{% endblock %}
-    {% block keyword %}{% endblock %}
-
+{% extends "default_web/base.html" %}
 
     {% block content %}
-    <!-- Header Carousel -->
-    <header id="myCarousel" class="carousel slide">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel2" data-slide-to="1"></li>
-            <li data-target="#myCarousel3" data-slide-to="2"></li>
-            <li data-target="#myCarousel4" data-slide-to="3"></li>
-        </ol>
+    <section id="splash">
+		<div class="row text-center">
+			<h1>Glogou, Innovative Marketing and Sales Solutions Help You to Acquire More Customers from Asia and China</h1>
+		</div>
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-            <div class="item active" >
-                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide One');">
-                    <a><img class="banner" id="myCarousel1" src="/static/images/cash.jpg"></a>
-                </div>
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+				<li data-target="#myCarousel" data-slide-to="3"></li>
+			</ol>
+		<!--inner captions-->
+			<div class="carousel-inner">
+				<div class="item active">
+					<img class="slideshow" src="../../static/images/hk-lg.png" alt="Glogou marketing solution" title="Glogou marketing solution">
+					<div class="container">
+						<div class="carousel-caption">
+							<h1 class="slide-caption">Customized Asia Marketing Solution for Every Company</h1>
+							<p></p>
+							<!--<p><a class="btn btn-lg btn-primary" href="contact.html" role="button">Contact Us Today</a></p>-->
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img class="slideshow" src="../../static/images/sh-lg.png" alt="Glogou mobile marketing services" title="Glogou mobile marketing services">
+					<div class="container">
+						<div class="carousel-caption">
+							<h1 class="slide-caption">Social and Mobile Marketing for Reaching More Customers</h1>
+							<p></p>
+							<!--<p><a class="btn btn-lg btn-primary" href="product.html" role="button">Learn Our Products</a></p>-->
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img class="slideshow" src="../../static/images//night-lg.png" alt="Glogou SEO/SEM services" title="Glogou SEO/SEM services">
+					<div class="container">
+						<div class="carousel-caption">
+							<h1 class="slide-caption">Advanced SEO/SEM for Promoting Your Website</h1>
+							<p></p>
+							<!--<p><a class="btn btn-lg btn-primary" href="service.html" role="button">Browse Our Services</a></p>-->
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img class="slideshow" src="../../static/images/tokyo-lg.png" alt="Glogou market analysis" title="Glogou market analysis">
+					<div class="container">
+						<div class="carousel-caption">
+							<h1 class="slide-caption">Detailed Market Analysis for Finding More Opportunities</h1>
+							<p></p>
+							<!--<p><a class="btn btn-lg btn-primary" href="service.html" role="button">Try Our Technology</a></p>-->
+						</div>
+					</div>
+				</div>
+			</div>
+		<!--controls-->
+			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+			<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+		</div>
+		<div class="row">
+			<div class="col-md-12 text-center promotion">
+				<p class="col-sm-4"><a class="btn btn-lg btn-primary" href="http://sales-signal-processing.glogou.com/budget_allocation/stage2_test/" role="button">Asia Media Guide</a></p>
+				<p class="col-sm-4"><a class="btn btn-lg btn-primary" href="http://www.glogou.com/news.html" role="button">Company News</a></p>
+				<p class="col-sm-4"><a class="btn btn-lg btn-primary" href="http://www.glogou.com/contact.php" role="button">Contact Us</a></p>
 
-                <div class="carousel-caption">
-                    <h2>The most powerful market analysis tool</h2>
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');">
-                    <a><img class="banner" id="myCarousel2" src="/static/images/chain.jpg"></a>
-                </div>
-                <div class="carousel-caption">
-                    <h2>The one-stop service product</h2>
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');">
-                    <a><img class="banner" id="myCarousel3" src="/static/images/client.jpg"></a>
-                </div>
-                <div class="carousel-caption">
-                    <h2>The greatest customer service</h2>
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');">
-                    <a><img class="banner" id="myCarousel4" src="/static/images/idea.jpg"></a>
-                </div>
-                <div class="carousel-caption">
-                    <h2>The up-to-date news coverage</h2>
-                </div>
-            </div>
-        </div>
+			</div>
+		</div>
+	</section>
 
-        <!-- Controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="icon-prev"></span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="icon-next"></span>
-        </a>
-    </header>
+    <section id="intro" >
+		<div class="row col-md-12 text-center <!--wow fadeInDown--> section-title">
+			<h1>WHO WE ARE</h1>
+		</div>
 
-    <!-- Page Content -->
-    <div class="container">
-
-        <!-- Marketing Icons Section -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">
-                    Welcome to Glogou Sales Signal Processing
-                </h1>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <!-- <h4><i class="fa fa-fw fa-check"></i> Sales Signal Processing</h4> -->
-                        <h4><i class="fa fa-fw fa-compass"></i>Opportunities Discovery</h4>
-                    </div>
-                    <div class="panel-body">
-                        <!-- <p>blah blah blah...</p> -->
-                        <img class="banner img-responsive img-portfolio img-hover" id="myCarousel1" src="/static/images/marketing_indicator.png">
-                        <a href="/member_service/sales_opportunities/" class="btn btn-default">Start Test</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <!-- <h4><i class="fa fa-fw fa-gift"></i> Free Self Evaluation</h4> -->
-                        <h4><i class="fa fa-fw fa-compass"></i> Asian Marketing Self Planning</h4>
-                    </div>
-                    <div class="panel-body">
-                        <!-- <p>blah blah blah...</p> -->
-                        <img class="banner img-responsive img-portfolio img-hover" id="myCarousel1" src="/static/images/puzzle-csd.jpg">
-                        <a href="/budget_allocation/stage2_test/" class="btn btn-default">Start Test</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-compass"></i>Media and Competitors Monitoring</h4>
-                    </div>
-                    <div class="panel-body">
-                        <!-- <p>blah blah blah...</p> -->
-                        <img class="banner img-responsive img-portfolio img-hover" id="myCarousel4" src="/static/images/media_pic_2.png">
-                        <a href="/default_web/stage3_test/" class="btn btn-default">Start Test</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- /.row -->
-
-        <!-- Case Section -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Featured Clients</h2>
-            </div>
-            <div class="col-md-3 col-sm-5">
-                <a href="/default_web/education_case/">
-                    <img class="img-responsive img-portfolio img-hover" src="/static/images/education_case.png" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-5">
-                <a href="/default_web/destination_mkt_case/">
-                    <img class="img-responsive img-portfolio img-hover" src="/static/images/destination_mkt_case.png" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-5">
-                <a href="/default_web/real_estate_case/">
-                    <img class="img-responsive img-portfolio img-hover" src="/static/images/real_estate_case.png" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-5">
-                <a href="/default_web/real_estate_case/">
-                    <img class="img-responsive img-portfolio img-hover" src="/static/images/phoseon.png" alt="">
-                </a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-       <!--  <hr>  -->
-
-        <!-- Call to Action Section -->
-        <div class="well">
+        <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <p><h4>Want to Use Glogou Products and Service?</h4></p>
-                </div>
-                <div class="col-md-4">
-                    <a class="btn btn-lg btn-info btn-block" href="/contact/">Contact Now!</a>
-                </div>
-            </div>
-        </div>
+                <div class="intro-detail">
+                    <div class="col-xs-12 col-sm-6 col-md-8 <!--wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms"-->
+						<h2>Glogou provides the most effective and complete digital and mobile marketing solutions for you to reach customers in Asia and particularly in China. Our solutions are based on innovative international market opportunity discovery technology, professional SEO/SEM and social media marketing services in Asia. We help you reach Asia's customers as never before.</h2>
+					</div><!--/.col-sm-8-->
 
-    </div>>
+                    <div class="row <!--wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms"-->
+						<div class="col-xs-6 col-sm-3 col-md-2 markets">
+							<div class="recent-work-wrap">
+								<img class="img-responsive" src="../../static/images/tourism-sm.png" alt="Tourism Marketing">
+								<div class="overlay" id="market-1">
+									<div class="recent-work-inner">
+										<h3><a href="http://hotels.glogou.com/">Tourism</a></h3>
+										<p>Travel and destination marketing</p>
+										<a class="preview" href="http://hotels.glogou.com"><i class="fa fa-eye"></i> View</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-6 col-sm-3 col-md-2 markets">
+							<div class="recent-work-wrap">
+								<img class="img-responsive" src="../../static/images/hightech-sm.png" alt="High Tech Marketing">
+								<div class="overlay" id="market-2">
+									<div class="recent-work-inner">
+										<h3><a href="http://hightech.glogou.com/">High Tech</a></h3>
+										<p>High tech products marketing</p>
+										<a class="preview" href="http://hightech.glogou.com/"><i class="fa fa-eye"></i> View</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-6 col-sm-3 col-md-2 markets">
+							<div class="recent-work-wrap">
+								<img class="img-responsive" src="../../static/images/education-sm.png" alt="Education Marketing">
+								<div class="overlay" id="market-3">
+									<div class="recent-work-inner">
+										<h3><a href="http://china-recruiting.glogou.com">Education</a></h3>
+										<p>International College and Alumni recruiting</p>
+										<a class="preview" href="http://china-recruiting.glogou.com"><i class="fa fa-eye"></i> View</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-6 col-sm-3 col-md-2 markets">
+							<div class="recent-work-wrap">
+								<img class="img-responsive" src="../../static/images/realestate-sm.png" alt="Real Estate Marketing">
+								<div class="overlay" id="market-4">
+									<div class="recent-work-inner">
+										<h3><a href="http://realestate-marketing.glogou.com">Real Estate</a></h3>
+										<p>Real estate and hotels marketing</p>
+										<a class="preview" href="http://realestate-marketing.glogou.com"><i class="fa fa-eye"></i> View</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+            </div><!--/.row-->
+
+                </div><!--/.services-->
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#feature-->
+
+    <section id="services" class="service-item">
+		<div class="row col-md-12 text-center <!--wow fadeInDown--> section-title">
+			<h1>WHAT WE DO</h1>
+		</div>
+
+		<div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="media services-wrap <!--wow fadeInDown"-->
+                        <div class="pull-left">
+                            <img class="img-responsive" src="../../static/images/services2.png">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">China, Japan, Korea SEM</h3>
+                            <p>Baidu, Yahoo Japan, Naver SEM and keyword optimization</p>
+							<p><a class="btn btn-sm btn-primary service-button" href="http://www.glogou.com/adbaidu" role="button">See more details</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-4">
+                    <div class="media services-wrap <!--wow fadeInDown"-->
+                        <div class="pull-left">
+                            <img class="img-responsive" src="../../static/images/services4.png">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">Asia Social Marketing</h3>
+                            <p>Weibo, Wechat, QQ, and other Asian Social Media</p>
+							<p><a class="btn btn-sm btn-primary service-button" href="http://weibo-marketing.glogou.com" role="button">See more details</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-4">
+                    <div class="media services-wrap <!--wow fadeInDown"-->
+                        <div class="pull-left">
+                            <img class="img-responsive" src="../../static/images/services5.png">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">Mobile Marketing</h3>
+                            <p>Specific marketing plan for mobile application</p>
+							<p><a class="btn btn-sm btn-primary service-button" href="http://mobile-marketing-in-china.glogou.com" role="button">See more details</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-4">
+                    <div class="media services-wrap <!--wow fadeInDown"-->
+                        <div class="pull-left">
+                            <img class="img-responsive" src="../../static/images/services3.png">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">Web Design</h3>
+                            <p>Localized website design/development in Chinese and Asian languages</p>
+							<p><a class="btn btn-sm btn-primary service-button" href="http://glogou.com/chinese-website-design-development.html" role="button">See more details</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-4">
+                    <div class="media services-wrap <!--wow fadeInDown"-->
+                        <div class="pull-left">
+                            <img class="img-responsive" src="../../static/images/services6.png">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">China Marketing</h3>
+                            <p>Complete China digital marketing services</p>
+							<p><a class="btn btn-sm btn-primary service-button" href="http://china-marketing.glogou.com/" role="button">See more details</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-4">
+                    <div class="media services-wrap <!--wow fadeInDown"-->
+                        <div class="pull-left">
+                            <img class="img-responsive" src="../../static/images/services1.png">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">Sales Opportunity Discovery</h3>
+                            <p>Customized Asia Market and Competitive Analysis</p>
+							<p><a class="btn btn-sm btn-primary service-button" href="http://sales-signal-processing.glogou.com/default_web/stage1_test/" role="button">See more details</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#services-->
+
+	<section id="recent-works">
+		<div class="row col-md-12 text-center <!--wow fadeInDown--> section-title">
+			<h1>HOW WE CAN HELP</h1>
+		</div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+					<div class="panel panel-default ssp">
+						<div class="panel-heading">
+							<h4><i class="fa fa-fw fa-compass"></i>Sales Opportunities Discovery</h4>
+						</div>
+						<div class="panel-body">
+							<!--<p>blah blah blah...</p>-->
+							<img class="banner img-responsive img-portfolio img-hover" id="myCarousel1" src="../../static/images/ssp-sm.jpg" alt="Sales Signal Processing" title="SSP"></img>
+							<a href="http://sales-signal-processing.glogou.com/default_web/stage1_test/" class="btn btn-default">Try It Now</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-default ssp">
+						<div class="panel-heading">
+							<h4><i class="fa fa-fw fa-compass"></i>Asia Marketing Self Planning</h4>
+						</div>
+						<div class="panel-body">
+							<!-- <p>blah blah blah...</p> -->
+							<img class="banner img-responsive img-portfolio img-hover" id="myCarousel1" src="../../static/images/ba-sm.jpg" alt="Budget Allocation" title="Budget Allocation"></img>
+							<a href="http://sales-signal-processing.glogou.com/budget_allocation/stage2_test/" class="btn btn-default">Try It Now</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-default ssp">
+						<div class="panel-heading">
+							<h4><i class="fa fa-fw fa-compass"></i>Media and Competitor Monitoring</h4>
+						</div>
+						<div class="panel-body">
+							<!-- <p>blah blah blah...</p> -->
+							<img class="banner img-responsive img-portfolio img-hover" id="myCarousel4" src="../../static/images/wave-mm-sm.jpg" alt="Website Accessibility Test" title="WAVE"></img>
+							<a href="http://sales-signal-processing.glogou.com/default_web/stage3_test/" class="btn btn-default">Try It Now</a>
+						</div>
+					</div>
+				</div>
+
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#recent-works-->
+
+    <section id="middle">
+		<div class="row col-md-12 text-center <!--wow fadeInDown--> section-title">
+			<h1>Featured Showcases</h1>
+		</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 <!--wow fadeInDown"-->
+                    <div class="col-xs-12 col-sm-6 col-md-3 showcase">
+						<div class="recent-work-wrap">
+							<a href="http://sales-signal-processing.glogou.com/default_web/education_case/"><img class="img-responsive" src="../../static/images/education_case.png" alt="Education Marketing Showcase" title="Education marketing Showcase"></a>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-3 showcase">
+						<div class="recent-work-wrap">
+							<a href="http://sales-signal-processing.glogou.com/default_web/education_case/"><img class="img-responsive" src="../../static/images/destination_mkt_case.png" alt="Tourism Marketing Showcase" title="Tourism Marketing Showcase"></a>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-3 showcase">
+						<div class="recent-work-wrap">
+							<a href="http://sales-signal-processing.glogou.com/default_web/education_case/"><img class="img-responsive" src="../../static/images/real_estate_case.png" alt="Real Estate Marketing Showcase" title="Real Estate Marketing Showcase"></a>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-3 showcase">
+						<div class="recent-work-wrap">
+							<a href="http://sales-signal-processing.glogou.com/default_web/education_case/"><img class="img-responsive" src="../../static/images/phoseon.png" alt="High Tech Marketing Showcase" title="High Tech Marketing Showcase"></a>
+						</div>
+					</div>
+                </div><!--/.col-sm-12-->
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#middle-->
     {% endblock %}

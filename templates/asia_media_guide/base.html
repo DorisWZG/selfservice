@@ -1,0 +1,27 @@
+{% extends "default_web/base.html" %}
+
+    {% block title %}Glogou - Asia Media Guide{% endblock %}
+    {% block description %}{% endblock %}
+    {% block keyword %}{% endblock %}
+
+
+    {% block content %}
+        <div class="page-top">
+            <ol class="breadcrumb">
+                <li><a href="http://www.glogou.com">Home</a></li>
+                <li><a href="/asia_media_guide/">Asia Media Guide</a></li>
+                <li class="active">{{sitename}}</li>
+            </ol>
+            <h1>Asia Media Guide: {{sitename}}</h1>
+        </div> <!--/page-top-->
+
+        <section class="container">
+            {% block content_main %}{% endblock %}
+
+            <div class="col-xs-12 MG-bottom">
+                <h3>Glogou helps you advertise on websites above. Glogou provides COMPLETE assistances you need to run successful Asia marketing campaigns, including language translation, website localization, local currency payment, online advertising regulation requirements assistances.
+                </h3>
+            </div>
+        </section>
+
+    {% endblock %}

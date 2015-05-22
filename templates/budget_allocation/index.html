@@ -1,0 +1,141 @@
+{% extends "budget_allocation/base.html" %}
+
+
+    {% block content_main %}
+        <div class="row">
+            <h4 class="col-md-4">Choose the country you want to try:</h4>
+            <ul class="col-md-8">
+                <li class="col-md-2 active"><a>China</a></li>
+                <li class="col-md-2"><a>Japan</a></li>
+                <li class="col-md-2"><a>Korea</a></li>
+                <li class="col-md-2"><a>Taiwan</a></li>
+                <li class="col-md-2"><a>Indonesia</a></li>
+            </ul>
+        </div>
+
+        <div class="row">
+             <div class="col-md-12">
+                <h4>Choose a business category and sub-category to plan a campaign:</h4>
+
+                <form class="form-horizontal" >
+                    <div class="form-group">
+                        <label class="col-md-1 control-label" for="selectCategory">Category</label>
+                        <div class="col-md-2">
+                            <select id="selectCategory" class="form-control" onchange="getSubCategory()">
+                                <option value=""> Business sector</option>
+                            </select>
+                        </div>
+                        <label class="col-md-2 control-label" for="selectSubCategory">Sub Category</label>
+                        <div class="col-md-2">
+                            <select id="selectSubCategory" class="form-control">
+                                <option value="">Sub business sector</option>
+                            </select>
+                        </div>
+                        <label class="col-md-2 control-label" for="selectGoal">Campaign Goal</label>
+                        <div class="col-md-2">
+                            <select id="selectGoal" class="form-control">
+                                <option value="">Your Campaign goal</option>
+                                <option value="click">More clicks (leads)</option>
+                                <option value="impression">More impressions</option>
+                            </select>
+                        </div>
+                         <div class="col-md-offset-8">
+                        <!--{<a class="btn btn-primary" onclick="showResult();">See Recommendation<span class="glyphicon glyphicon-chevron-right"></span></a>}-->
+                        <a id="see_result_button" class="btn btn-primary" onclick="showResultPage();">See Our Recommendation&nbsp;&nbsp;&raquo;</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="AllCustomers" class="tile-list selectable on-load-fade-in">
+                    <div>
+                    <a class="col-md-4" href="http://www.glogou.com/adbaidu/">
+                        <img src="../../static/images/logos/baidu.jpg" width="100%">
+                        <h4 class="text-center">Baidu</h4>
+                        <h5 class="text-center">The leading search engine in China</h5>
+                    </a>
+                    <a class="col-md-4" href="http://weibo-marketing.glogou.com/">
+                        <img src="../../static/images/logos/weibo.jpeg" width="85%">
+                        <h4 class="text-center">Weibo</h4>
+                        <h5 class="text-center">The top social media in China</h5>
+                    </a>
+                    <a class="col-md-4" href="http://glogou.com/china-online-marketing/wechat.php">
+                        <img src="../../static/images/logos/wechat1.jpeg" width="100%">
+                        <h4 class="text-center">Wechat</h4>
+                        <h5 class="text-center">The top social media on smart phone</h5>
+                    </a>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div>
+                    <a class="col-md-4" href="http://www.glogou.com/china-online-marketing/soufun.html">
+                            <img src="../../static/images/logos/soufun.jpg" width="100%">
+                        <h4 class="text-center">Soufun</h4>
+                        <h5 class="text-center">Property investment platform</h5>
+                    </a>
+                    <a class="col-md-4" href="http://glogou.com/china-online-marketing/youku.html">
+                            <img src="../../static/images/logos/youku.png" width="85%">
+                        <h4 class="text-center">Youku Inc.</h4>
+                        <h5 class="text-center">China's biggest video sites</h5>
+                    </a>
+                    <a class="col-md-4" href="http://www.glogou.com/china-online-marketing/tmall.html">
+                            <img src="/static/images/logos/tmall.jpeg" width="100%">
+                        <h4 class="text-center">TMall</h4>
+                        <h5 class="text-center">Ecommerce website for branded products</h5>
+                    </a>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div>
+                    <a class="col-md-4" href="http://www.glogou.com/china-online-marketing/ctrip.html">
+                            <img src="/static/images/logos/ctrip.jpeg" width="100%">
+                        <h4 class="text-center">CTrip</h4>
+                        <h5 class="text-center">Travel website</h5>
+                    </a>
+                    <a class="col-md-4" href="http://www.glogou.com/china-online-marketing/taobao.html">
+                            <img src="../../static/images/logos/taobao.jpg" width="75%">
+                        <h4 class="text-center">Taobao</h4>
+                        <h5 class="text-center">Ecommerce website for everything </h5>
+                    </a>
+                    <a class="col-md-4" href="http://hao.360.cn/">
+                            <img src="../../static/images/logos/360.jpg" width="100%">
+                        <h4 class="text-center">360 Search Engine</h4>
+                        <h5 class="text-center">The second largest search engine in China</h5>
+                    </a>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+        </div><!-- /.row -->
+
+        <div class="row">
+            <table class="table hidden" id="result-table">
+                <tr>
+                    <th>Suggested Channel</th>
+                    <th>Budget Allocation</th>
+                    <th>Expected Clicks</th>
+                    <th>Average Cost per Click</th>
+                    <th>Expected Impressions</th>
+                    <th>Average Cost per Impression</th>
+                </tr>
+            </table>
+        </div>
+
+    <script src="../../static/javascript/testGetResult.js"></script>
+    <script>
+    var url = "/budget_allocation/get_industryNameList";
+    $.get(url).done(function(data) {
+        var selectElem = $("#selectCategory");
+
+        $(data).each(function(idx, category) {
+            transIndustryName = translateCategory(category.industryName);
+            $("<option></option>").attr("value", category.industryName).html(transIndustryName).appendTo(selectElem)
+        });
+    }).fail(function(data) {
+        alert("Status Code: " + data.status + ", Status Text: " + data.statusText + ", Response Text: " + data.responseText);
+    });
+
+    </script>
+
+    {% endblock %}
