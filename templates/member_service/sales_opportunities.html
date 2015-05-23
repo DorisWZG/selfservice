@@ -137,12 +137,30 @@
             </div>
 
         <div class="col-md-9 container">
+            <h4 class="page-header"><b>Opportunity Summary</b></h4>
             {% if opportunity == 1 %}
-                <h4 class="page-header"><b>Great News</b>: Last quarter data shows there is opportunity for this product in Asia Now. <br>Demand is strong !</h4>
+                <h4><b>Great News</b>: There is opportunity for this product in Asia Now. Demand is strong !</h4>
             {% elif opportunity == 2 %}
-                <h4 class="page-header"><b>Great News</b>: Last quarter data shows there is opportunity for this product in Asia Now. <br>Demand is stronger than supply !</h4>
+                <h4><b>Great News</b>: There is opportunity for this product in Asia Now. Demand is stronger than supply !</h4>
             {% else %}
-                <h4 class="page-header">No obvious New market opportunity for this product in Asia now. <br>Please <b>Subscribe Alert Opportunity Newsletter</b> for future opportunity.</h4>
+                <h5>No obvious New market opportunity for this product in Asia now. <br>Please try different product categories or <b>Subscribe Alert Opportunity Newsletter</b> for future opportunity.</h5>
+            {% endif %}
+
+            {% if demand_change_index1688_normalized > 0.01 %}
+                <!-- To compute a*b use  'widthratio a 1 b', This is a hack trick, we use this to convert a number to percentage -->
+                <h4 >Last quarter, Retail demand increases {% widthratio demand_change_index1688_normalized 1 100 %}%  <br></h4>
+            {% endif %}
+
+            {% if demand_change_indexTb_normalized > 0.01 %}
+                <h4 >Last quarter, Wholesale demand increases {% widthratio demand_change_indexTb_normalized 1 100 %}% <br></h4>
+            {% endif %}
+
+            {% if supply_change_normalized < -0.01 %}
+                <h4 >Last quarter, Supply decreases {% widthratio supply_change_normalized 1 100 %}%</h4>
+            {% endif %}
+
+            {% if supply_change_normalized > 0.01 %}
+                <h4 >Last quarter, Supply increases {% widthratio supply_change_normalized 1 100 %}%</h4>
             {% endif %}
         </div>
 

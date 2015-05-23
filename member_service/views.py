@@ -153,12 +153,15 @@ def sales_opportunities(request):
             purchase_indexTb.append([ epoch, int(1000*record.purchase_indextb/purchase_indexTb_av) ])
             supply_index.append([ epoch, int(1000*record.supply_index/supply_index_av) ])
 
-        opportunity = Detect_Sales_Opportunities(result)
+        opportunity, demand_change_index1688_normalized, demand_change_indexTb_normalized, supply_change_normalized = Detect_Sales_Opportunities(result)
 
         context['purchase_index1688'] = purchase_index1688
         context['purchase_indexTb'] = purchase_indexTb
         context['supply_index'] = supply_index
         context['opportunity'] = opportunity
+        context['demand_change_index1688_normalized'] = demand_change_index1688_normalized
+        context['demand_change_indexTb_normalized'] = demand_change_indexTb_normalized
+        context['supply_change_normalized'] = supply_change_normalized
 
     return render(request, 'member_service/sales_opportunities.html', context)
 
@@ -229,13 +232,15 @@ def Detect_Sales_Opportunities(result):
 
     # when we know supply data
     else:
-        if (demand_change_index1688_normalized > Opportunity_threshold_by_demand_and_supply_data)  or \
+        if (demand_change_index1688_normalized > Opportunity_threshold_by_demand_and_supply_data) or \
             (demand_change_indexTb_normalized > Opportunity_threshold_by_demand_and_supply_data) or \
             ((demand_change_index1688_normalized + demand_change_indexTb_normalized) > Opportunity_threshold_by_demand_and_supply_data):
 
             opportunity = 2
 
-    return opportunity
+    # maybe it is better to return the result in a structure in future, but I do not know how to pass structure to template
+    # __BL_COMMENT__
+    return opportunity, demand_change_index1688_normalized, demand_change_indexTb_normalized, supply_change_normalized
 
 #  Get average of market trend data over selected period
 def market_trend_get_average_over_period(result, start, end):
@@ -293,6 +298,14 @@ def create_demo_data():
         context['cat1'] = None
         context['cat2'] = None
         context['cat3'] = None
+
+        # Put some opportunity numbers. Those numbers were obtained by observing the chart of demo data.
+        # A better way to get those data shall be through Detect_Sales_Opportunities(...)
+        # But at this moment, Detect_Sales_Opportunities(...) expect input is in result format.
+        context['opportunity'] = 1
+        context['demand_change_index1688_normalized'] = 0.13
+        context['demand_change_indexTb_normalized'] = 0.11
+        context['supply_change_normalized'] = 0.02
 
         return context
 
