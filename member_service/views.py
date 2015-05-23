@@ -155,16 +155,10 @@ def sales_opportunities(request):
 
         opportunity = Detect_Sales_Opportunities(result)
 
-        # The following text message shall be move to template in sales_opportunities.html
-        if(opportunity > 0):
-            opportunity_msg = 'Great News: There is opportunity for this product in Asia Now. Demand is strong !'
-        else:
-            opportunity_msg = 'No obvious New market opportunity for this product in Asia now. Please subscribe our alert opportunity letter for future opportunity.'
-
         context['purchase_index1688'] = purchase_index1688
         context['purchase_indexTb'] = purchase_indexTb
         context['supply_index'] = supply_index
-        context['opportunity'] = opportunity_msg
+        context['opportunity'] = opportunity
 
     return render(request, 'member_service/sales_opportunities.html', context)
 
