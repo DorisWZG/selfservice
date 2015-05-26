@@ -14,17 +14,16 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    #url(r'^restapi/', include('restapi.urls') ),
-    url(r'^', include('asia_media_planning.urls')),
-    # url(r'^restapi/', include('restapi.urls')),
+    #url(r'^restapi/', include('restapi.urls')),
 
     url(r'^$', views.index, name='home'),
     url(r'^contact/$', views.contact, name = 'contact'),
     url(r'^about/$', views.about, name='about'),
     url(r'^member/$', views.member_service),
     url(r'^default_web/', include('default_web.urls')),
+    url(r'^asia-media-guide/', include('asia_media_guide.urls')),
     url(r'^member_service/', include('member_service.urls')),
-    url(r'^asia_media_planning/',include('asia_media_planning.urls')),
+    url(r'^asia-media-planning/',include('asia_media_planning.urls')),
 
     url(r'^accounts/login/$', 'selfservice.views.login'),
     url(r'^accounts/auth/$', 'selfservice.views.auth_view'),

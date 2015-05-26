@@ -9,7 +9,7 @@ class Product_Dictionary_C1(models.Model):
     chn_kw = models.CharField(max_length=50)
 
     class Meta:
-        # managed = False
+        managed = True
         db_table = 'product_dictionary_c1'
 
     def __str__(self):
@@ -23,7 +23,7 @@ class Product_Dictionary_C2(models.Model):
     cat1 = models.ForeignKey('Product_Dictionary_C1')
 
     class Meta:
-        # managed = False
+        managed = True
         db_table = 'product_dictionary_c2'
 
     def __str__(self):
@@ -37,7 +37,7 @@ class Product_Dictionary_C3(models.Model):
     cat2 = models.ForeignKey('Product_Dictionary_C2')
 
     class Meta:
-        # managed = False
+        managed = True
         db_table = 'product_dictionary_c3'
 
     def __str__(self):
