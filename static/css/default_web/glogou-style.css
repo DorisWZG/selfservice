@@ -95,21 +95,21 @@ html,body {
 	padding:0; margin:0; 
 	}
 .recent-work-wrap .recent-work-inner {
-	color:#325aaa;
 	padding:10px;
 	}
-.recent-work-wrap .recent-work-inner h3 {
+.recent-work-wrap .recent-work-inner a {
 	line-height:100%;
+	color:#325aaa;
 	}
 .recent-work-wrap .recent-work-inner h3 a {
-	font-size:1em; 
-	color:#325aaa;
+	font-size:1em;
+    color:#325aaa;
 	}
 .recent-work-wrap .overlay .preview {
-	line-height:100%; 
-	height:100%; 
+	line-height:100%;
+	height:100%;
 	color:#325aaa;
-	}	
+	}
 	
 .services-wrap {height:232px; overflow:hidden;}	
 

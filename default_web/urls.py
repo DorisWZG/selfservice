@@ -9,6 +9,7 @@ urlpatterns = patterns('',
 	url(r'^destination_mkt_case/$', views.destination_mkt_case, name='destination_mkt_case'),
 	url(r'^real_estate_case/$', views.real_estate_case, name='real_estate_case'),
 	url(r'^high_tech_case/$', views.high_tech_case, name='high_tech_case'),
+    url(r'^testimonials.html', views.testimonials, name='testimonials'),
 
 	url(r'^stage1/$', views.stage1, name='stage1'),
     url(r'^getCat1/.*$', views.getCat1, name = 'getCat1'),

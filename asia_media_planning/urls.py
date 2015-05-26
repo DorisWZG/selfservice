@@ -5,7 +5,7 @@ from urlparse import urlparse
 
 urlpatterns = patterns('',
 
-	url(r'^china_media/$', views.budget_allocation_test, name='china_media'),
+	url(r'^china-media/$', views.budget_allocation_test, name='china_media'),
 	# url(r'^stage2_result/industry/(?P<industry>.+)/subindustry/(?P<sub_industry>.+)/budget/(?P<budget>.+)/?$', views.stage2_result, name='stage2_result'),
 
     url(r'^china_media_result/(?P<industry>.+)/(?P<sub_industry>.+)/?$', views.recomm_channels, name='recomm_channels'),

@@ -54,6 +54,9 @@ def member_service(request):
 def contact(request):
     return render(request, 'contact.html',{})
 
+def testimonials(request):
+    return render(request, 'default_web/testimonials.html',{})
+
 def education_case(request):
     return render(request, 'default_web/education_case.html',{})
 def destination_mkt_case(request):
